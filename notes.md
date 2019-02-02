@@ -3,11 +3,11 @@
 # Laravel Packages
 
 -   Telescope
-    -- Status: Started
+    -- Status: Done
 -   Horizon
-    -- Status: Started
+    -- Status: Done
 -   Passport
-    -- Status: Not Started
+    -- Status: Started
 
 # Ideas
 
@@ -18,3 +18,9 @@
 # Auth.usaf.cloud
 
 -   Will be an oauth2 provider
+
+# User registration
+
+-   locked down to:
+    -- usaf.af.mil
+    -- usaf.cloud
