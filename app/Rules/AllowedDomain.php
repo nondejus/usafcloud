@@ -50,6 +50,6 @@ class AllowedDomain implements Rule
      */
     public function message()
     {
-        return 'We appreciate your interest in joining the squadron. However at the moment we only offer this service to those with us.af.mil or usaf.cloud email addresses.';;
+        return 'We appreciate your interest in signing up. However at the moment we only offer this service to those with us.af.mil email addresses.';;
     }
 }
