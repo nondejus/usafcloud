@@ -167,6 +167,7 @@ return [
          */
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\HorizonServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...
