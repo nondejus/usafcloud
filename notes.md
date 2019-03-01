@@ -13,6 +13,13 @@
 -   Passport
     -- Status: Started
     -- Updated for 5.8: DONE
+    -- Modified for UUIDs on the user_id's
+-   Helpers
+    -- installed
+-   UUID
+    -- https://github.com/webpatser/laravel-uuid
+    -- https://medium.com/@didin.ahmadi/implement-uuid-on-authentication-built-in-laravel-5-7-e289e6a5a9a5
+    -- https://medium.com/@steveazz/setting-up-uuids-in-laravel-5-552412db2088
 
 # Ideas
 
