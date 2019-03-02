@@ -123,6 +123,16 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Is User Registration Open
+    |--------------------------------------------------------------------------
+    |
+     */
+
+    'open_registation' => env('APP_OPEN_REGISTRATION', true),
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers
@@ -231,5 +241,4 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
 ];
