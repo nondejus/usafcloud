@@ -8,7 +8,6 @@
         USAF.Cloud
     </h1>
 
-
     <div class="card card-body p-5">
 
         <h2 class="text-center mb-4 text-3xl">Sign In</h2>
@@ -67,14 +66,6 @@
         One Account. One Login. <br>
         All Your Trusted Applications
     </p>
-
-    {{-- @if (Route::has('password.request'))
-    <div class="text-center mt-2">
-        <a class="btn btn-link" href="{{ route('password.request') }}">
-            {{ __('Forgot Your Password?') }}
-        </a>
-    </div>
-    @endif --}}
 
 </div>
 
