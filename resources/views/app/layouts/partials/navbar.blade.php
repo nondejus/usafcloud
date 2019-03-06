@@ -49,6 +49,7 @@
 
                         <h6 class="dropdown-header">User Kiosk</h6>
                         <a class="dropdown-item" href="{{ route('app.users.account.show') }}">Profile</a>
+                        <a class="dropdown-item" href="{{ route('app.users.applications.index') }}">My Apps</a>
 
                         <h6 class="dropdown-header">Developer Kiosk</h6>
                         <a class="dropdown-item" href="{{ route('app.developers.index') }}">API</a>

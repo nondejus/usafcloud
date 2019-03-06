@@ -37,4 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return "{$this->first_name} {$this->last_name}";
     }
+
+    public function applications()
+    {
+        return $this->hasMany('App\Models\OAuth\Application', 'user_id', 'id')->where('revoked', false);
+    }
 }
