@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\App;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class AppController extends Controller
+class AdminController extends Controller
 {
     public function __construct()
     {
@@ -14,11 +14,6 @@ class AppController extends Controller
 
     public function index()
     {
-        return view('app.index');
-    }
-
-    public function developers()
-    {
-        return view('app.developers.index');
+        return view('app.admin.index');
     }
 }

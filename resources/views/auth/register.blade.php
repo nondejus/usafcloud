@@ -29,12 +29,23 @@
             </div>
 
             <div class="form-group">
-                <label for="name">Name</label>
-                <input type="text" name="name" id="name" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
-                    value="{{ old('name') }}" required>
-                @if ($errors->has('name'))
+                <label for="first_name">First Name</label>
+                <input type="text" name="first_name" id="first_name" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}"
+                    value="{{ old('first_name') }}" required>
+                @if ($errors->has('first_name'))
                 <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('name') }}</strong>
+                    <strong>{{ $errors->first('first_name') }}</strong>
+                </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <label for="last_name">Last Name</label>
+                <input type="text" name="last_name" id="last_name" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}"
+                    value="{{ old('last_name') }}" required>
+                @if ($errors->has('last_name'))
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $errors->first('last_name') }}</strong>
                 </span>
                 @endif
             </div>
