@@ -1,0 +1,37 @@
+<?php
+
+namespace App\Listeners;
+
+use DB;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Laravel\Passport\Events\AccessTokenCreated;
+
+class PassportListener
+{
+    /**
+     * Create the event listener.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Handle the event.
+     *
+     * @param  object  $event
+     * @return void
+     */
+    public function handle(AccessTokenCreated $event)
+    {
+        //
+        DB::table('oauth_access_tokens')
+            ->where('id', '<>', $event->tokenId)
+            ->where('user_id', $event->userId)
+            ->where('client_id', $event->clientId)
+            ->update(['revoked' => true]);
+    }
+}
