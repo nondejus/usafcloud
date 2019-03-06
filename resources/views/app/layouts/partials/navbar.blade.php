@@ -37,13 +37,18 @@
                 <li class="nav-item dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                        @if (auth()->user()->nickname )
+                        {{ Auth::user()->nickname }}
+                        @else
+                        {{ Auth::user()->name }}
+                        @endif
+                        <span class="caret"></span>
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
                         <h6 class="dropdown-header">User Kiosk</h6>
-                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{{ route('app.users.account.show') }}">Profile</a>
 
                         <h6 class="dropdown-header">Developer Kiosk</h6>
                         <a class="dropdown-item" href="{{ route('app.developers.index') }}">API</a>

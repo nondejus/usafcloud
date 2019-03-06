@@ -12,7 +12,7 @@ Home
 
         <div class="card mt-5">
 
-            <div class="card-header">My Profile</div>
+            <div class="card-header">USAF.Cloud Dashboard</div>
 
             <div class="card-body">
                 ...
