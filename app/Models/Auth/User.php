@@ -3,6 +3,7 @@
 namespace App\Models\Auth;
 
 use App\Traits\Uuids;
+use Laravel\Passport\Token;
 use Laravel\Passport\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -30,7 +31,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'isAdmin',
+        'password', 'remember_token',
     ];
 
     public function getNameAttribute()
@@ -40,7 +41,6 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function applications()
     {
-        return $this->hasMany(\Laravel\Passport\Token::class, 'user_id', 'id')->where('revoked', false);
-        //return $this->hasMany('\Laravel\Passport\Token', 'user_id', 'id')->where('revoked', false);
+        return $this->hasMany(Token::class, 'user_id', 'id')->where('revoked', false);
     }
 }

@@ -16,7 +16,7 @@ class UsersController extends Controller
 
     public function index()
     {
-        $users = User::all()->load('roles.permissions');
+        $users = User::all()->load('roles.permissions')->sortBy('last_name');
         return view('app.admin.users.index', compact('users'));
     }
 }

@@ -18,7 +18,7 @@
 
             <div class="form-group">
                 <label for="email">Email Address</label>
-                <input type="email" name="email" id="email" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                <input type="email" name="email" id="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
                     value="{{ old('email') }}" required autofocus>
                 <small>You must sign up with your us.af.mil email address</small>
                 @if ($errors->has('email'))
