@@ -12,4 +12,9 @@ class Application extends Model
     {
         return $this->belongsTo('App\Models\Auth\User', 'user_id', 'id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo('Laravel\Passport\Client', 'client_id', 'id');
+    }
 }
