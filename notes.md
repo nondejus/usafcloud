@@ -52,3 +52,8 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 2. Redirect user to auth.usaf.cloud
 3. User successfully logs in to usaf.cloud
 4. User has an account at usaf.cloud, so grant them access to rogue
+
+# Google
+
+-   https://developers.google.com/admin-sdk/directory/v1/guides/delegation
+-   https://developers.google.com/admin-sdk/directory/v1/reference/users/insert?authuser=1#auth
