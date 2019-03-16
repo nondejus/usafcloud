@@ -26,29 +26,25 @@
                 <div class="flex justify-content-between align-items-center">
                     <p class="text-xl m-0 text-grey-darker">{{ $user->name }}</p>
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-2" type="button" data-toggle="collapse"
-                            data-target="#user-edit-{{ $user->id }}" aria-expanded="false">
-                            Edit User
-                        </button>
                         <button class="btn btn-sm btn-outline-primary btn-rounded" type="button" data-toggle="collapse"
-                            data-target="#user-permissions-{{ $user->id }}" aria-expanded="false">
-                            View Roles
+                            data-target="#user-view-{{ $user->id }}" aria-expanded="false">
+                            View Details
                         </button>
                     </div>
                 </div>
-                <div class="collapse mt-3" id="user-edit-{{ $user->id }}">
-                    <div class="card card-body">
-                        Edit form...
-                    </div>
-                </div>
-                <div class="collapse mt-3" id="user-permissions-{{ $user->id }}">
-                    <div class="card card-body">
-                        <div>
-                            @forelse ($user->roles as $role)
-                            <span class="badge badge-primary font-light p-2">{{ $role->name }}</span>
-                            @empty
-                            No Roles Attached
-                            @endforelse
+                <div class="collapse mt-3" id="user-view-{{ $user->id }}">
+                    <div class="card">
+                        <div class="card-body">
+                            <p>First Name: <span class="underline">{{ $user->first_name }}</span></p>
+                            <p>Last Name: <span class="underline">{{ $user->last_name }}</span></p>
+                            <p>Nickname: <span class="underline">{{ $user->nickname }}</span></p>
+                            <p>Organization: <span class="underline">Active Duty USAF</span></p>
+                            <p>Email Address:
+                                <span class="underline">
+                                    <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                </span>
+                            </p>
+                            <p>G-Suite Enabled: <span class="underline">No</span></p>
                         </div>
                     </div>
                 </div>
