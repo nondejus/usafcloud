@@ -29,7 +29,7 @@
                     </div>
 
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded" type="button" data-toggle="collapse"
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
                             data-target="#user-view-{{ $user->id }}" aria-expanded="false">
                             Quick View
                         </button>
@@ -50,7 +50,7 @@
                                     <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                 </span>
                             </p>
-                            <p>G-Suite Enabled: <span class="underline">No</span></p>
+                            <p class="m-0">G-Suite Enabled: <span class="underline">No</span></p>
                         </div>
                     </div>
                 </div>

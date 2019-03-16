@@ -22,7 +22,7 @@
                 <div class="flex justify-content-between align-items-center">
                     <p class="text-xl m-0 text-grey-darker">{{ $permission->name }}</p>
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-2" type="button" data-toggle="collapse"
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
                             data-target="#permission-edit-{{ $permission->id }}" aria-expanded="false">
                             Edit Permission
                         </button>
