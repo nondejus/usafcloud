@@ -24,7 +24,10 @@
             @forelse ($users as $user)
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
-                    <p class="text-xl m-0 text-grey-darker">{{ $user->name }}</p>
+                    <div>
+                        <p class="text-xl m-0 text-grey-darker">{{ $user->name }}</p>
+                    </div>
+
                     <div>
                         <button class="btn btn-sm btn-outline-primary btn-rounded" type="button" data-toggle="collapse"
                             data-target="#user-view-{{ $user->id }}" aria-expanded="false">
@@ -45,6 +48,11 @@
                                 </span>
                             </p>
                             <p>G-Suite Enabled: <span class="underline">No</span></p>
+                            <form action="{{ route('app.admin.users.destroy', $user) }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-outline-danger">Delete User</button>
+                            </form>
                         </div>
                     </div>
                 </div>

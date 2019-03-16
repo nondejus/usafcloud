@@ -8,6 +8,7 @@ Route::get('/dashboard', 'Admin\AdminDashboardController@index')->name('app.admi
  * Users
  */
 Route::get('/users', 'Admin\Users\UsersController@index')->name('app.admin.users.index');
+Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app.admin.users.destroy');
 
 /**
  * ACL

@@ -19,4 +19,13 @@ class UsersController extends Controller
         $users = User::all()->load('roles.permissions')->sortBy('last_name');
         return view('app.admin.users.index', compact('users'));
     }
+
+    public function destroy(User $user)
+    {
+        if (auth()->user()->can('users:destroy') && auth()->user()->id <> $user->id) {
+            $user->delete();
+            return redirect()->back()->with('status', 'User Deleted!');
+        }
+        abort(403);
+    }
 }
