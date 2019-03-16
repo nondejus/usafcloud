@@ -5,7 +5,7 @@
 <div class="card">
 
     <div class="card-header flex justify-content-between align-items-center">
-        <span class="text-xl">Manage Users</span>
+        <span class="text-xl">Manage Users ({{ $users->count() }})</span>
         <div>
             <button class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#createNewPermissionModal">
                 Create New User
@@ -31,8 +31,11 @@
                     <div>
                         <button class="btn btn-sm btn-outline-primary btn-rounded" type="button" data-toggle="collapse"
                             data-target="#user-view-{{ $user->id }}" aria-expanded="false">
-                            View Details
+                            Quick View
                         </button>
+                        <a href="{{ route('app.admin.users.show', $user) }}" class="btn btn-sm btn-outline-primary">
+                            Manage User
+                        </a>
                     </div>
                 </div>
                 <div class="collapse mt-3" id="user-view-{{ $user->id }}">
@@ -48,11 +51,6 @@
                                 </span>
                             </p>
                             <p>G-Suite Enabled: <span class="underline">No</span></p>
-                            <form action="{{ route('app.admin.users.destroy', $user) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="btn btn-outline-danger">Delete User</button>
-                            </form>
                         </div>
                     </div>
                 </div>

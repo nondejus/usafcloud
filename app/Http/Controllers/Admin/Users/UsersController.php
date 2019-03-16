@@ -26,6 +26,12 @@ class UsersController extends Controller
             $user->delete();
             return redirect()->back()->with('status', 'User Deleted!');
         }
-        abort(403);
+        abort(403, 'Unable to delete your own account.');
+    }
+
+    public function show(User $user)
+    {
+        $user->with(['roles', 'permissions']);
+        return view('app.admin.users.show', compact('user'));
     }
 }
