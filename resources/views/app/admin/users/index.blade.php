@@ -25,7 +25,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $user->name }}</p>
+                        <p class="text-xl m-0 text-grey-darker">{{ $user->last_name }}, {{ $user->first_name }}</p>
                     </div>
 
                     <div>
