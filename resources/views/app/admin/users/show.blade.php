@@ -29,7 +29,7 @@
         <p>
             Roles:
             @forelse ($user->roles as $role)
-            <span class="badge badge-primary">{{ $role->name }}</span>
+            <span class="badge badge-secondary">{{ $role->name }}</span>
             @empty
             @endforelse
         </p>
@@ -37,13 +37,14 @@
         <p class="m-0">
             Stand Alone Permissions:
             @forelse ($user->permissions as $permission)
-            <span class="badge badge-primary">{{ $permission->name }}</span>
+            <span class="badge badge-secondary">{{ $permission->name }}</span>
             @empty
             @endforelse
         </p>
 
     </div>
 
+    @can('users:destroy')
     <div class="card-footer">
         <form action="{{ route('app.admin.users.destroy', $user) }}" method="POST">
             @csrf
@@ -51,6 +52,7 @@
             <button type="submit" class="btn btn-outline-danger">Delete User</button>
         </form>
     </div>
+    @endcan
 
 </div>
 

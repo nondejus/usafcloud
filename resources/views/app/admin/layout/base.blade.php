@@ -18,6 +18,9 @@ Admin Dashboard
                 <a href="{{ route('app.admin.users.index') }}" class="list-group-item">
                     Manage Users
                 </a>
+                <a href="#" class="list-group-item">
+                    Manage Organizations
+                </a>
             </ul>
         </div>
 
@@ -30,8 +33,11 @@ Admin Dashboard
                 <a href="{{ route('app.admin.acl.roles.index') }}" class="list-group-item">
                     Manage Roles
                 </a>
-                <a href="{{ route('app.admin.acl.permission.index') }}" class="list-group-item">
+                <a href="{{ route('app.admin.acl.permissions.index') }}" class="list-group-item">
                     Manage Permissions
+                </a>
+                <a href="{{ route('app.admin.api.index') }}" class="list-group-item">
+                    API
                 </a>
             </ul>
         </div>

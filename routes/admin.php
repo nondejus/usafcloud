@@ -19,4 +19,12 @@ Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app
 Route::get('/acl/roles', 'ACL\Roles\RolesController@index')->name('app.admin.acl.roles.index');
 
 // Permissions
-Route::get('/acl/permissions', 'ACL\Permissions\PermissionsController@index')->name('app.admin.acl.permission.index');
+Route::get('/acl/permissions', 'ACL\Permissions\PermissionsController@index')->name('app.admin.acl.permissions.index');
+Route::post('/acl/permissions', 'ACL\Permissions\PermissionsController@store')->name('app.admin.acl.permissions.store');
+Route::patch('/acl/permissions/{permission}', 'ACL\Permissions\PermissionsController@update')->name('app.admin.acl.permissions.update');
+Route::delete('/acl/permissions/{permission}', 'ACL\Permissions\PermissionsController@destroy')->name('app.admin.acl.permissions.destroy');
+
+/**
+ * API Clients
+ */
+Route::get('/developer/api', 'Admin\AdminDashboardController@api')->name('app.admin.api.index');

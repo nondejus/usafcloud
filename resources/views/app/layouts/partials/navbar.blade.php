@@ -35,7 +35,7 @@
                 @else
 
                 <li class="nav-item dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
+                    <button class="btn btn-primary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false">
                         @if (auth()->user()->nickname )
                         {{ Auth::user()->nickname }}
@@ -47,22 +47,19 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <h6 class="dropdown-header">User Kiosk</h6>
                         <a class="dropdown-item" href="{{ route('app.users.account.show') }}">Profile</a>
                         <a class="dropdown-item" href="{{ route('app.users.applications.index') }}">My Apps</a>
 
-                        <h6 class="dropdown-header">Admin Kiosk</h6>
+                        @hasanyrole('admin|super-admin')
+
                         <a class="dropdown-item" href="{{ route('app.admin.dashboard.index') }}">Admin Dashboard</a>
-                        <a class="dropdown-item" href="{{ route('app.developers.index') }}">API</a>
+
+                        @endhasrole
 
                         <div class="dropdown-divider"></div>
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
-
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
 
                     </div>
                 </li>

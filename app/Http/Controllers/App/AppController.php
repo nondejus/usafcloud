@@ -16,9 +16,4 @@ class AppController extends Controller
     {
         return view('app.index');
     }
-
-    public function developers()
-    {
-        return view('app.developers.index');
-    }
 }

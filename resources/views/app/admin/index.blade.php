@@ -2,6 +2,16 @@
 
 @section('admin-page-content')
 
-Hello
+<div class="card">
+
+    <div class="card-header flex justify-content-start align-items-center">
+        <span class="text-xl">Admin Dashboard</span>
+    </div>
+
+    <div class="card-body">
+        ...
+    </div>
+
+</div>
 
 @endsection

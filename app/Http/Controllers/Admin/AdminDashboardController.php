@@ -11,10 +11,16 @@ class AdminDashboardController extends Controller
     {
         $this->middleware('auth');
         $this->middleware('role:admin|super-admin');
+        $this->middleware('role:super-admin', ['only' => ['api']]);
     }
 
     public function index()
     {
         return view('app.admin.index');
+    }
+
+    public function api()
+    {
+        return view('app.admin.api.index');
     }
 }
