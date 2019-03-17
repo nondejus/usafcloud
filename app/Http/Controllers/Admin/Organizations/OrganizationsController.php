@@ -18,4 +18,17 @@ class OrganizationsController extends Controller
         $organizations = Organization::all();
         return view('app.admin.organizations.index', compact('organizations'));
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|unique:organizations,name'
+        ]);
+
+        $org = new Organization;
+        $org->name = $request->name;
+        $org->save();
+
+        return redirect()->back()->with('status', 'Organization created!');
+    }
 }

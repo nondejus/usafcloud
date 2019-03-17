@@ -15,6 +15,8 @@ Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app
  * Organizations
  */
 Route::get('/organizations', 'Admin\Organizations\OrganizationsController@index')->name('app.admin.organizations.index');
+Route::post('/organizations', 'Admin\Organizations\OrganizationsController@store')->name('app.admin.organizations.store');
+Route::patch('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@update')->name('app.admin.organizations.update');
 
 
 /**

@@ -103,7 +103,8 @@
 
                     <div class="form-group">
                         <label class="mr-2">Permission Name</label>
-                        <input class="form-control" type="text" name="name" placeholder="resource:action" required>
+                        <input class="form-control" type="text" name="name" placeholder="resource:action" required
+                            autocomplete="false">
                     </div>
 
                     @if ($errors->has('name'))
