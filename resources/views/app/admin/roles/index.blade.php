@@ -7,7 +7,7 @@
     <div class="card-header flex justify-content-between align-items-center">
         <span class="text-xl">Manage Roles</span>
         <div>
-            <button class="btn btn-primary btn-rounded">Create New Role</button>
+            <button class="btn btn-primary btn-rounded">Create Role</button>
         </div>
     </div>
 

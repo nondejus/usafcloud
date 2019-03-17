@@ -12,6 +12,12 @@ Route::get('/users/{user}', 'Admin\Users\UsersController@show')->name('app.admin
 Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app.admin.users.destroy');
 
 /**
+ * Organizations
+ */
+Route::get('/organizations', 'Admin\Organizations\OrganizationsController@index')->name('app.admin.organizations.index');
+
+
+/**
  * ACL
  */
 

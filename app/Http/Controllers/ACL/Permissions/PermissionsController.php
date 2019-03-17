@@ -40,12 +40,13 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|unique:permissions,name'
+            'name' => 'required|string|unique:permissions,name',
+            'resource_permission' => 'nullable'
         ]);
 
-        Permission::create(['guard_name' => 'web', 'name' => $request->name]);
+        $this->createPermissions($request);
 
-        return redirect()->back()->with('status', 'Permission created!');
+        return redirect()->back()->with('status', 'Permission(s) created!');
     }
 
     public function destroy(Permission $permission)
@@ -53,5 +54,15 @@ class PermissionsController extends Controller
         $permission->delete();
 
         return redirect()->back()->with('status', 'Permission deleted!');
+    }
+
+    protected function createPermissions(Request $request)
+    {
+        if ($request->resource_permission) {
+            foreach (['create', 'view', 'update', 'destroy'] as $action)
+                Permission::create(['name' => "{$request->name}:{$action}"]);
+        } else {
+            Permission::create(['name' => $request->name]);
+        }
     }
 }

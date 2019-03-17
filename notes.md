@@ -57,3 +57,9 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 
 -   https://developers.google.com/admin-sdk/directory/v1/guides/delegation
 -   https://developers.google.com/admin-sdk/directory/v1/reference/users/insert?authuser=1#auth
+-   https://developers.google.com/admin-sdk/directory/v1/reference/
+-   https://gist.github.com/fillup/9fbf5ff35b337b27762a
+-   https://developers.google.com/admin-sdk/directory/v1/reference/users
+-   https://michaelseiler.net/2014/12/16/google-admin-sdk-api-with-php/
+-   https://developers.google.com/api-client-library/php/auth/service-accounts#creatinganaccount
+-   https://developers.google.com/admin-sdk/directory/v1/guides/authorizing

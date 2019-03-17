@@ -18,7 +18,7 @@ Admin Dashboard
                 <a href="{{ route('app.admin.users.index') }}" class="list-group-item">
                     Manage Users
                 </a>
-                <a href="#" class="list-group-item">
+                <a href="{{ route('app.admin.organizations.index') }}" class="list-group-item">
                     Manage Organizations
                 </a>
             </ul>

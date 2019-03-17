@@ -7,10 +7,14 @@
     <div class="card-header flex justify-content-between align-items-center">
         <span class="text-xl">Manage Permissions</span>
         <div>
-            <button class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#createNewPermissionModal">
-                Create New Permission
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewPermissionModal">
+                Create Permission
             </button>
         </div>
+    </div>
+
+    <div class="p-4 border-b border-grey-light border-solid">
+        <input type="text" placeholder="Search permissions..." class="form-control">
     </div>
 
     <div class="card-body">
@@ -80,6 +84,7 @@
 
 </div>
 
+<!-- Create New Permissions Modal -->
 <div class="modal fade" id="createNewPermissionModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -96,14 +101,23 @@
 
                     @csrf
 
-                    <label class="mr-2">Permission Name</label>
-                    <input class="form-control" type="text" name="name" placeholder="resource:action" required>
+                    <div class="form-group">
+                        <label class="mr-2">Permission Name</label>
+                        <input class="form-control" type="text" name="name" placeholder="resource:action" required>
+                    </div>
 
                     @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                     @endif
+
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" name="resource_permission">
+                        <label class="form-check-label" name="resource_permission">Resourceful Permission</label>
+                        <small class="block mt-1">Creates all CRUD actions (create, view, update, destroy) for a
+                            resource.</small>
+                    </div>
 
 
                 </div>

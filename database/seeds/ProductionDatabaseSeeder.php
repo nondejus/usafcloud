@@ -13,6 +13,10 @@ class ProductionDatabaseSeeder extends Seeder
         'users:view',
         'users:update',
         'users:destroy',
+        'organizations:create',
+        'organizations:view',
+        'organizations:update',
+        'organizations:destroy',
     ];
 
     protected $defaultRoles = [
