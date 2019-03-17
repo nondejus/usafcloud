@@ -1,7 +1,5 @@
 <?php
 
-use App\GSuite\GSuite;
-
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'App\AppController@index')->name('app.index');
