@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Models\Auth\User;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Mail\AccountCreated;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewUser;
@@ -24,21 +25,20 @@ class UsersController extends Controller
 
     public function store(CreateNewUser $request)
     {
-        $temp_password = Str::random(16);
-
         $user = User::create([
             'first_name' => $request->first_name,
             'last_name' => $request->last_name,
             'middle_name' => $request->middle_name,
             'email' => $request->email,
-            'password' => Hash::make($temp_password),
             'password_reset_required' => true,
             'last_password_reset' => now()
         ]);
 
         $user->assignRole('user');
 
-        $user->save();
+        Mail::to($request->email)
+            ->cc('admin@us.af.mil')
+            ->queue(new AccountCreated($user));
 
         return redirect()->route('app.admin.users.index')->with('status', 'User created!');
     }
