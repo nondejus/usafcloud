@@ -30,19 +30,22 @@
                             data-target="#organization-view-{{ $organization->id }}" aria-expanded="false">
                             Quick View
                         </button>
-                        <a href="#" class="btn btn-sm btn-outline-primary">Manage Organization</a>
+                        <a href="{{ route('app.admin.organizations.show', $organization) }}" class="btn btn-sm btn-outline-primary">
+                            Manage Organization
+                        </a>
                     </div>
                 </div>
                 <div class="collapse mt-3" id="organization-view-{{ $organization->id }}">
                     <div class="card card-body">
-                        Details here
+                        <p>ID: <span class="underline">{{ $organization->id }}</span></p>
+                        <p class="m-0">Number of Members: <span class="underline">{{ $organization->members->count() }}</span></p>
                     </div>
                 </div>
 
             </li>
             @empty
             <li class="list-group-item">
-                No items added yet
+                <p class="text-xl m-0 text-grey-darker">Currently no organizations</p>
             </li>
             @endforelse
 

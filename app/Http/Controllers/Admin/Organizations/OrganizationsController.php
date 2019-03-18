@@ -15,7 +15,7 @@ class OrganizationsController extends Controller
 
     public function index()
     {
-        $organizations = Organization::all();
+        $organizations = Organization::all()->load('members');
         return view('app.admin.organizations.index', compact('organizations'));
     }
 
@@ -25,10 +25,16 @@ class OrganizationsController extends Controller
             'name' => 'required|string|unique:organizations,name'
         ]);
 
-        $org = new Organization;
-        $org->name = $request->name;
-        $org->save();
+        Organization::create([
+            'name' => $request->name
+        ]);
 
         return redirect()->back()->with('status', 'Organization created!');
+    }
+
+    public function show(Organization $organization)
+    {
+        $organization = $organization->load('members');
+        return view('app.admin.organizations.show', compact('organization'));
     }
 }

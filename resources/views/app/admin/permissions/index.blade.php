@@ -64,7 +64,7 @@
                     <div class="card card-body">
                         <div>
                             @forelse ($permission->roles as $role)
-                            <span class="badge badge-primary font-light p-2">{{ $role->name }}</span>
+                            <span class="badge badge-secondary font-light p-2">{{ $role->name }}</span>
                             @empty
                             Not Attached to any Roles
                             @endforelse

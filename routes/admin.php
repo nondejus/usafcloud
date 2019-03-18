@@ -8,6 +8,8 @@ Route::get('/dashboard', 'Admin\AdminDashboardController@index')->name('app.admi
  * Users
  */
 Route::get('/users', 'Admin\Users\UsersController@index')->name('app.admin.users.index');
+Route::post('/users', 'Admin\Users\UsersController@store')->name('app.admin.users.store');
+Route::get('/users/create', 'Admin\Users\UsersController@create')->name('app.admin.users.create');
 Route::get('/users/{user}', 'Admin\Users\UsersController@show')->name('app.admin.users.show');
 Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app.admin.users.destroy');
 
@@ -16,6 +18,7 @@ Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app
  */
 Route::get('/organizations', 'Admin\Organizations\OrganizationsController@index')->name('app.admin.organizations.index');
 Route::post('/organizations', 'Admin\Organizations\OrganizationsController@store')->name('app.admin.organizations.store');
+Route::get('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@show')->name('app.admin.organizations.show');
 Route::patch('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@update')->name('app.admin.organizations.update');
 
 
@@ -35,4 +38,4 @@ Route::delete('/acl/permissions/{permission}', 'ACL\Permissions\PermissionsContr
 /**
  * API Clients
  */
-Route::get('/developer/api', 'Admin\AdminDashboardController@api')->name('app.admin.api.index');
+Route::get('/developers/api', 'Admin\AdminDashboardController@api')->name('app.admin.api.index');

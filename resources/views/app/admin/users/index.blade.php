@@ -7,9 +7,9 @@
     <div class="card-header flex justify-content-between align-items-center">
         <span class="text-xl">Manage Users ({{ $users->count() }})</span>
         <div>
-            <button class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#createNewPermissionModal">
+            <a class="btn btn-primary btn-rounded" href="{{ route('app.admin.users.create') }}">
                 Create New User
-            </button>
+            </a>
         </div>
     </div>
 
@@ -44,7 +44,6 @@
                             <p>First Name: <span class="underline">{{ $user->first_name }}</span></p>
                             <p>Last Name: <span class="underline">{{ $user->last_name }}</span></p>
                             <p>Nickname: <span class="underline">{{ $user->nickname }}</span></p>
-                            <p>Organization: <span class="underline">Active Duty USAF</span></p>
                             <p>Email Address:
                                 <span class="underline">
                                     <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
