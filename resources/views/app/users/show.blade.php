@@ -30,6 +30,10 @@ My Account
                         <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $user->last_name }}">
                     </div>
 
+                    <div class="form-group">
+                        <label for="middle_name">Middle Name</label>
+                        <input type="text" class="form-control" id="middle_name" name="middle_name" value="{{ $user->middle_name }}">
+                    </div>
 
                     <div class="form-group">
                         <label for="nickname">Nickname</label>

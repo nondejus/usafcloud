@@ -9,8 +9,8 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\App\Organizations\Organization;
-use App\Models\App\Organizations\OrganizationMember;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\App\Organizations\OrganizationMember;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -44,5 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function applications()
     {
         return $this->hasMany(Token::class, 'user_id', 'id')->where('revoked', false);
+    }
+
+    public function organizations()
+    {
+        return $this->belongsToMany(Organization::class, 'organization_members', 'user_id', 'organization_id');
     }
 }

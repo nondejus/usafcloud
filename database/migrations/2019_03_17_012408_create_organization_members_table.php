@@ -14,7 +14,7 @@ class CreateOrganizationMembersTable extends Migration
     public function up()
     {
         Schema::create('organization_members', function (Blueprint $table) {
-            $table->uuid('id');
+            $table->bigIncrements('id');
             $table->uuid('user_id');
             $table->uuid('organization_id');
             $table->timestamps();

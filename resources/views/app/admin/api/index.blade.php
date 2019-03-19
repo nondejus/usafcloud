@@ -12,7 +12,7 @@
 
         <passport-clients class="my-3"></passport-clients>
         <passport-authorized-clients class="my-3"></passport-authorized-clients>
-        <passport-personal-access-tokens class="my-3"></passport-personal-access-tokens>
+        {{-- <passport-personal-access-tokens class="my-3"></passport-personal-access-tokens> --}}
 
     </div>
 

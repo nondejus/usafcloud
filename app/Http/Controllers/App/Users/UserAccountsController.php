@@ -23,12 +23,14 @@ class UserAccountsController extends Controller
         $this->validate($request, [
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
+            'middle_name' => 'nullable|max:255',
             'nickname' => 'nullable|max:255',
         ]);
 
         $user = auth()->user();
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
+        $user->middle_name = $request->middle_name;
         $user->nickname = $request->nickname;
         $user->save();
 
