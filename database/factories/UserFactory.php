@@ -16,11 +16,16 @@ use Faker\Generator as Faker;
  */
 
 $factory->define(User::class, function (Faker $faker) {
+    $firstName = $faker->firstName();
+    $lastName = $faker->lastName;
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
+        'first_name' => $firstName,
+        'last_name' => $lastName,
+        'middle_name' => $faker->firstName(),
+        'email' => strtolower("{$firstName}.{$lastName}@us.af.mil"),
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
+        'last_password_reset' => now(),
         'remember_token' => Str::random(10),
     ];
 });

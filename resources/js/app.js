@@ -40,3 +40,28 @@ Vue.component(
 const app = new Vue({
     el: '#app'
 });
+
+$(document).ready(function () {
+
+    /**
+     * Search Users Functionality
+     */
+
+    $('#filterUsersInput').on('keyup', function () {
+        let searchValue = $(this).val().toLowerCase();
+        $("#usersList .list-group-item").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1)
+        });
+    })
+
+    /**
+     * Search Organizations Functionality
+     */
+    $('#filterOrganizationsInput').on('keyup', function () {
+        let searchValue = $(this).val().toLowerCase();
+        $("#organizationsList .list-group-item").filter(function () {
+            $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1)
+        });
+    })
+
+});

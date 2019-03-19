@@ -1,5 +1,4 @@
 @extends('app.admin.layout.base')
-
 @section('admin-page-content')
 
 <div class="card">
@@ -14,12 +13,12 @@
     </div>
 
     <div class="p-4 border-b border-grey-light border-solid">
-        <input type="text" placeholder="Search users..." class="form-control">
+        <input type="text" id="filterUsersInput" placeholder="Search users..." class="form-control">
     </div>
 
     <div class="card-body">
 
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" id="usersList">
 
             @forelse ($users as $user)
             <li class="list-group-item">
@@ -29,8 +28,8 @@
                     </div>
 
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
-                            data-target="#user-view-{{ $user->id }}" aria-expanded="false">
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse" data-target="#user-view-{{ $user->id }}"
+                            aria-expanded="false">
                             Quick View
                         </button>
                         <a href="{{ route('app.admin.users.show', $user) }}" class="btn btn-sm btn-outline-primary">
@@ -65,5 +64,4 @@
     </div>
 
 </div>
-
 @endsection
