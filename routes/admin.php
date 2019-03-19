@@ -13,6 +13,8 @@ Route::get('/users/create', 'Admin\Users\UsersController@create')->name('app.adm
 Route::get('/users/{user}', 'Admin\Users\UsersController@show')->name('app.admin.users.show');
 Route::delete('/users/{user}', 'Admin\Users\UsersController@destroy')->name('app.admin.users.destroy');
 
+Route::post('/users/{user}/organizations', 'App\Users\UserOrganizationsController@store')->name('app.admin.users.organizations.store');
+
 /**
  * Organizations
  */

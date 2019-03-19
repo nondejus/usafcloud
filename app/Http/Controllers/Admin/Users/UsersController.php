@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewUser;
+use App\Models\App\Organizations\Organization;
 
 class UsersController extends Controller
 {
@@ -60,7 +61,8 @@ class UsersController extends Controller
 
     public function show(User $user)
     {
-        $user->with(['roles', 'permissions']);
-        return view('app.admin.users.show', compact('user'));
+        $organizations = Organization::all()->whereNotIn('id', $user->organizations->pluck('id'));
+        $user->with(['roles', 'permissions', 'organizations']);
+        return view('app.admin.users.show', compact('user', 'organizations'));
     }
 }
