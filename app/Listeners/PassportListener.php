@@ -2,7 +2,7 @@
 
 namespace App\Listeners;
 
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Laravel\Passport\Events\AccessTokenCreated;

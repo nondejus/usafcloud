@@ -26,9 +26,9 @@ class GSuite
     * Array of scopes you need for whatever actions you want to perform
     * See https://developers.google.com/admin-sdk/directory/v1/guides/authorizing
     */
-    protected $scopes = array(
+    protected $scopes = [
         'https://www.googleapis.com/auth/admin.directory.user'
-    );
+    ];
 
     /*
     * Provide path to JSON credentials file that was downloaded from Google Developer Console
