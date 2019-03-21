@@ -7,7 +7,9 @@
     <div class="card-header flex justify-content-between align-items-center">
         <span class="text-xl">Manage Roles</span>
         <div>
-            <button class="btn btn-primary btn-rounded">Create Role</button>
+            <button class="btn btn-primary btn-rounded" data-toggle="modal" data-target="#createNewRoleModal">
+                Create Role
+            </button>
         </div>
     </div>
 
@@ -20,8 +22,8 @@
                 <div class="flex justify-content-between align-items-center">
                     <p class="text-xl m-0 text-grey-darker">{{ $role->name }}</p>
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
-                            data-target="#role-edit-{{ $role->id }}" aria-expanded="false">
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
+                            data-toggle="collapse" data-target="#role-edit-{{ $role->id }}" aria-expanded="false">
                             Edit Role
                         </button>
                         <button class="btn btn-sm btn-outline-primary btn-rounded" type="button" data-toggle="collapse"
@@ -49,7 +51,7 @@
             </li>
             @empty
             <li class="list-group-item">
-                No items added yet
+                No roles added yet
             </li>
             @endforelse
 
@@ -58,5 +60,7 @@
     </div>
 
 </div>
+
+@include('app.admin.roles.partials.add-modal')
 
 @endsection

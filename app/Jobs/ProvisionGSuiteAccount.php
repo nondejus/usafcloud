@@ -103,7 +103,7 @@ class ProvisionGSuiteAccount implements ShouldQueue
 
     public function getEmailHandleForNewGoogleUser()
     {
-        return "{$this->user->first_name}.{$this->user->last_name}@usaf.cloud";
+        return strtolower("{$this->user->first_name}.{$this->user->last_name}@usaf.cloud");
     }
 
     public function prepareName()
@@ -112,11 +112,11 @@ class ProvisionGSuiteAccount implements ShouldQueue
         $new_user_name = new \Google_Service_Directory_UserName;
 
         // Set user given name
-        $given_name = Str::title($this->user->first_name);
+        $given_name = ucfirst($this->user->first_name);
         $new_user_name->setGivenName($given_name);
 
         // Set user family name
-        $family_name = Str::title($this->user->last_name);
+        $family_name = ucfirst($this->user->last_name);
         $new_user_name->setFamilyName($family_name);
 
         $this->google_username = $new_user_name;

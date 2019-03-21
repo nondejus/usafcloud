@@ -10,7 +10,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\App\Organizations\Organization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use App\Models\App\Organizations\OrganizationMember;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
