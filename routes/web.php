@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Request;
-
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'App\AppController@index')->name('app.index');
@@ -12,3 +10,7 @@ Route::get('/account/applications', 'App\Users\UserApplicationsController@index'
 
 Route::get('/login/{user}/invitation', 'App\Users\UserInvitationsController@show')->name('login.invitation');
 Route::post('/login/{user}/invitation', 'App\Users\UserInvitationsController@update')->name('login.invitation');
+
+// Route::get('gsuite/test', function () {
+//     ProvisionGSuiteAccount::dispatch(auth()->user());
+// });
