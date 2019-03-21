@@ -19,4 +19,17 @@ class RolesController extends Controller
         $roles = Role::all()->load('permissions');
         return view('app.admin.roles.index', compact('roles'));
     }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+        ]);
+
+        $role = Role::create([
+            'name' => $request->name
+        ]);
+
+        return redirect()->back();
+    }
 }

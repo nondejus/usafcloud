@@ -63,3 +63,4 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 -   https://michaelseiler.net/2014/12/16/google-admin-sdk-api-with-php/
 -   https://developers.google.com/api-client-library/php/auth/service-accounts#creatinganaccount
 -   https://developers.google.com/admin-sdk/directory/v1/guides/authorizing
+-   https://developers.google.com/api-client-library/php/auth/service-accounts

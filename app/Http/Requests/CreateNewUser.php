@@ -29,6 +29,7 @@ class CreateNewUser extends FormRequest
             'last_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email', new AllowedDomain],
+            'needs_gsuite' => ['nullable']
         ];
     }
 }
