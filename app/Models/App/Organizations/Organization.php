@@ -3,8 +3,8 @@
 namespace App\Models\App\Organizations;
 
 use App\Traits\Uuids;
+use App\Models\Auth\User;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\App\Organizations\OrganizationMember;
 
 class Organization extends Model
 {
@@ -23,6 +23,6 @@ class Organization extends Model
 
     public function members()
     {
-        return $this->hasMany(OrganizationMember::class);
+        return $this->belongsToMany(User::class, 'organization_members');
     }
 }
