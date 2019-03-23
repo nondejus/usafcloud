@@ -1,5 +1,7 @@
 <?php
 
+use App\Jobs\DeleteGSuiteAccount;
+
 Auth::routes(['verify' => true]);
 
 Route::get('/', 'App\AppController@index')->name('app.index');

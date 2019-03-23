@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Models\Auth\User;
-use Illuminate\Http\Request;
 use App\Mail\AccountCreated;
 use App\Jobs\ProvisionGSuiteAccount;
 use Illuminate\Support\Facades\Mail;

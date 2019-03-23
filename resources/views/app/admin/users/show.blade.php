@@ -32,8 +32,8 @@
 
             <!-- Organizations Tab Btn -->
             <li class="nav-item">
-                <a class="nav-link" id="pills-organizations-tab" data-toggle="pill" href="#pills-organizations" role="tab"
-                    aria-controls="pills-organizations" aria-selected="false">Organizations</a>
+                <a class="nav-link" id="pills-organizations-tab" data-toggle="pill" href="#pills-organizations"
+                    role="tab" aria-controls="pills-organizations" aria-selected="false">Organizations</a>
             </li>
 
             <!-- Roles Tab Btn -->
@@ -75,7 +75,17 @@
 
             <!-- Services Tab -->
             <div class="tab-pane fade" id="pills-services" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <p class="mb-0">G-Suite Enabled: <span class="underline">No</span></p>
+                <p class="mb-0">
+                    <p>G-Suite Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
+                    @if($user->gsuite_user)
+
+                    <p>G-Suite Email: <span class="underline">{{ $user->gsuite_email }}</span></p>
+                    <p>G-Suite Account Created At: <span class="underline">{{ $user->gsuite_created_at }}</span></p>
+                    <p>G-Suite Account Finished Provisioning: <span
+                            class="underline">{{ ($user->gsuite_finished_provisioning) ? 'Yes' : 'No' }}</span></p>
+
+                    @endif
+                </p>
             </div>
 
             <!-- Audit Tab -->
@@ -84,7 +94,8 @@
             </div>
 
             <!-- Organizations Tab -->
-            <div class="tab-pane fade" id="pills-organizations" role="tabpanel" aria-labelledby="pills-organizations-tab">
+            <div class="tab-pane fade" id="pills-organizations" role="tabpanel"
+                aria-labelledby="pills-organizations-tab">
 
                 @forelse ($user->organizations as $organization)
                 <p class="text-xl m-0 text-grey-darker">{{ $organization->name }}</p>

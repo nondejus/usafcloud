@@ -7,8 +7,8 @@ use App\Http\Controllers\Controller;
 
 class UserEmailsController extends Controller
 {
-    public function show()
+    public function show(Request $request)
     {
-        //
+        return $request->user()->email;
     }
 }

@@ -74,6 +74,8 @@ class ProvisionGSuiteAccount implements ShouldQueue
 
         $directory_client->users->insert($google_user);
 
+        $this->updateUser();
+
         SendGSuiteLoginDetailsEmail::dispatch($this->user, $this->getEmailHandleForNewGoogleUser(), $this->defaultPassword);
     }
 
@@ -148,5 +150,14 @@ class ProvisionGSuiteAccount implements ShouldQueue
         // Set the proper scopes
         $google_client->setScopes('https://www.googleapis.com/auth/admin.directory.user');
         $this->google_client = $google_client;
+    }
+
+    public function updateUser()
+    {
+        $this->user->gsuite_user = true;
+        $this->user->gsuite_email = $this->getEmailHandleForNewGoogleUser();
+        $this->user->gsuite_created_at = now();
+        $this->user->gsuite_finished_provisioning = true;
+        $this->user->save();
     }
 }
