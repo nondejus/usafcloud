@@ -46,6 +46,8 @@ class PermissionsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'display_name' => 'required|string|max:255',
+            'description' => 'required|string',
             'name' => 'required|string|unique:permissions,name',
             'resource_permission' => 'nullable'
         ]);
@@ -66,9 +68,17 @@ class PermissionsController extends Controller
     {
         if ($request->resource_permission) {
             foreach (['create', 'view', 'update', 'destroy'] as $action)
-                Permission::create(['name' => "{$request->name}:{$action}"]);
+                Permission::create([
+                    'name' => strtolower("{$request->name}:{$action}"),
+                    'display_name' => ucfirst($action) . ' ' . $request->display_name,
+                    'description' => "Should user be able to {$action} {$request->description}"
+                ]);
         } else {
-            Permission::create(['name' => $request->name]);
+            Permission::create([
+                'name' => strtolower($request->name),
+                'display_name' => $request->display_name,
+                'description' => $request->description
+            ]);
         }
     }
 }
