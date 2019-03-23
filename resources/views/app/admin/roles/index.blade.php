@@ -20,7 +20,10 @@
             @forelse ($roles as $role)
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
-                    <p class="text-xl m-0 text-grey-darker">{{ $role->name }}</p>
+                    <div>
+                        <p class="text-xl m-0 text-grey-darker">{{ $role->display_name }}</p>
+                        <small class="text-muted">{{ $role->description }} ({{$role->name }})</small>
+                    </div>
                     <div>
                         <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
                             data-toggle="collapse" data-target="#role-edit-{{ $role->id }}" aria-expanded="false">
@@ -34,7 +37,9 @@
                 </div>
                 <div class="collapse mt-3" id="role-edit-{{ $role->id }}">
                     <div class="card card-body">
-                        Edit form...
+
+                        @include('app.admin.roles.partials.edit-form')
+
                     </div>
                 </div>
                 <div class="collapse mt-3" id="role-permissions-{{ $role->id }}">

@@ -20,8 +20,8 @@
 
             <!-- Services Tab Btn -->
             <li class="nav-item">
-                <a class="nav-link" id="pills-services-tab" data-toggle="pill" href="#pills-services" role="tab"
-                    aria-controls="pills-services" aria-selected="false">Services</a>
+                <a class="nav-link" id="pills-gsuite-tab" data-toggle="pill" href="#pills-gsuite" role="tab"
+                    aria-controls="pills-gsuite" aria-selected="false">G-Suite</a>
             </li>
 
             <!-- Audit Tab Btn -->
@@ -62,6 +62,7 @@
 
             <!-- General Tab -->
             <div class="tab-pane fade show active" id="pills-general" role="tabpanel" aria-labelledby="pills-home-tab">
+
                 <p>First Name: <span class="underline">{{ $user->first_name }}</span></p>
                 <p>Last Name: <span class="underline">{{ $user->last_name }}</span></p>
                 <p>Middle Name: <span class="underline">{{ $user->middle_name }}</span></p>
@@ -71,21 +72,23 @@
                         <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                     </span>
                 </p>
+
             </div>
 
-            <!-- Services Tab -->
-            <div class="tab-pane fade" id="pills-services" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <p class="mb-0">
-                    <p>G-Suite Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
-                    @if($user->gsuite_user)
+            <!-- GSuite Tab -->
+            <div class="tab-pane fade" id="pills-gsuite" role="tabpanel" aria-labelledby="pills-gsuite-tab">
 
-                    <p>G-Suite Email: <span class="underline">{{ $user->gsuite_email }}</span></p>
-                    <p>G-Suite Account Created At: <span class="underline">{{ $user->gsuite_created_at }}</span></p>
-                    <p>G-Suite Account Finished Provisioning: <span
-                            class="underline">{{ ($user->gsuite_finished_provisioning) ? 'Yes' : 'No' }}</span></p>
+                <p class="m-0">Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
 
-                    @endif
-                </p>
+                @if($user->gsuite_user)
+
+                <p>Email: <span class="underline">{{ $user->gsuite_email }}</span></p>
+                <p>Account Created At: <span class="underline">{{ $user->gsuite_created_at }}</span></p>
+                <p>Account Finished Provisioning: <span
+                        class="underline">{{ ($user->gsuite_finished_provisioning) ? 'Yes' : 'No' }}</span></p>
+
+                @endif
+
             </div>
 
             <!-- Audit Tab -->
@@ -98,8 +101,15 @@
                 aria-labelledby="pills-organizations-tab">
 
                 @forelse ($user->organizations as $organization)
-                <p class="text-xl m-0 text-grey-darker">{{ $organization->name }}</p>
+
+                <a href="{{ route('app.admin.organizations.show', $organization) }}" class="text-xl my-1 block">
+                    {{ $organization->name }}
+                </a>
+
                 @empty
+
+                <p class="text-xl m-0 text-grey-darker">User not assigned to any organizations</p>
+
                 @endforelse
 
                 <hr>

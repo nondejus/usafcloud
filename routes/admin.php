@@ -32,6 +32,7 @@ Route::delete('/organizations/{organization}', 'Admin\Organizations\Organization
 // Roles
 Route::get('/acl/roles', 'ACL\Roles\RolesController@index')->name('app.admin.acl.roles.index');
 Route::post('/acl/roles', 'ACL\Roles\RolesController@store')->name('app.admin.acl.roles.store');
+Route::patch('/acl/roles/{role}', 'ACL\Roles\RolesController@update')->name('app.admin.acl.roles.update');
 
 // Permissions
 Route::get('/acl/permissions', 'ACL\Permissions\PermissionsController@index')->name('app.admin.acl.permissions.index');

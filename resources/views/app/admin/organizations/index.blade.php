@@ -14,23 +14,25 @@
     </div>
 
     <div class="p-4 border-b border-grey-light border-solid">
-        <input type="text" placeholder="Search organizations..." class="form-control">
+        <input type="text" id="filterOrganizationsInput" placeholder="Search organizations..." class="form-control">
     </div>
 
     <div class="card-body">
 
-        <ul class="list-group list-group-flush">
+        <ul class="list-group list-group-flush" id="organizationsList">
 
             @forelse ($organizations as $organization)
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <p class="text-xl m-0 text-grey-darker">{{ $organization->name }}</p>
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
-                            data-target="#organization-view-{{ $organization->id }}" aria-expanded="false">
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
+                            data-toggle="collapse" data-target="#organization-view-{{ $organization->id }}"
+                            aria-expanded="false">
                             Quick View
                         </button>
-                        <a href="{{ route('app.admin.organizations.show', $organization) }}" class="btn btn-sm btn-outline-primary">
+                        <a href="{{ route('app.admin.organizations.show', $organization) }}"
+                            class="btn btn-sm btn-outline-primary">
                             Manage Organization
                         </a>
                     </div>
@@ -38,7 +40,8 @@
                 <div class="collapse mt-3" id="organization-view-{{ $organization->id }}">
                     <div class="card card-body">
                         <p>ID: <span class="underline">{{ $organization->id }}</span></p>
-                        <p class="m-0">Number of Members: <span class="underline">{{ $organization->members->count() }}</span></p>
+                        <p class="m-0">Number of Members: <span
+                                class="underline">{{ $organization->members->count() }}</span></p>
                     </div>
                 </div>
 
@@ -71,8 +74,8 @@
                     @csrf
                     <div class="form-group">
                         <label for="name">Organization Name</label>
-                        <input type="text" class="form-control" placeholder="12th Training Squadron" name="name" value="{{ old('name') }}"
-                            required autocomplete="false">
+                        <input type="text" class="form-control" placeholder="12th Training Squadron" name="name"
+                            value="{{ old('name') }}" required autocomplete="false">
                     </div>
                     @if ($errors->has('name'))
                     <span class="invalid-feedback" role="alert">

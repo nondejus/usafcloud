@@ -30,8 +30,8 @@
                     </div>
 
                     <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button" data-toggle="collapse"
-                            data-target="#user-view-{{ $user->id }}" aria-expanded="false">
+                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
+                            data-toggle="collapse" data-target="#user-view-{{ $user->id }}" aria-expanded="false">
                             Quick View
                         </button>
                         <a href="{{ route('app.admin.users.show', $user) }}" class="btn btn-sm btn-outline-primary">
