@@ -24,14 +24,20 @@ class PermissionsController extends Controller
     public function update(Permission $permission, Request $request)
     {
         $this->validate($request, [
+            'display_name' => 'required|string|max:255',
+            'description' => 'required|string',
             'name' => [
                 'required',
                 'string',
+                'max:255',
                 Rule::unique('permissions', 'name')->ignore($permission->id),
             ]
         ]);
 
         $permission->name = $request->name;
+        $permission->display_name = $request->display_name;
+        $permission->description = $request->description;
+
         $permission->save();
 
         return redirect()->back()->with('status', 'Permission updated!');

@@ -24,7 +24,10 @@
             @forelse ($permissions as $permission)
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
-                    <p class="text-xl m-0 text-grey-darker">{{ $permission->name }}</p>
+                    <div>
+                        <p class="text-xl m-0 text-grey-darker">{{ $permission->display_name }}</p>
+                        <small class="text-muted">{{ $permission->description }} ({{ $permission->name }})</small>
+                    </div>
                     <div>
                         <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
                             data-toggle="collapse" data-target="#permission-edit-{{ $permission->id }}"
@@ -40,23 +43,40 @@
                 <div class="collapse mt-3" id="permission-edit-{{ $permission->id }}">
                     <div class="card card-body">
 
-                        <form action="{{ route('app.admin.acl.permissions.update', $permission) }}" method="POST"
-                            class="form-inline">
+                        <form action="{{ route('app.admin.acl.permissions.update', $permission) }}" method="POST">
 
                             @csrf
                             @method('PATCH')
 
-                            <label class="mr-2">Permission Name</label>
-                            <input class="form-control form-control-sm mr-2" type="text" name="name"
-                                value="{{ $permission->name }}" required>
+                            <div class="form-group">
+                                <label class="mr-1">Display Name</label>
+                                <input class="form-control form-control-sm mr-3" type="text" name="display_name"
+                                    value="{{ $permission->display_name }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="mr-1">Name</label>
+                                <input class="form-control form-control-sm mr-2" type="text" name="name"
+                                    value="{{ $permission->name }}" required>
+                                @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                                @endif
+                            </div>
+
+                            <div class="form-group">
+                                <label class="mr-1">Description</label>
+                                <input class="form-control form-control-sm mr-2" type="text" name="description"
+                                    value="{{ $permission->description }}" required>
+                                @if ($errors->has('description'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                                @endif
+                            </div>
 
                             <button type="submit" class="btn btn-primary btn-sm">Update</button>
-
-                            @if ($errors->has('name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                            @endif
 
                         </form>
 

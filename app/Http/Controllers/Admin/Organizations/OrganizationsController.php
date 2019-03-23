@@ -37,4 +37,13 @@ class OrganizationsController extends Controller
         $organization = $organization->load('members');
         return view('app.admin.organizations.show', compact('organization'));
     }
+
+    public function destroy(Organization $organization)
+    {
+        $this->authorize('delete', $organization);
+
+        $organization->delete();
+
+        return redirect()->route('app.admin.organizations.index')->with('status', 'Organization Deleted!');
+    }
 }

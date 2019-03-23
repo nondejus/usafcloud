@@ -30,8 +30,6 @@ class CreateOrganizationMembersTable extends Migration
                 ->on('organizations')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->primary('id');
         });
     }
 

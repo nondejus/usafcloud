@@ -23,6 +23,14 @@
 
     </div>
 
+    <div class="card-footer">
+        <form action="{{ route('app.admin.organizations.destroy', $organization) }}" method="post">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-outline-danger">Delete Organization</button>
+        </form>
+    </div>
+
 </div>
 
 <!-- Create New Organization Modal -->

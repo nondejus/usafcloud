@@ -22,6 +22,7 @@ Route::get('/organizations', 'Admin\Organizations\OrganizationsController@index'
 Route::post('/organizations', 'Admin\Organizations\OrganizationsController@store')->name('app.admin.organizations.store');
 Route::get('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@show')->name('app.admin.organizations.show');
 Route::patch('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@update')->name('app.admin.organizations.update');
+Route::delete('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@destroy')->name('app.admin.organizations.destroy');
 
 
 /**
