@@ -6,7 +6,13 @@
 
 require('./bootstrap');
 
+import BootstrapVue from 'bootstrap-vue'
+import ClickConfirm from 'click-confirm'
+const feather = require('feather-icons')
+
 window.Vue = require('vue');
+
+Vue.use(BootstrapVue)
 
 /**
  * The following block of code may be used to automatically register your
@@ -31,6 +37,8 @@ Vue.component(
     require('./components/passport/PersonalAccessTokens.vue').default
 );
 
+Vue.component('clickConfirm', ClickConfirm);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -42,6 +50,11 @@ const app = new Vue({
 });
 
 $(document).ready(function () {
+
+    /**
+     * Feather Icons
+     */
+    feather.replace()
 
     /**
      * Search Users Functionality

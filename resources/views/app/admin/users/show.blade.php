@@ -63,6 +63,7 @@
             <!-- General Tab -->
             <div class="tab-pane fade show active" id="pills-general" role="tabpanel" aria-labelledby="pills-home-tab">
 
+
                 <p>First Name: <span class="underline">{{ $user->first_name }}</span></p>
                 <p>Last Name: <span class="underline">{{ $user->last_name }}</span></p>
                 <p>Middle Name: <span class="underline">{{ $user->middle_name }}</span></p>
@@ -72,6 +73,8 @@
                         <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                     </span>
                 </p>
+                <p>Account Created At: <span class="underline">{{ $user->created_at }}</span></p>
+                <p>Last Updated At: <span class="underline">{{ $user->updated_at }}</span></p>
 
             </div>
 
@@ -143,15 +146,20 @@
 
             <!-- Actions Tab -->
             <div class="tab-pane fade" id="pills-actions" role="tabpanel" aria-labelledby="pills-actions-tab">
-                @can('users:destroy')
 
                 <form action="{{ route('app.admin.users.destroy', $user) }}" method="POST">
+
                     @csrf
+
                     @method('DELETE')
-                    <button type="submit" class="btn btn-outline-danger">Delete User</button>
+
+                    <click-confirm placement="right" yes-class="btn btn-sm btn-danger m-1 px-3"
+                        no-class="btn btn-sm btn-secondary m-1 px-3">
+                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete
+                            User</button>
+                    </click-confirm>
                 </form>
 
-                @endcan
             </div>
 
         </div>

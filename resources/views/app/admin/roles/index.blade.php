@@ -43,15 +43,7 @@
                     </div>
                 </div>
                 <div class="collapse mt-3" id="role-permissions-{{ $role->id }}">
-                    <div class="card card-body">
-                        <div>
-                            @forelse ($role->permissions as $permission)
-                            <span class="badge badge-secondary font-light p-2 mb-1">{{ $permission->name }}</span>
-                            @empty
-                            No Permissions Attached
-                            @endforelse
-                        </div>
-                    </div>
+                    @include('app.admin.roles.partials.permissions')
                 </div>
             </li>
             @empty
