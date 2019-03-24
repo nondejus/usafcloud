@@ -10,7 +10,7 @@ class OrganizationsController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:super-admin');
+        $this->middleware(['auth', 'role:super-admin']);
     }
 
     public function index()
