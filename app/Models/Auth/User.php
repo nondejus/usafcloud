@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\App\Organizations\Organization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Jobs\ProvisionGSuiteAccount;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -58,5 +59,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function leaveOrganization(Organization $organization)
     {
         $this->organizations()->detach($organization->id);
+    }
+
+    public function provisionGSuiteAccount()
+    {
+        if (!$this->gsuite_user) {
+            ProvisionGSuiteAccount::dispatch($this);
+        }
     }
 }
