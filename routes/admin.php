@@ -3,7 +3,6 @@
 Route::get('/', 'Admin\AdminDashboardController@index')->name('app.admin.dashboard.index');
 Route::get('/dashboard', 'Admin\AdminDashboardController@index')->name('app.admin.dashboard.index');
 
-
 /**
  * Users
  */

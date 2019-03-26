@@ -81,7 +81,7 @@
             <!-- GSuite Tab -->
             <div class="tab-pane fade" id="pills-gsuite" role="tabpanel" aria-labelledby="pills-gsuite-tab">
 
-                <p class="m-0">Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
+                <p>Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
 
                 @if($user->gsuite_user)
 

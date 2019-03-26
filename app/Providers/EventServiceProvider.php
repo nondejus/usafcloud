@@ -18,20 +18,8 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
-        'Laravel\Passport\Events\AccessTokenCreated' => [
-            'App\Listeners\PassportListener',
+        \Laravel\Passport\Events\AccessTokenCreated::class => [
+            \App\Listeners\PassportListener::class,
         ],
     ];
-
-    /**
-     * Register any events for your application.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-        parent::boot();
-
-        //
-    }
 }
