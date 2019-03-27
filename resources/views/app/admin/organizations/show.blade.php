@@ -7,7 +7,7 @@
     <div class="card-header flex justify-content-between align-items-center">
         <span class="text-xl">{{ $organization->name }}</span>
         <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserToOrganizationModal">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addUserToOrganization">
                 Add Member to Organization
             </button>
         </div>
@@ -60,5 +60,7 @@
         </div>
     </div>
 </div>
+
+@include('app.admin.organizations.partials.add-user')
 
 @endsection

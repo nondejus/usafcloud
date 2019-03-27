@@ -23,6 +23,8 @@ Route::get('/organizations/{organization}', 'Admin\Organizations\OrganizationsCo
 Route::patch('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@update')->name('app.admin.organizations.update');
 Route::delete('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@destroy')->name('app.admin.organizations.destroy');
 
+Route::post('/organizations/{organization}/members', 'Admin\Organizations\OrganizationMembersController@store')->name('app.admin.organizations.members.store');
+
 
 /**
  * ACL

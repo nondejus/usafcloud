@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin\Organizations;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\App\Organizations\Organization;
+use App\Models\Auth\User;
 
 class OrganizationsController extends Controller
 {
@@ -35,7 +36,8 @@ class OrganizationsController extends Controller
     public function show(Organization $organization)
     {
         $organization = $organization->load('members');
-        return view('app.admin.organizations.show', compact('organization'));
+        $users = User::all()->whereNotIn('id', $organization->members->pluck('id'));
+        return view('app.admin.organizations.show', compact('organization', 'users'));
     }
 
     public function destroy(Organization $organization)
