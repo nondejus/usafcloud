@@ -15,50 +15,18 @@
 
     <div class="card-body">
 
-        @forelse ($organization->members as $member)
-        {{ $member->name }}
-        @empty
-        This organization doesn't have any members yet.
-        @endforelse
-
-    </div>
-
-    <div class="card-footer">
-        <form action="{{ route('app.admin.organizations.destroy', $organization) }}" method="post">
-            @csrf
-            @method('DELETE')
-            <click-confirm placement="right" yes-class="btn btn-sm btn-danger m-1 px-3"
-                no-class="btn btn-sm btn-secondary m-1 px-3">
-                <button type="submit" class="btn btn-outline-danger btn-sm">Delete Organization</button>
-            </click-confirm>
-        </form>
-    </div>
-
-</div>
-
-<!-- Create New Organization Modal -->
-<div class="modal fade" id="addUserToOrganizationModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Add Member to Organization</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                ...
-            </div>
-
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button type="button" class="btn btn-primary">Create</button>
-            </div>
-
-            </form>
+        <div class="no-margin-last-paragraph">
+            @forelse ($organization->members as $member)
+            <p class="text-base">{{ $member->name }}</p>
+            @empty
+            This organization doesn't have any members yet.
+            @endforelse
         </div>
+
     </div>
+
+    @include('app.admin.organizations.partials.delete-org')
+
 </div>
 
 @include('app.admin.organizations.partials.add-user')

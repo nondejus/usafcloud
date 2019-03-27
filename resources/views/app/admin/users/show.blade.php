@@ -10,50 +10,8 @@
 
     <div class="card-body">
 
-        <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
-
-            <!-- General Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link active" id="pills-general-tab" data-toggle="pill" href="#pills-general" role="tab"
-                    aria-controls="pills-general" aria-selected="true">General</a>
-            </li>
-
-            <!-- Services Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-gsuite-tab" data-toggle="pill" href="#pills-gsuite" role="tab"
-                    aria-controls="pills-gsuite" aria-selected="false">G-Suite</a>
-            </li>
-
-            <!-- Audit Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-audit-tab" data-toggle="pill" href="#pills-audit" role="tab"
-                    aria-controls="pills-audit" aria-selected="false">Audit Log</a>
-            </li>
-
-            <!-- Organizations Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-organizations-tab" data-toggle="pill" href="#pills-organizations"
-                    role="tab" aria-controls="pills-organizations" aria-selected="false">Organizations</a>
-            </li>
-
-            <!-- Roles Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-roles-tab" data-toggle="pill" href="#pills-roles" role="tab"
-                    aria-controls="pills-roles" aria-selected="false">Roles</a>
-            </li>
-
-            <!-- Permissions Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-permissions-tab" data-toggle="pill" href="#pills-permissions" role="tab"
-                    aria-controls="pills-permissions" aria-selected="false">Permissions</a>
-            </li>
-
-            <!-- Actions Tab Btn -->
-            <li class="nav-item">
-                <a class="nav-link" id="pills-actions-tab" data-toggle="pill" href="#pills-actions" role="tab"
-                    aria-controls="pills-actions" aria-selected="false">Actions</a>
-            </li>
-        </ul>
+        <!-- Tab Nav -->
+        @include('app.admin.users.partials.nav')
 
         <hr>
 
@@ -61,154 +19,32 @@
         <div class="tab-content" id="pills-tabContent">
 
             <!-- General Tab -->
-            <div class="tab-pane fade show active" id="pills-general" role="tabpanel" aria-labelledby="pills-home-tab">
-
-
-                <p>First Name: <span class="underline">{{ $user->first_name }}</span></p>
-                <p>Last Name: <span class="underline">{{ $user->last_name }}</span></p>
-                <p>Middle Name: <span class="underline">{{ $user->middle_name }}</span></p>
-                <p>Nickname: <span class="underline">{{ $user->nickname }}</span></p>
-                <p>Email Address:
-                    <span class="underline">
-                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
-                    </span>
-                </p>
-                <p>Account Created At: <span class="underline">{{ $user->created_at }}</span></p>
-                <p>Last Updated At: <span class="underline">{{ $user->updated_at }}</span></p>
-
-            </div>
+            @include('app.admin.users.tabs.general')
 
             <!-- GSuite Tab -->
-            <div class="tab-pane fade" id="pills-gsuite" role="tabpanel" aria-labelledby="pills-gsuite-tab">
-
-                <p>Enabled: <span class="underline">{{ ($user->gsuite_user) ? 'Yes' : 'No' }}</span></p>
-
-                @if($user->gsuite_user)
-
-                <p>Email: <span class="underline">{{ $user->gsuite_email }}</span></p>
-                <p>Account Created At: <span class="underline">{{ $user->gsuite_created_at }}</span></p>
-                <p>Account Finished Provisioning: <span
-                        class="underline">{{ ($user->gsuite_finished_provisioning) ? 'Yes' : 'No' }}</span></p>
-
-                @endif
-
-            </div>
+            @include('app.admin.users.tabs.gsuite')
 
             <!-- Audit Tab -->
-            <div class="tab-pane fade" id="pills-audit" role="tabpanel" aria-labelledby="pills-contact-tab">
-                Audit Log Here
-            </div>
+            @include('app.admin.users.tabs.audit')
 
             <!-- Organizations Tab -->
-            <div class="tab-pane fade" id="pills-organizations" role="tabpanel"
-                aria-labelledby="pills-organizations-tab">
-
-                @forelse ($user->organizations as $organization)
-
-                <a href="{{ route('app.admin.organizations.show', $organization) }}" class="text-xl my-1 block">
-                    {{ $organization->name }}
-                </a>
-
-                @empty
-
-                <p class="text-xl m-0 text-grey-darker">User not assigned to any organizations</p>
-
-                @endforelse
-
-                <hr>
-                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addUserToOrganization">Add
-                    to
-                    Organization</button>
-
-            </div>
+            @include('app.admin.users.tabs.organizations')
 
             <!-- Roles Tab -->
-            <div class="tab-pane fade" id="pills-roles" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <p class="m-0">
-                    Roles:
-                    @forelse ($user->roles as $role)
-                    <span class="badge badge-secondary">{{ $role->name }}</span>
-                    @empty
-                    @endforelse
-                </p>
-            </div>
+            @include('app.admin.users.tabs.roles')
 
             <!-- Permissions Tab -->
-            <div class="tab-pane fade" id="pills-permissions" role="tabpanel" aria-labelledby="pills-permissions-tab">
-                <p class="m-0">
-                    Stand Alone Permissions:
-                    @forelse ($user->permissions as $permission)
-                    <span class="badge badge-secondary">{{ $permission->name }}</span>
-                    @empty
-                    @endforelse
-                </p>
-            </div>
+            @include('app.admin.users.tabs.permissions')
 
             <!-- Actions Tab -->
-            <div class="tab-pane fade" id="pills-actions" role="tabpanel" aria-labelledby="pills-actions-tab">
-
-                <form action="{{ route('app.admin.users.destroy', $user) }}" method="POST">
-
-                    @csrf
-
-                    @method('DELETE')
-
-                    <click-confirm placement="right" yes-class="btn btn-sm btn-danger m-1 px-3"
-                        no-class="btn btn-sm btn-secondary m-1 px-3">
-                        <button type="submit" class="btn btn-outline-danger btn-sm">Delete
-                            User</button>
-                    </click-confirm>
-                </form>
-
-            </div>
+            @include('app.admin.users.tabs.actions')
 
         </div>
-        <!-- /Tab Content -->
 
     </div>
-    <!-- Card Body -->
 
 </div>
-<!-- /Card -->
 
-<!-- Modal -->
-<div class="modal fade" id="addUserToOrganization" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalCenterTitle">Add User to Organization</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <form action="{{ route('app.admin.users.organizations.store', $user) }}" method="POST">
-
-                <div class="modal-body">
-
-                    @csrf
-
-                    <div class="form-group">
-                        <label for="">Choose an organization</label>
-                        <select class="form-control" name="organization_id">
-                            @forelse ($organizations as $organization)
-                            <option value="{{ $organization->id }}">{{ $organization->name }}</option>
-                            @empty
-                            @endforelse
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Add</button>
-                </div>
-
-            </form>
-
-        </div>
-    </div>
-</div>
+@include('app.admin.users.partials.add-to-org')
 
 @endsection
