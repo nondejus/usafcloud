@@ -6,11 +6,33 @@ My Account
 
 @section('page-content')
 
-<div class="row justify-content-center">
+<div class="row justify-content-center mt-5">
 
-    <div class="col-md-8">
+    <div class="col-md-2">
 
-        <div class="card mt-5">
+        <aside>
+            <h3 class="uppercase text-grey text-xl">My Profile</h3>
+            <ul class="nav flex-column mb-4 list-reset">
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-grey-darkest text-base font-semibold hover:text-blue">General</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-grey-darkest text-base font-semibold hover:text-blue">Contact
+                        Info</a>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link text-grey-darkest text-base font-semibold hover:text-blue">Settings</a>
+                </li>
+            </ul>
+        </aside>
+
+    </div>
+
+    <div class="col-md-9">
+
+        <div class="card">
 
             <div class="card-header">My Account Settings</div>
 
@@ -22,23 +44,26 @@ My Account
 
                     <div class="form-group">
                         <label for="first_name">First Name</label>
-                        <input type="text" class="form-control" id="first_name" name="first_name" value="{{ $user->first_name }}">
+                        <input type="text" class="form-control" id="first_name" name="first_name"
+                            value="{{ $user->first_name }}">
                     </div>
 
                     <div class="form-group">
                         <label for="last_name">Last Name</label>
-                        <input type="text" class="form-control" id="last_name" name="last_name" value="{{ $user->last_name }}">
+                        <input type="text" class="form-control" id="last_name" name="last_name"
+                            value="{{ $user->last_name }}">
                     </div>
 
                     <div class="form-group">
                         <label for="middle_name">Middle Name</label>
-                        <input type="text" class="form-control" id="middle_name" name="middle_name" value="{{ $user->middle_name }}">
+                        <input type="text" class="form-control" id="middle_name" name="middle_name"
+                            value="{{ $user->middle_name }}">
                     </div>
 
                     <div class="form-group">
                         <label for="nickname">Nickname</label>
-                        <input type="text" class="form-control" id="nickname" name="nickname" value="{{ $user->nickname }}"
-                            placeholder="...">
+                        <input type="text" class="form-control" id="nickname" name="nickname"
+                            value="{{ $user->nickname }}" placeholder="...">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update</button>
