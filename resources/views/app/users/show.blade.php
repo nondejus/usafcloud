@@ -37,10 +37,15 @@ My Account
             <div class="card-header">My Account Settings</div>
 
             <div class="card-body">
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
 
                     @csrf
                     @method('PATCH')
+
+                    <div class="flex">
+                        <img src="{{ Storage::url($user->avatar) }}" alt="{{ $user->name }}"
+                            class="mb-4 w-32 rounded-full">
+                    </div>
 
                     <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -64,6 +69,14 @@ My Account
                         <label for="nickname">Nickname</label>
                         <input type="text" class="form-control" id="nickname" name="nickname"
                             value="{{ $user->nickname }}" placeholder="...">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="">Avatar</label>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="avatar" name="avatar">
+                            <label class="custom-file-label" for="customFile">Choose file</label>
+                        </div>
                     </div>
 
                     <button type="submit" class="btn btn-primary">Update</button>
