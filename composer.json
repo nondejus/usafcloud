@@ -20,6 +20,7 @@
         "laravel/telescope": "^2.0",
         "laravel/tinker": "^1.0",
         "league/flysystem-aws-s3-v3": "~1.0",
+        "nothingworks/blade-svg": "^0.3.1",
         "owen-it/laravel-auditing": "^9.0",
         "spatie/laravel-permission": "^2.35",
         "webpatser/laravel-uuid": "^3.0",

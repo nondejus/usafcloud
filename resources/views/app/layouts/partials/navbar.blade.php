@@ -21,18 +21,18 @@
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
-                @guest
+                @auth
 
-                @else
+                <li class="nav-item flex justify-center align-items-center">
+                    <a class="nav-link" href="{{ route('app.users.account.notifications') }}">@svg('bell')</a>
+                </li>
 
                 <li class="nav-item dropdown">
-                    <button class="btn btn-primary dropdown-toggle" type="button" id="navbarDropdown" data-toggle="dropdown"
-                        aria-haspopup="true" aria-expanded="false">
-                        @if (auth()->user()->nickname )
-                        {{ Auth::user()->nickname }}
-                        @else
-                        {{ Auth::user()->name }}
-                        @endif
+
+                    <button class="btn btn-link dropdown-toggle hover:no-underline" type="button" id="navbarDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
+                            class="w-8 rounded-full">
                         <span class="caret"></span>
                     </button>
 
@@ -48,14 +48,15 @@
                         @endhasrole
 
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
 
                     </div>
                 </li>
+                @endauth
 
-                @endguest
             </ul>
 
         </div>
