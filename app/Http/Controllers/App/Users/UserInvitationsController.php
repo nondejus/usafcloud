@@ -19,7 +19,7 @@ class UserInvitationsController extends Controller
         if (!$request->hasValidSignature() || $user->password <> null) {
             abort(401);
         }
-        return view('app.users.invitations.show');
+        return view('auth.invitations.show');
     }
 
     public function update(User $user, Request $request)

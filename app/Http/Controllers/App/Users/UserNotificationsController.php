@@ -10,6 +10,6 @@ class UserNotificationsController extends Controller
     public function index()
     {
         $user = auth()->user();
-        return view('app.users.notifications', compact('user'));
+        return view('app.users.notifications.index', compact('user'));
     }
 }

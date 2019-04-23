@@ -1,4 +1,4 @@
-@extends('app.layouts.base')
+@extends('auth.layouts.app')
 
 @section('title')
 Set Account Password

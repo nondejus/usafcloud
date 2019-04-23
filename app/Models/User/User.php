@@ -43,16 +43,20 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
+     * Returns the users gender info
+     * @return Gender::class
+     */
+    public function gender()
+    {
+        return $this->belongsTo(Gender::class);
+    }
+
+    /**
      * Returns a collection of the organizations that the user is a part of
      */
     public function organizations()
     {
         return $this->belongsToMany(Organization::class, 'organization_members', 'user_id', 'organization_id')->withTimestamps();
-    }
-
-    public function gender()
-    {
-        return $this->belongsTo(Gender::class);
     }
 
     /**
@@ -69,6 +73,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function leaveOrganization(Organization $organization)
     {
         $this->organizations()->detach($organization->id);
+    }
+
+    public function gsuite_accounts()
+    {
+        return $this->hasMany(GSuiteAccount::class);
     }
 
     // public function provisionGSuiteAccount()

@@ -1,5 +1,9 @@
 @extends('auth.layouts.app')
 
+@section('page-title')
+Login
+@endsection
+
 @section('content')
 
 <div class="w-3/4 sm:w-3/5 md:w-1/3 lg:w-2/5 xl:w-1/5">

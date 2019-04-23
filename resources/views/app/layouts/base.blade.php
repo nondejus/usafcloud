@@ -6,7 +6,7 @@
 
     @include('app.layouts.partials.navbar')
 
-    <main class="container">
+    <main>
         @yield('page-content')
     </main>
 

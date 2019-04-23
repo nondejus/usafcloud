@@ -8,7 +8,7 @@ require('./bootstrap');
 
 import BootstrapVue from 'bootstrap-vue'
 import ClickConfirm from 'click-confirm'
-const feather = require('feather-icons')
+import bsCustomFileInput from 'bs-custom-file-input'
 
 window.Vue = require('vue');
 
@@ -52,11 +52,6 @@ const app = new Vue({
 $(document).ready(function () {
 
     /**
-     * Feather Icons
-     */
-    feather.replace()
-
-    /**
      * Search Users Functionality
      */
 
@@ -76,5 +71,10 @@ $(document).ready(function () {
             $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1)
         });
     })
+
+    /**
+     * File Select Field Functionality
+     */
+    bsCustomFileInput.init()
 
 });
