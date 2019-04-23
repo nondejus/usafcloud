@@ -2,7 +2,7 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\References\MilitaryRankClassification;
+use App\Models\References\MilitaryRankClassification;
 
 $factory->define(MilitaryRankClassification::class, function () {
     return [

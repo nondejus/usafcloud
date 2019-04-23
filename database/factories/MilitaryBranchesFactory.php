@@ -2,9 +2,9 @@
 
 /* @var $factory \Illuminate\Database\Eloquent\Factory */
 
-use App\References\MilitaryBranches;
+use App\Models\References\MilitaryBranch;
 
-$factory->define(MilitaryBranches::class, function () {
+$factory->define(MilitaryBranch::class, function () {
     return [
         'name' => '',
         'abbr' => '',
