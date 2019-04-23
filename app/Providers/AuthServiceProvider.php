@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Models\Auth\User;
+use App\Models\User\User;
 use App\Policies\UsersPolicy;
 use Laravel\Passport\Passport;
 use App\Policies\OrganizationsPolicy;

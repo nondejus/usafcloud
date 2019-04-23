@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Admin\Organizations;
 
-use App\Models\Auth\User;
+use App\Models\User\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\App\Organizations\Organization;

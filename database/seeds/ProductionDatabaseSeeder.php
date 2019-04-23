@@ -64,7 +64,7 @@ class ProductionDatabaseSeeder extends Seeder
 
     public function assignRolesToDefaultUser()
     {
-        $user = \App\Models\Auth\User::where('email', 'wyatt.castaneda.1@us.af.mil')->first();
+        $user = \App\Models\User\User::where('email', 'wyatt.castaneda.1@us.af.mil')->first();
         if ($user) {
             $user->assignRole('super-admin');
         }

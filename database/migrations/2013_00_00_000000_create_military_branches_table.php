@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOauthPersonalAccessClientsTable extends Migration
+class CreateMilitaryBranchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,11 @@ class CreateOauthPersonalAccessClientsTable extends Migration
      */
     public function up()
     {
-        Schema::create('oauth_personal_access_clients', function (Blueprint $table) {
-            $table->increments('id');
-            $table->unsignedInteger('client_id')->index();
+        Schema::create('military_branches', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name')->index()->unique();
+            $table->string('abbr')->index()->unique();
+            $table->unsignedBigInteger('display_order')->index()->default(0);
             $table->timestamps();
         });
     }
@@ -27,6 +29,6 @@ class CreateOauthPersonalAccessClientsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('oauth_personal_access_clients');
+        Schema::dropIfExists('military_branches');
     }
 }

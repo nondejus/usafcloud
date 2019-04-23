@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Auth\User;
+use App\Models\User\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UsersPolicy
@@ -12,7 +12,7 @@ class UsersPolicy
     /**
      * Determine whether the user can view the model.
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param  \App\Models\User\User  $user
      * @return mixed
      */
     public function view()
@@ -23,7 +23,7 @@ class UsersPolicy
     /**
      * Determine whether the user can create models.
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param  \App\Models\User\User  $user
      * @return mixed
      */
     public function create()
@@ -34,7 +34,7 @@ class UsersPolicy
     /**
      * Determine whether the user can update the model.
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param  \App\Models\User\User  $user
      * @return mixed
      */
     public function update()
@@ -45,7 +45,7 @@ class UsersPolicy
     /**
      * Determine whether the user can delete the model.
      *
-     * @param  \App\Models\Auth\User  $user
+     * @param  \App\Models\User\User  $user
      * @return mixed
      */
     public function delete(User $user)

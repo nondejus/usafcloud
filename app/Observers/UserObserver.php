@@ -2,21 +2,25 @@
 
 namespace App\Observers;
 
-use App\Models\Auth\User;
+use App\Models\User\User;
 use App\Jobs\DeleteGSuiteAccount;
 
 class UserObserver
 {
+    public function created(User $user)
+    {
+        // Create Contact Info Record
+        $user->contact()->create();
+    }
+
     /**
      * Handle the User "deleted" event.
      *
-     * @param  \App\User  $user
+     * @param  \App\Models\User\User  $user
      * @return void
      */
     public function deleted(User $user)
     {
-        if ($user->gsuite_user) {
-            DeleteGSuiteAccount::dispatch($user->gsuite_email);
-        }
+        //
     }
 }

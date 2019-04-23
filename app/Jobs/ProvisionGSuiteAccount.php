@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Models\Auth\User;
+use App\Models\User\User;
 use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;

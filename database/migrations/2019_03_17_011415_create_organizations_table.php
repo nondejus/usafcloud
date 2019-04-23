@@ -17,7 +17,6 @@ class CreateOrganizationsTable extends Migration
             $table->uuid('id');
             $table->string('name')->unique()->index();
             $table->timestamps();
-
             $table->primary('id');
         });
     }

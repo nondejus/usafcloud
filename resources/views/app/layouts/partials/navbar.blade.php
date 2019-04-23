@@ -24,13 +24,14 @@
                 @auth
 
                 <li class="nav-item flex justify-center align-items-center">
-                    <a class="nav-link" href="{{ route('app.users.account.notifications') }}">@svg('bell')</a>
+                    <a class="nav-link" href="{{ route('app.users.account.notifications') }}" title="">@svg('bell')</a>
                 </li>
 
                 <li class="nav-item dropdown">
 
-                    <button class="btn btn-link dropdown-toggle hover:no-underline" type="button" id="navbarDropdown"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button class="btn btn-link dropdown-toggle hover:no-underline focus:no-underline" type="button"
+                        id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                        title="Menu">
                         <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
                             class="w-8 rounded-full">
                         <span class="caret"></span>
@@ -38,8 +39,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="{{ route('app.users.account.show') }}">Profile</a>
-                        <a class="dropdown-item" href="{{ route('app.users.applications.index') }}">My Apps</a>
+                        <a class="dropdown-item" href="{{ route('app.users.account.show') }}">My Profile</a>
 
                         @hasanyrole('admin|super-admin')
 

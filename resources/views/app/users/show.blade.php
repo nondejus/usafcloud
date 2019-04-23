@@ -30,11 +30,12 @@ My Account
 
     </div>
 
-    <div class="col-md-9">
+    <div class="col-md-8">
 
-        <div class="card">
+        <!-- General -->
+        <div class="card mb-4">
 
-            <div class="card-header">My Account Settings</div>
+            <div class="card-header">General</div>
 
             <div class="card-body">
                 <form method="POST" enctype="multipart/form-data">
@@ -85,9 +86,38 @@ My Account
             </div>
         </div>
 
+        <!-- Contact Info -->
+        <div class="card">
+
+            <div class="card-header">Contact Info</div>
+
+            <div class="card-body">
+                <form method="POST" enctype="multipart/form-data"
+                    action="{{ route('app.users.contact-info.update', $user) }}">
+
+                    @csrf
+                    @method('PATCH')
+
+                    <div class="form-group">
+                        <label for="first_name">Cell Phone</label>
+                        <input type="phone" class="form-control" id="cell_phone" name="cell_phone"
+                            value="{{ $user->contact->cell_phone }}">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="first_name">Personal Email</label>
+                        <input type="text" class="form-control" id="personal_email" name="personal_email"
+                            value="{{ $user->contact->personal_email }}">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Update</button>
+
+                </form>
+            </div>
+        </div>
+
     </div>
 
 </div>
-
 
 @endsection

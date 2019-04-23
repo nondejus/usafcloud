@@ -14,18 +14,8 @@ class AllowedDomain implements Rule
      */
     protected $allowedDomains = [
         'us.af.mil',
-        'usaf.cloud'
+        'usaf.cloud',
     ];
-
-    /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
 
     /**
      * Determine if the validation rule passes.

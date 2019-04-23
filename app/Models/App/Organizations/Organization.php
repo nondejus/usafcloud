@@ -3,7 +3,7 @@
 namespace App\Models\App\Organizations;
 
 use App\Traits\Uuids;
-use App\Models\Auth\User;
+use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
