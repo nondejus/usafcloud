@@ -29,6 +29,9 @@
                 <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">My Apps</a>
             </li>
             <li class="nav-item">
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">Teams</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">Settings</a>
             </li>
         </ul>

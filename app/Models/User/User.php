@@ -4,8 +4,10 @@ namespace App\Models\User;
 
 use App\Traits\Uuids;
 use App\Models\References\Gender;
+use App\Models\User\UserMilitary;
 use Laravel\Passport\HasApiTokens;
 use App\Models\User\UserContactInfo;
+use App\Models\User\UserNotification;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
@@ -40,6 +42,23 @@ class User extends Authenticatable implements MustVerifyEmail
     public function contact()
     {
         return $this->hasOne(UserContactInfo::class);
+    }
+
+    /**
+     * Returns the users military info
+     * @return UserMilitary::class
+     */
+    public function military()
+    {
+        return $this->hasOne(UserMilitary::class);
+    }
+
+    /**
+     * Returns a collection of the users notifications
+     */
+    public function notifications()
+    {
+        return $this->hasMany(UserNotification::class);
     }
 
     /**

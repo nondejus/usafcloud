@@ -6,52 +6,55 @@ Admin Dashboard
 
 @section('page-content')
 
-<div class="row justify-content-center mt-5">
+<div class="container">
 
-    <div class="col-md-3">
+    <div class="row justify-content-center mt-5">
 
-        <div class="card">
-            <div class="card-header">
-                Admin Menu
+        <div class="col-md-3">
+
+            <div class="card">
+                <div class="card-header">
+                    Admin Menu
+                </div>
+                <ul class="list-group list-group-flush">
+                    <a href="{{ route('app.admin.users.index') }}" class="list-group-item">
+                        Manage Users
+                    </a>
+                    <a href="{{ route('app.admin.organizations.index') }}" class="list-group-item">
+                        Manage Organizations
+                    </a>
+                </ul>
             </div>
-            <ul class="list-group list-group-flush">
-                <a href="{{ route('app.admin.users.index') }}" class="list-group-item">
-                    Manage Users
-                </a>
-                <a href="{{ route('app.admin.organizations.index') }}" class="list-group-item">
-                    Manage Organizations
-                </a>
-            </ul>
+
+            @hasrole('super-admin')
+            <div class="card my-3">
+                <div class="card-header">
+                    Super Admin Menu
+                </div>
+                <ul class="list-group list-group-flush">
+                    <a href="{{ route('app.admin.acl.roles.index') }}" class="list-group-item">
+                        Manage Roles
+                    </a>
+                    <a href="{{ route('app.admin.acl.permissions.index') }}" class="list-group-item">
+                        Manage Permissions
+                    </a>
+                    <a href="{{ route('app.admin.api.index') }}" class="list-group-item">
+                        API
+                    </a>
+                </ul>
+            </div>
+            @endhasrole
+
         </div>
 
-        @hasrole('super-admin')
-        <div class="card my-3">
-            <div class="card-header">
-                Super Admin Menu
-            </div>
-            <ul class="list-group list-group-flush">
-                <a href="{{ route('app.admin.acl.roles.index') }}" class="list-group-item">
-                    Manage Roles
-                </a>
-                <a href="{{ route('app.admin.acl.permissions.index') }}" class="list-group-item">
-                    Manage Permissions
-                </a>
-                <a href="{{ route('app.admin.api.index') }}" class="list-group-item">
-                    API
-                </a>
-            </ul>
+        <div class="col-md-9">
+
+            @yield('admin-page-content')
+
         </div>
-        @endhasrole
-
-    </div>
-
-    <div class="col-md-9">
-
-        @yield('admin-page-content')
 
     </div>
 
 </div>
-
 
 @endsection

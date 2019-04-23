@@ -15,10 +15,11 @@
 
 ## Military Info
 
-    - Name (Will Change)
     - Primary AFSC (Can Change)
-    - Branch (Can Change)
-    - Prior Service (Bool) (Shouldn't Change)
+    - Branch (Can Change) ✅
+    - Prior Service (Bool) (Could Change) ✅
+    - Prior Enlisted (Could Change) ✅
+    - Prior Branch of Service (Shouldn't Change)
     - Prior Service (Details) (Shouldn't Change)
     - Rank History (How?)
 
