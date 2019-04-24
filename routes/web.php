@@ -23,6 +23,11 @@ Route::get('/account/notifications', 'App\Users\UserNotificationsController@inde
 Route::post('/account/notifications', 'App\Users\UserContactInfoController@update')->name('app.users.contact-info.update');
 
 /**
+ * User Apps
+ */
+Route::get('/account/apps', 'App\Users\UserAppsController@index')->name('app.users.account.apps.index');
+
+/**
  * New User Invitiations
  */
 Route::get('/login/{user}/invitation', 'App\Users\UserInvitationsController@show')->name('login.invitation');

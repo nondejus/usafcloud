@@ -29,7 +29,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest"
+                    href="{{ route('app.users.account.apps.index') }}">
                     My Apps
                 </a>
             </li>

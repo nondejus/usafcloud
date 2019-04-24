@@ -180,6 +180,7 @@ return [
         App\Providers\TelescopeServiceProvider::class,
         App\Providers\HorizonServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -241,6 +242,11 @@ return [
         'Uuid' => Webpatser\Uuid\Uuid::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /**
+         * Packages
+         */
+        'Image' => Intervention\Image\Facades\Image::class,
 
     ],
 ];
