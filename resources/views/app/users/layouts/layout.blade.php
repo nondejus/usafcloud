@@ -13,26 +13,36 @@
             @endif
             <div>
                 <h2 class="text-grey-darkest leading-none mb-2">
-                    2d Lt {{ auth()->user()->last_name . ', ' . auth()->user()->first_name }}
+                    {{ trim(auth()->user()->last_name . ', ' . auth()->user()->first_name . ' ' . Str::limit(auth()->user()->middle_name, 1, '')) }}
                 </h2>
                 <p class="text-grey-dark m-0">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                    <a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a>
                 </p>
             </div>
         </div>
 
         <ul class="nav nav-tabs border-bottom-0">
             <li class="nav-item">
-                <a class="nav-link active" href="#">Activity</a>
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest {{ applyActive('app.users.account.index') }}"
+                    href="{{ route('app.users.account.index') }}">
+                    Activity
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">My Apps</a>
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">
+                    My Apps
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">Teams</a>
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">
+                    Teams
+                </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">Settings</a>
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest {{ applyActive('app.users.account.settings.index') }}"
+                    href="{{ route('app.users.account.settings.index') }}">
+                    Settings
+                </a>
             </li>
         </ul>
 

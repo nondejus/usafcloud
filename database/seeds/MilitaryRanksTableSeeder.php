@@ -15,7 +15,7 @@ class MilitaryRanksTableSeeder extends Seeder
             'abbr' => 'Amn',
             'pay_grade' => 'E-2',
         ], [
-            'name' => 'Airman First Clas',
+            'name' => 'Airman First Class',
             'abbr' => 'A1C',
             'pay_grade' => 'E-3',
         ], [
@@ -91,25 +91,18 @@ class MilitaryRanksTableSeeder extends Seeder
 
     public function run()
     {
-        /**
-         * Enlisted Ranks
-         */
-        $classification = factory(MilitaryRankClassification::class)->create([
-            //
-        ]);
-
-        collect($this->enlisted_ranks)->map(function ($item, $classification) {
-            factory(MilitaryRank::class)->create([
-                'name' => $item['name'],
-                'abbr' => $item['abbr'],
-                'pay_grade' => $item['pay_grade'],
-                'display_order' => 0,
-                'classification_id' => function () {
-                    return '';
-                },
-                'branch_id' => factory(MilitaryBranch::class)->create()->id,
-                'active' => true
-            ]);
-        });
+        // collect($this->enlisted_ranks)->map(function ($item, $classification) {
+        //     factory(MilitaryRank::class)->create([
+        //         'name' => $item['name'],
+        //         'abbr' => $item['abbr'],
+        //         'pay_grade' => $item['pay_grade'],
+        //         'display_order' => 0,
+        //         'classification_id' => function () {
+        //             return '';
+        //         },
+        //         'branch_id' => factory(MilitaryBranch::class)->create()->id,
+        //         'active' => true
+        //     ]);
+        // });
     }
 }

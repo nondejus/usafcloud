@@ -8,8 +8,13 @@ Route::view('/home', 'app.index')->name('app.home')->middleware('auth');
 /**
  * User Account Dashboard
  */
-Route::get('/account', 'App\Users\UserAccountsController@show')->name('app.users.account.show');
-Route::patch('/account', 'App\Users\UserAccountsController@update')->name('app.users.account.update');
+Route::get('/account', 'App\Users\UserAccountsController@show')->name('app.users.account.index');
+
+/**
+ * User Account Settings
+ */
+Route::get('/account/settings', 'App\Users\UserSettingsController@show')->name('app.users.account.settings.index');
+Route::patch('/account/settings', 'App\Users\UserAccountsController@update')->name('app.users.account.settings.update');
 
 /**
  * User Notifications
@@ -17,5 +22,8 @@ Route::patch('/account', 'App\Users\UserAccountsController@update')->name('app.u
 Route::get('/account/notifications', 'App\Users\UserNotificationsController@index')->name('app.users.account.notifications');
 Route::post('/account/notifications', 'App\Users\UserContactInfoController@update')->name('app.users.contact-info.update');
 
+/**
+ * New User Invitiations
+ */
 Route::get('/login/{user}/invitation', 'App\Users\UserInvitationsController@show')->name('login.invitation');
 Route::post('/login/{user}/invitation', 'App\Users\UserInvitationsController@update')->name('login.invitation');

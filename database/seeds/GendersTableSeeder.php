@@ -14,5 +14,6 @@ class GendersTableSeeder extends Seeder
     {
         factory(Gender::class)->create(['title' => 'Male']);
         factory(Gender::class)->create(['title' => 'Female']);
+        factory(Gender::class)->create(['title' => 'Prefer not to say']);
     }
 }

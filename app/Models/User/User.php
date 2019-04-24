@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 use App\Traits\Uuids;
+use App\Models\User\UserApp;
 use App\Models\References\Gender;
 use App\Models\User\UserMilitary;
 use Laravel\Passport\HasApiTokens;
@@ -33,6 +34,11 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getNameAttribute()
     {
         return "{$this->first_name} {$this->last_name}";
+    }
+
+    public function apps()
+    {
+        return $this->hasMany(UserApp::class);
     }
 
     /**

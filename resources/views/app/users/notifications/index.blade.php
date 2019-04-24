@@ -1,7 +1,7 @@
 @extends('app.users.layouts.layout')
 
 @section('title')
-My Notifications
+Notifications
 @endsection
 
 @section('user-page-content')
