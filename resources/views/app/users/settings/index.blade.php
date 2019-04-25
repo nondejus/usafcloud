@@ -107,6 +107,76 @@ Account Settings
 
             </form>
 
+            <!-- Demographics Info -->
+            <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
+
+                <h3 class="text-lg mb-4 text-grey-darker">Demographics Info</h3>
+
+                @csrf
+                @method('PATCH')
+
+                <div class="form-group row mb-4">
+                    <label for="cell_phone" class="col-sm-3 col-form-label text-grey-dark">Gender</label>
+                    <div class="col-sm-9">
+                        <select name="gender_id" id="gender_id" class="form-control">
+                            @foreach ($genders as $gender)
+                            <option value="{{ $gender->id }}"
+                                {{ ($user->gender->id === $gender->id) ? 'selected' : '' }}>{{ $gender->title }}
+                            </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-4 mb-0">
+                    <div class="col-sm-12 flex justify-end">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <!-- Security Info -->
+            <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
+
+                <h3 class="text-lg mb-4 text-grey-darker">Change Password</h3>
+
+                @csrf
+                @method('PATCH')
+
+                <div class="form-group row mb-4">
+                    <label for="password" class="col-sm-3 col-form-label text-grey-dark">Current Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="password" id="password" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label for="new_password" class="col-sm-3 col-form-label text-grey-dark">New Password</label>
+                    <div class="col-sm-9">
+                        <input type="password" name="new_password" id="new_password" class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row mb-4">
+                    <label for="new_password_confirmation" class="col-sm-3 col-form-label text-grey-dark">
+                        Retype New Password
+                    </label>
+                    <div class="col-sm-9">
+                        <input type="password" name="new_password_confirmation" id="new_password_confirmation"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group row mt-4 mb-0">
+                    <div class="col-sm-12 flex justify-end">
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+
+            </form>
+
+
         </div>
 
     </div>
