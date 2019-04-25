@@ -19,7 +19,7 @@ class CreateOauthClientsTables extends Migration
 
             // General App Info
             $table->string('name')->index();
-            $table->string('short_description')->index();
+            $table->string('short_description')->index()->nullable();
             $table->text('description')->nullable();
             $table->string('homepage_url')->nullable();
             $table->text('logo')->nullable();

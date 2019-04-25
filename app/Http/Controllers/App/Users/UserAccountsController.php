@@ -59,9 +59,5 @@ class UserAccountsController extends Controller
         $user->save();
 
         return redirect()->back()->with('status', 'Profile updated!');
-
-        // $image_thumb = Image::make($image)->crop(100, 100);
-        // $image_thumb = $image_thumb->stream();
-        // Storage::disk('s3')->put($path . 'thumbnails/' . $file, $image_thumb->__toString());
     }
 }

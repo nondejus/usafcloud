@@ -52,7 +52,13 @@ Account Settings
                 </div>
 
                 <div class="form-group row my-4">
-                    <label for="avatar" class="col-sm-3 col-form-label text-grey-dark">Avatar</label>
+                    <label for="avatar" class="col-sm-3 col-form-label text-grey-dark">
+                        @if($user->avatar)
+                        Change Avatar
+                        @else
+                        Upload Avatar
+                        @endif
+                    </label>
                     <div class="col-sm-9">
                         <div class="custom-file">
                             <input type="file" class="custom-file-input" id="avatar" name="avatar">
