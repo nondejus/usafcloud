@@ -16,8 +16,20 @@ class CreateUserNotificationsTable extends Migration
         Schema::create('user_notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->uuid('user_id')->index();
+            $table->string('url')->nullable();
+            $table->string('title')->nullable();
+            $table->text('content')->nullable();
+
+            // View/Read
+            $table->boolean('viewed')->default(false);
+            $table->boolean('mark_read')->default(false);
+
+            // Snoozable
+            $table->boolean('snoozed')->default(false);
+            $table->timestamp('snoozed_until')->nullable();
 
             // Meta
+            $table->json('payload')->nullable();
             $table->timestamps();
 
             // Keys

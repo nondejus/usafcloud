@@ -28,6 +28,6 @@ class UserEmailsController extends Controller
         $request->user()->email_verified_at = null;
         $request->save();
 
-        return $request->user();
+        return $request->user()->email;
     }
 }

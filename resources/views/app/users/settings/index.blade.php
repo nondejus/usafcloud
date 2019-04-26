@@ -23,17 +23,25 @@ Account Settings
                     <label for="first_name" class="col-sm-3 col-form-label text-grey-dark">First Name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="first_name" name="first_name"
-                            value="{{ auth()->user()->first_name }}">
+                            value="{{ auth()->user()->first_name }}" required>
                     </div>
                 </div>
+
+                @error('first_name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group row my-4">
                     <label for="last_name" class="col-sm-3 col-form-label text-grey-dark">Last Name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="last_name" name="last_name"
-                            value="{{ auth()->user()->last_name }}">
+                            value="{{ auth()->user()->last_name }}" required>
                     </div>
                 </div>
+
+                @error('last_name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group row my-4">
                     <label for="middle_name" class="col-sm-3 col-form-label text-grey-dark">Middle Name</label>
@@ -43,6 +51,10 @@ Account Settings
                     </div>
                 </div>
 
+                @error('middle_name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
                 <div class="form-group row my-4">
                     <label for="nickname" class="col-sm-3 col-form-label text-grey-dark">Nickname</label>
                     <div class="col-sm-9">
@@ -50,6 +62,10 @@ Account Settings
                             value="{{ auth()->user()->nickname }}">
                     </div>
                 </div>
+
+                @error('nickname')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
 
                 <div class="form-group row my-4">
                     <label for="avatar" class="col-sm-3 col-form-label text-grey-dark">
@@ -67,6 +83,10 @@ Account Settings
                     </div>
                 </div>
 
+                @error('avatar')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
+
                 <div class="form-group row mt-4 mb-0">
                     <div class="col-sm-12 flex justify-end">
                         <button type="submit" class="btn btn-primary">Update</button>
@@ -76,7 +96,7 @@ Account Settings
             </form>
 
             <!-- Contact Info -->
-            <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
+            <form method="POST" class="mb-5 border border-solid p-4 rounded bg-white">
 
                 <h3 class="text-lg mb-4 text-grey-darker">Contact Info</h3>
 
@@ -108,7 +128,8 @@ Account Settings
             </form>
 
             <!-- Demographics Info -->
-            <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
+            <form method="POST" action="{{ route('app.users.account.settings.demographics.update') }}"
+                class="mb-5 border border-solid p-4 rounded bg-white">
 
                 <h3 class="text-lg mb-4 text-grey-darker">Demographics Info</h3>
 
@@ -133,7 +154,6 @@ Account Settings
                                 {{ $gender->title }}
                             </option>
                             @endforeach
-
                         </select>
                     </div>
                 </div>
@@ -147,7 +167,7 @@ Account Settings
             </form>
 
             <!-- Security Info -->
-            <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
+            <form method="POST" class="mb-5 border border-solid p-4 rounded bg-white">
 
                 <h3 class="text-lg mb-4 text-grey-darker">Change Password</h3>
 

@@ -12,10 +12,17 @@ My Teams
 
     @forelse ($user->organizations as $organization)
 
-    {{ $organization->name }}
+    <div>
+
+        <h3>{{ $organization->name }}</h3>
+
+    </div>
+
 
     @empty
-    <p>Nope</p>
+
+    <p class="text-muted">You are not currently in any teams/organizations.</p>
+
     @endforelse
 
 </div>

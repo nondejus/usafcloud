@@ -15,6 +15,7 @@ Route::get('/account', 'App\Users\UserAccountsController@show')->name('app.users
  */
 Route::get('/account/settings', 'App\Users\UserSettingsController@show')->name('app.users.account.settings.index');
 Route::patch('/account/settings', 'App\Users\UserAccountsController@update')->name('app.users.account.settings.update');
+Route::patch('/account/settings/demographics', 'App\Users\UserDemographicsController@update')->name('app.users.account.settings.demographics.update');
 
 /**
  * User Notifications
