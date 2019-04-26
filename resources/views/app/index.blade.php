@@ -6,22 +6,24 @@ Home
 
 @section('page-content')
 
-<div class="row justify-content-center">
+<div class="container">
+    <div class="row justify-content-center">
 
-    <div class="col-md-8">
+        <div class="col-md-8">
 
-        <div class="card mt-5">
+            <div class="card mt-5">
 
-            <div class="card-header">USAF.Cloud Dashboard</div>
+                <div class="card-header">USAF.Cloud Dashboard</div>
 
-            <div class="card-body">
-                ...
+                <div class="card-body">
+                    ...
+                </div>
             </div>
+
         </div>
 
     </div>
 
 </div>
-
 
 @endsection

@@ -7,6 +7,7 @@ use App\Models\References\Gender;
 use App\Models\User\UserMilitary;
 use Laravel\Passport\HasApiTokens;
 use App\Models\User\UserContactInfo;
+use App\Models\GSuite\GSuiteAccount;
 use App\Models\User\UserNotification;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
@@ -101,7 +102,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function gsuite_accounts()
     {
-        return $this->hasMany(GSuiteAccount::class);
+        return $this->morphMany(GSuiteAccount::class, 'gsuiteable');
     }
 
     // public function provisionGSuiteAccount()

@@ -16,10 +16,10 @@ class CreateGSuiteAccountsTable extends Migration
         Schema::create('gsuite_accounts', function (Blueprint $table) {
             // Primary Key
             $table->bigIncrements('id');
-            $table->uuid('GSuiteable_id')->index();
-            $table->string('GSuiteable_type')->index();
+            $table->uuid('gsuiteable_id')->index();
+            $table->string('gsuiteable_type')->index();
             $table->string('gsuite_email')->index()->unique();
-            $table->boolean('suspended')->default(0);
+            $table->boolean('suspended')->default(false);
 
             // Creation Status
             $table->boolean('creating')->default(false);

@@ -16,7 +16,7 @@ class DeleteGSuiteAccount implements ShouldQueue
     /**
      * GSuite email to delete
      */
-    public $gsuite_primary_email;
+    public $gsuite_email;
 
     /**
      * Google SDK Client
@@ -33,9 +33,9 @@ class DeleteGSuiteAccount implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($gsuite_primary_email)
+    public function __construct($gsuite_email)
     {
-        $this->gsuite_primary_email = $gsuite_primary_email;
+        $this->gsuite_email = $gsuite_email;
     }
 
     /**
@@ -47,7 +47,7 @@ class DeleteGSuiteAccount implements ShouldQueue
     {
         $directory_client = $this->getGoogleDirectoryClient($this->getGoogleClient());
 
-        $directory_client->users->delete($this->gsuite_primary_email);
+        $directory_client->users->delete($this->gsuite_email);
 
         return true;
     }

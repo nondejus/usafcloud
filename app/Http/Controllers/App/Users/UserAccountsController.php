@@ -18,7 +18,10 @@ class UserAccountsController extends Controller
 
     public function show()
     {
-        return view('app.users.index');
+        $user = auth()->user();
+        return view('app.users.index', [
+            'user' => $user
+        ]);
     }
 
     public function update(Request $request)

@@ -5,11 +5,13 @@ namespace App\Jobs;
 use App\Models\User\User;
 use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
+use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Jobs\SendGSuiteLoginDetailsEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\Log;
 
 class ProvisionGSuiteAccount implements ShouldQueue
 {
@@ -35,13 +37,19 @@ class ProvisionGSuiteAccount implements ShouldQueue
     public $google_username;
 
     /**
+     * The unique, primary email address to assign account
+     */
+    public $gsuite_email;
+
+    /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(User $user, $defaultPassword = '')
+    public function __construct(User $user, $gsuite_email, $defaultPassword = '')
     {
         $this->user = $user;
+        $this->gsuite_email = $gsuite_email;
         $this->defaultPassword = $defaultPassword;
     }
 
@@ -59,7 +67,7 @@ class ProvisionGSuiteAccount implements ShouldQueue
         $google_user->setName($this->getNameForNewGoogleUser());
 
         // Set the email handle for the new user
-        $google_user->setPrimaryEmail($this->getEmailHandleForNewGoogleUser());
+        $google_user->setPrimaryEmail($this->gsuite_email);
 
         // Set the default password for the new user
         if ($this->defaultPassword === '') {
@@ -74,9 +82,9 @@ class ProvisionGSuiteAccount implements ShouldQueue
 
         $directory_client->users->insert($google_user);
 
-        $this->updateUser();
+        SendGSuiteLoginDetailsEmail::dispatch($this->user, $this->gsuite_email, $this->defaultPassword);
 
-        SendGSuiteLoginDetailsEmail::dispatch($this->user, $this->getEmailHandleForNewGoogleUser(), $this->defaultPassword);
+        $this->updateAccountStatus();
     }
 
     public function getGoogleClient()
@@ -101,11 +109,6 @@ class ProvisionGSuiteAccount implements ShouldQueue
             $this->prepareName();
         }
         return $this->google_username;
-    }
-
-    public function getEmailHandleForNewGoogleUser()
-    {
-        return strtolower("{$this->user->first_name}.{$this->user->last_name}@usaf.cloud");
     }
 
     public function prepareName()
@@ -152,12 +155,16 @@ class ProvisionGSuiteAccount implements ShouldQueue
         $this->google_client = $google_client;
     }
 
-    public function updateUser()
+    public function updateAccountStatus()
     {
-        $this->user->gsuite_user = true;
-        $this->user->gsuite_email = $this->getEmailHandleForNewGoogleUser();
-        $this->user->gsuite_created_at = now();
-        $this->user->gsuite_finished_provisioning = true;
-        $this->user->save();
+        $account = GSuiteAccount::where([
+            'gsuiteable_id' => $this->user->id,
+            'gsuiteable_type' => User::class,
+            'gsuite_email' => $this->gsuite_email
+        ])->first();
+
+        $account->creating = false;
+        $account->ready = true;
+        $account->save();
     }
 }

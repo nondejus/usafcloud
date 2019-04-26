@@ -7,16 +7,15 @@
     <div class="container">
 
         <div class="flex align-items-center py-5">
-            @if (auth()->user()->avatar)
-            <img src="{{ Storage::url(auth()->user()->avatar) }}" class="w-24 h-24 rounded-full mr-3"
-                alt="{{ auth()->user()->name }}">
+            @if ($user->avatar)
+            <img src="{{ Storage::url($user->avatar) }}" class="w-24 h-24 rounded-full mr-3" alt="{{ $user->name }}">
             @endif
             <div>
                 <h2 class="text-grey-darkest leading-none mb-2">
-                    {{ trim(auth()->user()->last_name . ', ' . auth()->user()->first_name . ' ' . Str::limit(auth()->user()->middle_name, 1, '')) }}
+                    {{ trim($user->last_name . ', ' . $user->first_name . ' ' . Str::limit($user->middle_name, 1, '')) }}
                 </h2>
                 <p class="text-grey-dark m-0">
-                    <a href="mailto:{{ auth()->user()->email }}">{{ auth()->user()->email }}</a>
+                    <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                 </p>
             </div>
         </div>
@@ -29,7 +28,7 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest"
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest {{ applyActive('app.users.account.apps.index') }}"
                     href="{{ route('app.users.account.apps.index') }}">
                     My Apps
                 </a>

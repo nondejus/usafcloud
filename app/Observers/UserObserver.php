@@ -21,6 +21,12 @@ class UserObserver
      */
     public function deleted(User $user)
     {
-        //
+        // Delete any gsuite accounts
+        if ($user->gsuite_accounts()->exists()) {
+            $user->gsuite_accounts->map(function ($account) {
+                DeleteGSuiteAccount::dispatch($account->gsuite_email);
+            });
+            $user->gsuite_accounts()->delete();
+        }
     }
 }
