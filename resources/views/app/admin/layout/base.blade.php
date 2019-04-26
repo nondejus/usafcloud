@@ -38,8 +38,11 @@ Admin Dashboard
                     <a href="{{ route('app.admin.acl.permissions.index') }}" class="list-group-item">
                         Manage Permissions
                     </a>
+                    <a href="#" class="list-group-item">
+                        Manage GSuite Accounts
+                    </a>
                     <a href="{{ route('app.admin.api.index') }}" class="list-group-item">
-                        API
+                        Manage API Apps
                     </a>
                 </ul>
             </div>
