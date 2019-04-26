@@ -34,7 +34,8 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-grey-darkest hover:bg-grey-lightest" href="#">
+                <a class="nav-link text-grey-darkest hover:bg-grey-lightest {{ applyActive('app.users.account.teams.index') }}"
+                    href="{{ route('app.users.account.teams.index') }}">
                     Teams
                 </a>
             </li>

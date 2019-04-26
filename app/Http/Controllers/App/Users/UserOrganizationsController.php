@@ -12,7 +12,7 @@ class UserOrganizationsController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('role:admin|super-admin');
+        $this->middleware('role:admin|super-admin')->only(['store']);
     }
 
     public function store(User $user, Request $request)
@@ -26,5 +26,13 @@ class UserOrganizationsController extends Controller
         $user->joinOrganization($organization);
 
         return redirect()->back()->with('status', 'Profile updated!');
+    }
+
+    public function index()
+    {
+        $user = auth()->user()->load('organizations');
+        return view('app.users.teams.index', [
+            'user' => $user,
+        ]);
     }
 }

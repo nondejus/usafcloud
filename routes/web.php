@@ -28,6 +28,11 @@ Route::post('/account/notifications', 'App\Users\UserContactInfoController@updat
 Route::get('/account/apps', 'App\Users\UserAppsController@index')->name('app.users.account.apps.index');
 
 /**
+ * User Teams
+ */
+Route::get('/account/teams', 'App\Users\UserOrganizationsController@index')->name('app.users.account.teams.index');
+
+/**
  * New User Invitiations
  */
 Route::get('/login/{user}/invitation', 'App\Users\UserInvitationsController@show')->name('login.invitation');

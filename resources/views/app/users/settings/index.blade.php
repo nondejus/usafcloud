@@ -119,11 +119,21 @@ Account Settings
                     <label for="cell_phone" class="col-sm-3 col-form-label text-grey-dark">Gender</label>
                     <div class="col-sm-9">
                         <select name="gender_id" id="gender_id" class="form-control">
+                            @if(!$user->gender)
+                            <option disabled selected value> -- select an option -- </option>
+                            @endif
                             @foreach ($genders as $gender)
-                            <option value="{{ $gender->id }}"
-                                {{ ($user->gender->id === $gender->id) ? 'selected' : '' }}>{{ $gender->title }}
+                            <option value="{{ $gender->id }}" @if ($user->gender)
+
+                                {{ ($user->gender->id === $gender->id) ? 'selected' : '' }}
+
+                                @endif
+
+                                >
+                                {{ $gender->title }}
                             </option>
                             @endforeach
+
                         </select>
                     </div>
                 </div>
