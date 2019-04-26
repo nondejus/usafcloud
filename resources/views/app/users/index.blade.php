@@ -6,7 +6,7 @@ Dashboard
 
 @section('user-page-content')
 
-<div class="container">
+<div class="container my-5">
 
     ...
 
