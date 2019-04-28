@@ -5,6 +5,7 @@
 /storage/*.p12
 /vendor
 .env
+.env.testing
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml

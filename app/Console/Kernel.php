@@ -26,8 +26,6 @@ class Kernel extends ConsoleKernel
     {
         // Clean Telescope Log
         $schedule->command('telescope:prune --hours=168')->daily();
-
-        //
     }
 
     /**

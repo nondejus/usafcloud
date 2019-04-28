@@ -28,7 +28,13 @@ class CreateNewUser extends FormRequest
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'middle_name' => ['nullable', 'string', 'max:255'],
+            'suffix' => ['nullable', 'string', 'max:255'],
+            'nickname' => ['nullable', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email', new AllowedDomain],
+            'date_of_birth' => ['nullable', 'date', 'max:255'],
+            'gender_id' => ['nullable', 'numeric', 'exists:genders,id'],
+            'avatar' => ['nullable', 'image'],
+            'password' => ['nullable', 'string', 'min:8'],
             'needs_gsuite' => ['nullable']
         ];
     }

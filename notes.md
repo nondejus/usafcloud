@@ -44,3 +44,8 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 # Package Idea
 
 -   Laravel Schema Creator/Viewer
+
+# Laravel Notes
+
+-   Listeners go with Events
+-   Observers can go with any Model
