@@ -22,9 +22,12 @@ Route::post('/organizations', 'Admin\Organizations\OrganizationsController@store
 Route::get('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@show')->name('app.admin.organizations.show');
 Route::patch('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@update')->name('app.admin.organizations.update');
 Route::delete('/organizations/{organization}', 'Admin\Organizations\OrganizationsController@destroy')->name('app.admin.organizations.destroy');
-
 Route::post('/organizations/{organization}/members', 'Admin\Organizations\OrganizationMembersController@store')->name('app.admin.organizations.members.store');
 
+/**
+ * GSuite Accounts
+ */
+Route::get('/gsuite-accounts', 'Admin\GSuiteAccounts\GSuiteAccountsController@index')->name('app.admin.gsuite.index');
 
 /**
  * ACL

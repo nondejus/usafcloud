@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Admin\Organizations;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\App\Organizations\Organization;
 use App\Models\User\User;
+use Illuminate\Http\Request;
+use App\Models\GSuite\GSuiteAccount;
+use App\Http\Controllers\Controller;
+use App\Jobs\ProvisionGSuiteAccount;
+use App\Models\App\Organizations\Organization;
 
 class OrganizationsController extends Controller
 {
@@ -26,9 +28,18 @@ class OrganizationsController extends Controller
             'name' => 'required|string|unique:organizations,name'
         ]);
 
-        Organization::create([
+        $organization = Organization::create([
             'name' => $request->name
         ]);
+
+        $account = GSuiteAccount::create([
+            'GSuiteable_id' => $organization->id,
+            'GSuiteable_type' => Organization::class,
+            'gsuite_email' => GSuiteAccount::ensureUniqueEmailAddress("{$organization->name}@usaf.cloud"),
+            'creating' => true,
+        ]);
+
+        ProvisionGSuiteAccount::dispatch($organization, $account->gsuite_email);
 
         return redirect()->back()->with('status', 'Organization created!');
     }

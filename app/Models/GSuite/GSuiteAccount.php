@@ -17,6 +17,7 @@ class GSuiteAccount extends Model
 
     public static function ensureUniqueEmailAddress($base_email)
     {
+        $base_email = preg_replace('/\s+/', '', str_replace(' ', '', $base_email));
         $count = self::where('gsuite_email', $base_email)->count();
         if ($count <> 0) {
             $base_name = explode('@', $base_email)[0];
@@ -26,6 +27,7 @@ class GSuiteAccount extends Model
                 $base_name = $base_name . '.1';
             }
             $base_email = $base_name . '@usaf.cloud';
+            $base_email = preg_replace('/\s+/', '', str_replace(' ', '', $base_email));
             $base_email = self::ensureUniqueEmailAddress($base_email);
         }
         return strtolower($base_email);

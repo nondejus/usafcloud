@@ -11,13 +11,13 @@ use Illuminate\Queue\InteractsWithQueue;
 use App\Jobs\SendGSuiteLoginDetailsEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Support\Facades\Log;
+use App\Models\App\Organizations\Organization;
 
 class ProvisionGSuiteAccount implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $user;
+    public $subject;
 
     public $defaultPassword;
 
@@ -46,9 +46,9 @@ class ProvisionGSuiteAccount implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user, $gsuite_email, $defaultPassword = '')
+    public function __construct($subject, $gsuite_email, $defaultPassword = '')
     {
-        $this->user = $user;
+        $this->subject = $subject;
         $this->gsuite_email = $gsuite_email;
         $this->defaultPassword = $defaultPassword;
     }
@@ -82,7 +82,7 @@ class ProvisionGSuiteAccount implements ShouldQueue
 
         $directory_client->users->insert($google_user);
 
-        SendGSuiteLoginDetailsEmail::dispatch($this->user, $this->gsuite_email, $this->defaultPassword);
+        //SendGSuiteLoginDetailsEmail::dispatch($this->subject, $this->gsuite_email, $this->defaultPassword);
 
         $this->updateAccountStatus();
     }
@@ -116,13 +116,19 @@ class ProvisionGSuiteAccount implements ShouldQueue
         // New up Google_Service_Directory_UserName
         $new_user_name = new \Google_Service_Directory_UserName;
 
-        // Set user given name
-        $given_name = ucfirst($this->user->first_name);
-        $new_user_name->setGivenName($given_name);
+        if ($this->subject instanceof User) {
 
-        // Set user family name
-        $family_name = ucfirst($this->user->last_name);
-        $new_user_name->setFamilyName($family_name);
+            // Set user given name (AKA: First Name)
+            $given_name = ucfirst($this->subject->first_name);
+            $new_user_name->setGivenName($given_name);
+            // Set user family name (AKA: Last Name)
+            $family_name = ucfirst($this->subject->last_name);
+            $new_user_name->setFamilyName($family_name);
+        } elseif ($this->subject instanceof Organization) {
+
+            $new_user_name->setGivenName($this->subject->name);
+            $new_user_name->setFamilyName('USAF.Cloud');
+        }
 
         $this->google_username = $new_user_name;
     }
@@ -157,14 +163,21 @@ class ProvisionGSuiteAccount implements ShouldQueue
 
     public function updateAccountStatus()
     {
+        if ($this->subject instanceof User) {
+            $type = User::class;
+        } elseif ($this->subject instanceof Organization) {
+            $type = Organization::class;
+        }
+
         $account = GSuiteAccount::where([
-            'gsuiteable_id' => $this->user->id,
-            'gsuiteable_type' => User::class,
+            'gsuiteable_id' => $this->subject->id,
+            'gsuiteable_type' => $type,
             'gsuite_email' => $this->gsuite_email
         ])->first();
 
-        $account->creating = false;
-        $account->ready = true;
-        $account->save();
+        $account->update([
+            'creating' => false,
+            'ready' => true,
+        ]);
     }
 }
