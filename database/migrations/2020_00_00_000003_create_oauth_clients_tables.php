@@ -22,7 +22,7 @@ class CreateOauthClientsTables extends Migration
             $table->string('short_description')->index()->nullable();
             $table->text('description')->nullable();
             $table->string('homepage_url')->nullable();
-            $table->text('logo')->nullable();
+            $table->text('avatar')->nullable();
 
             // OAuth Stuff
             $table->string('secret', 100);

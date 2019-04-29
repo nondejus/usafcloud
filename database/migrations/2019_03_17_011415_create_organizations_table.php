@@ -15,9 +15,15 @@ class CreateOrganizationsTable extends Migration
     {
         Schema::create('organizations', function (Blueprint $table) {
             $table->uuid('id');
-            $table->string('name')->unique()->index();
-            $table->timestamps();
             $table->primary('id');
+
+            $table->string('name')->unique()->index();
+            $table->text('description')->nullable();
+            $table->text('avatar')->nullable();
+
+            $table->boolean('private')->default(true);
+
+            $table->timestamps();
         });
     }
 

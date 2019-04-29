@@ -41,6 +41,10 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 -   https://developers.google.com/admin-sdk/directory/v1/guides/authorizing
 -   https://developers.google.com/api-client-library/php/auth/service-accounts
 
+# DOD
+
+-   https://dod.defense.gov/Resources/Developer-Info/
+
 # Package Idea
 
 -   Laravel Schema Creator/Viewer
