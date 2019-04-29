@@ -84,11 +84,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $user->name->fullName }}</p>
-                        <small class="text-muted">
-                            {{ $user->primaryEmail }}
-                        </small>
-                        <small> - </small>
+                        <p class="text-xl m-0 text-grey-darker">{{ $user->primaryEmail }}</p>
                         <small class="text-muted">
                             Created: {{ \Carbon\Carbon::parse($user->creationTime)->diffForHumans() }}
                         </small>
@@ -106,8 +102,6 @@
                 </div>
                 <div class="collapse mt-3" id="user-meta-{{ $user->id }}">
                     <div class="card card-body">
-
-                        ...
 
                     </div>
                 </div>
