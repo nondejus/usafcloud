@@ -26,7 +26,7 @@ class UserObserver
             $user->gsuite_accounts->map(function ($account) {
                 DeleteGSuiteAccount::dispatch($account->gsuite_email);
             });
-            $user->gsuite_accounts()->delete();
+            $user->gsuite_accounts->delete();
         }
     }
 }

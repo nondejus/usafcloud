@@ -2,6 +2,7 @@
 
 @section('admin-page-content')
 
+<!-- Managed Accounts -->
 <div class="card">
 
     <div class="card-header flex justify-content-between align-items-center">

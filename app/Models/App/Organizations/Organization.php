@@ -4,6 +4,7 @@ namespace App\Models\App\Organizations;
 
 use App\Traits\Uuids;
 use App\Models\User\User;
+use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
@@ -31,5 +32,10 @@ class Organization extends Model
         $this->members()->attach($user->id);
 
         return $this->members();
+    }
+
+    public function gsuite_accounts()
+    {
+        return $this->morphMany(GSuiteAccount::class, 'gsuiteable');
     }
 }
