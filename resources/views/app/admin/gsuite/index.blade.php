@@ -43,8 +43,10 @@
                     <div class="card card-body">
 
                         <p>Ready: <span>{{ ($account->ready) ? 'Yes' : 'No' }}</span></p>
+                        @if ($account->creating)
                         <p>Creating: <span>{{ ($account->creating) ? 'Yes' : 'No' }}</span></p>
-                        <p class="mb-0">Suspended:{{ ($account->suspended) ? 'Yes' : 'No' }}</span></p>
+                        @endif
+                        <p class="mb-0">Suspended: {{ ($account->suspended) ? 'Yes' : 'No' }}</span></p>
 
                     </div>
                 </div>
@@ -72,7 +74,7 @@
 <div class="card my-4">
 
     <div class="card-header flex justify-content-between align-items-center">
-        <span class="text-xl">Official GSuite Accounts List from Google</span>
+        <span class="text-xl">GSuite API</span>
     </div>
 
     <div class="card-body">
