@@ -7,17 +7,20 @@ Home
 @section('page-content')
 
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-5">
 
         <div class="col-md-8">
 
-            <div class="card mt-5">
+            {{-- <provision-gsuite-form></provision-gsuite-form> --}}
+
+            <div class="card">
 
                 <div class="card-header">USAF.Cloud Dashboard</div>
 
                 <div class="card-body">
-                    ...
+
                 </div>
+
             </div>
 
         </div>

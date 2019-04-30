@@ -23,6 +23,8 @@ class CreateOauthClientsTables extends Migration
             $table->text('description')->nullable();
             $table->string('homepage_url')->nullable();
             $table->text('avatar')->nullable();
+            $table->boolean('active')->default(false);
+            $table->timestamp('approved_until')->nullable();
 
             // OAuth Stuff
             $table->string('secret', 100);

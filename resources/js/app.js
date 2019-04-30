@@ -39,6 +39,21 @@ Vue.component(
 
 Vue.component('clickConfirm', ClickConfirm);
 
+Vue.component(
+    'organizations-select',
+    require('./components/api/organizations/OrganizationsSelect.vue').default
+);
+
+Vue.component(
+    'users-select',
+    require('./components/api/Users/UsersSelect.vue').default
+);
+
+Vue.component(
+    'provision-gsuite-form',
+    require('./components/api/GSuite/ProvisionGSuiteForm.vue').default
+);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

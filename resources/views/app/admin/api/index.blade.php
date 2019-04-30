@@ -14,27 +14,74 @@
         <passport-authorized-clients class="my-3"></passport-authorized-clients>
         {{-- <passport-personal-access-tokens class="my-3"></passport-personal-access-tokens> --}}
 
+        <div class="my-4 bg-white">
+
+            <table class="table align-middle">
+                <thead class="border border-solid border-2">
+                    <tr>
+                        <th scope="col" class="text-center">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Homepage URL</th>
+                        <th scope="col" class="text-center">Status</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="border border-solid border-2">
+
+                    @forelse (auth()->user()->apps as $app)
+
+                    <tr class="align-middle">
+                        <th scope="row" class="align-middle text-center">
+                            {{ $app->id }}
+                        </th>
+                        <td class="align-middle">
+                            {{ $app->name }}
+                        </td>
+                        <td class="align-middle">
+                            <a href="{{ $app->homepage_url }}" target="_blank">{{ $app->homepage_url }}</a>
+                        </td>
+                        <td class="align-middle text-center">
+                            <span class="badge badge-pill p-2 border border-solid
+                        {{ ($app->active) ? 'badge-success border-green' : 'badge-warning border-yellow' }}">
+                                {{ ($app->active) ? 'Active' : 'Not Active' }}
+                            </span>
+                        </td>
+                        <td class="align-middle">
+                            <button class="btn btn-sm btn-link">Edit</button>
+                        </td>
+                    </tr>
+
+
+                    @empty
+                    @endforelse
+
+                </tbody>
+            </table>
+
+        </div>
+
     </div>
 
 </div>
 
-<div class="my-4 bg-white rounded">
+<div class="my-4 bg-white">
 
-    <table class="table table-bordered align-middle">
-        <thead>
+    <table class="table align-middle">
+        <thead class="border border-solid border-2">
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col" class="text-center">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Homepage URL</th>
+                <th scope="col" class="text-center">Status</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="border border-solid border-2">
 
             @forelse (auth()->user()->apps as $app)
 
             <tr class="align-middle">
-                <th scope="row" class="align-middle">
+                <th scope="row" class="align-middle text-center">
                     {{ $app->id }}
                 </th>
                 <td class="align-middle">
@@ -43,8 +90,14 @@
                 <td class="align-middle">
                     <a href="{{ $app->homepage_url }}" target="_blank">{{ $app->homepage_url }}</a>
                 </td>
+                <td class="align-middle text-center">
+                    <span class="badge badge-pill p-2 border border-solid
+                        {{ ($app->active) ? 'badge-success border-green' : 'badge-warning border-yellow' }}">
+                        {{ ($app->active) ? 'Active' : 'Not Active' }}
+                    </span>
+                </td>
                 <td class="align-middle">
-                    <button class="btn btn-outline-primary btn-sm">Edit</button>
+                    <button class="btn btn-sm btn-link">Edit</button>
                 </td>
             </tr>
 
@@ -54,55 +107,6 @@
 
         </tbody>
     </table>
-
-</div>
-
-
-<div class="card">
-
-    <div class="card-header">
-        Additional Details
-    </div>
-
-    <div class="card-body">
-
-        <form action="" method="post">
-
-            <div class="form-group">
-                <label for="">Name</label>
-                <input type="text" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="">Short Description</label>
-                <textarea class="form-control"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="">Description</label>
-                <textarea class="form-control"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="">Homepage URL</label>
-                <input type="url" class="form-control">
-            </div>
-
-            <div class="form-group">
-                <label for="">Avatar</label>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="avatar" name="avatar">
-                    <label class="custom-file-label" for="avatar">Choose file</label>
-                </div>
-            </div>
-
-            <div class="form-group mt-4">
-                <button type="submit" class="btn btn-primary">Update</button>
-            </div>
-
-        </form>
-
-    </div>
 
 </div>
 
