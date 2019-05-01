@@ -1,5 +1,8 @@
 <?php
 
+use App\GSuite\GoogleDirectory;
+use App\Models\GSuite\GSuiteAccount;
+
 Auth::routes(['verify' => true]);
 
 Route::view('/', 'app.index')->name('app.index')->middleware('auth');

@@ -12,11 +12,17 @@ class GoogleDirectory
     private $google_client;
     private $directory_client;
 
+    /**
+     * List all provisioned GSuite Users
+     */
     public function users()
     {
         return collect($this->getDirectoryClient()->users->listUsers(['domain' => 'usaf.cloud'])->users);
     }
 
+    /**
+     * Provsion a new GSuite Account
+     */
     public function provision(GSuiteAccount $gsuite_account)
     {
         // New up a Directory User
@@ -38,9 +44,13 @@ class GoogleDirectory
         // Actually Provision Account
         $this->getDirectoryClient()->users->insert($google_user);
 
+        // Send owner login details
         SendGSuiteLoginDetailsEmail::dispatch($gsuite_account, $password);
     }
 
+    /**
+     * Delete a GSuite Account
+     */
     public function delete($gsuite_account_email)
     {
         try {
@@ -52,7 +62,19 @@ class GoogleDirectory
         }
     }
 
-    public function prepareName($owner)
+    public function suspend(GSuiteAccount $gsuite_account)
+    {
+        $merge = new \Google_Service_Directory_User(['suspended' => true]);
+        $this->getDirectoryClient()->users->update($gsuite_account->gsuite_email, $merge);
+    }
+
+    public function unsuspend(GSuiteAccount $gsuite_account)
+    {
+        $merge = new \Google_Service_Directory_User(['suspended' => false]);
+        $this->getDirectoryClient()->users->update($gsuite_account->gsuite_email, $merge);
+    }
+
+    private function prepareName($owner)
     {
         $new_user_name = new \Google_Service_Directory_UserName;
 
@@ -79,7 +101,7 @@ class GoogleDirectory
         return $this->directory_client;
     }
 
-    public function setDirectoryClient()
+    private function setDirectoryClient()
     {
         $this->directory_client = new \Google_Service_Directory($this->getGoogleClient());
     }
@@ -92,7 +114,7 @@ class GoogleDirectory
         return $this->google_client;
     }
 
-    public function setGoogleClient()
+    private function setGoogleClient()
     {
         // Set the credentials
         if (!getenv('GOOGLE_APPLICATION_CREDENTIALS')) {
