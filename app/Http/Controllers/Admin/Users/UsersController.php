@@ -52,11 +52,6 @@ class UsersController extends Controller
         // Assign the user role
         $user->assignRole('user');
 
-        // Send the user a welcome email
-        Mail::to($request->email)
-            ->bcc('admin@us.af.mil')
-            ->queue(new AccountCreated($user));
-
         // If the user needs a GSuite account, dispatch the job
         if ($request->has('needs_gsuite')) {
             GSuiteAccount::create([

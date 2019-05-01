@@ -2,7 +2,6 @@
 
 namespace App\Observers;
 
-use Log;
 use App\Jobs\DeleteGSuiteAccount;
 use App\Models\GSuite\GSuiteAccount;
 use App\Jobs\ProvisionGSuiteAccount;

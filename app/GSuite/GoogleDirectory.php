@@ -4,8 +4,9 @@ namespace App\GSuite;
 
 use Exception;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 use App\Models\GSuite\GSuiteAccount;
-use App\Jobs\SendGSuiteLoginDetailsEmail;
+use App\Mail\NewGSuiteAccountCreated;
 
 class GoogleDirectory
 {
@@ -45,7 +46,9 @@ class GoogleDirectory
         $this->getDirectoryClient()->users->insert($google_user);
 
         // Send owner login details
-        SendGSuiteLoginDetailsEmail::dispatch($gsuite_account, $password);
+        Mail::to($gsuite_account->gsuiteable->email)
+            ->bcc('admin@usaf.cloud')
+            ->queue(new NewGSuiteAccountCreated($gsuite_account->gsuite_email, $password));
     }
 
     /**
