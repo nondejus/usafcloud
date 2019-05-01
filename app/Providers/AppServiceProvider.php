@@ -5,7 +5,9 @@ namespace App\Providers;
 use App\Models\User\User;
 use Laravel\Passport\Passport;
 use App\Observers\UserObserver;
+use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Support\ServiceProvider;
+use App\Observers\GSuiteAccountObserver;
 use App\Observers\OrganizationsObserver;
 use App\Models\App\Organizations\Organization;
 
@@ -30,5 +32,6 @@ class AppServiceProvider extends ServiceProvider
     {
         User::observe(UserObserver::class);
         Organization::observe(OrganizationsObserver::class);
+        GSuiteAccount::observe(GSuiteAccountObserver::class);
     }
 }

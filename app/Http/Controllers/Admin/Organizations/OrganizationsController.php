@@ -25,21 +25,23 @@ class OrganizationsController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|string|unique:organizations,name'
+            'name' => 'required|string|unique:organizations,name',
+            'email' => 'required|email'
         ]);
 
         $organization = Organization::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'email' => $request->email
         ]);
 
-        $account = GSuiteAccount::create([
-            'GSuiteable_id' => $organization->id,
-            'GSuiteable_type' => Organization::class,
-            'gsuite_email' => GSuiteAccount::ensureUniqueEmailAddress("{$organization->name}@usaf.cloud"),
-            'creating' => true,
-        ]);
-
-        ProvisionGSuiteAccount::dispatch($organization, $account->gsuite_email);
+        if ($request->has('needs_gsuite')) {
+            GSuiteAccount::create([
+                'GSuiteable_id' => $organization->id,
+                'GSuiteable_type' => Organization::class,
+                'gsuite_email' => GSuiteAccount::ensureUniqueEmailAddress("{$organization->name}@usaf.cloud"),
+                'creating' => true,
+            ]);
+        }
 
         return redirect()->back()->with('status', 'Organization created!');
     }

@@ -14,10 +14,6 @@
         </div>
     </div>
 
-    {{-- <div class="p-4 border-b border-grey-light border-solid">
-        <input type="text" placeholder="Search permissions..." class="form-control">
-    </div> --}}
-
     <div class="card-body">
 
         <ul class="list-group list-group-flush">

@@ -24,7 +24,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // Clean Telescope Log
+        // Clean Telescope Log - entries older than 7 days
         $schedule->command('telescope:prune --hours=168')->daily();
     }
 

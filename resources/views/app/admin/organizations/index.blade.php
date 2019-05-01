@@ -82,6 +82,32 @@
                         <strong>{{ $errors->first('name') }}</strong>
                     </span>
                     @endif
+
+                    <div class="form-group">
+                        <label for="email">Organization Name</label>
+                        <input type="email" class="form-control" placeholder="12trs@us.af.mil" name="email"
+                            value="{{ old('email') }}" required autocomplete="false">
+                    </div>
+                    @if ($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        <strong>{{ $errors->first('email') }}</strong>
+                    </span>
+                    @endif
+
+                    <div class="form-check">
+                        <label class="form-check-label" for="needs_gsuite">
+                            <input class="form-check-input" type="checkbox" id="needs_gsuite" name="needs_gsuite"
+                                value="yes">
+                            <label class="form-check-label" for="needs_gsuite">
+                                Provision GSuite Account?
+                            </label>
+                            <small class="form-text text-muted">
+                                Optional, should we create a GSuite Account for this organization. They will be emailed
+                                a temporary password for thier new account and will be required to set a password the
+                                first time they log in.
+                            </small>
+                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

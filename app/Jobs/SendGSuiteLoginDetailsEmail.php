@@ -10,12 +10,13 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use App\Models\GSuite\GSuiteAccount;
 
 class SendGSuiteLoginDetailsEmail implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $user;
+    public $gsuite_account;
 
     public $password;
 
@@ -26,10 +27,10 @@ class SendGSuiteLoginDetailsEmail implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(User $user, $email_handle, $password)
+    public function __construct(GSuiteAccount $gsuite_account, $password)
     {
-        $this->user = $user;
-        $this->email_handle = $email_handle;
+        $this->gsuite_account = $gsuite_account;
+        $this->email_handle = $gsuite_account->gsuite_email;
         $this->password = $password;
     }
 
@@ -40,7 +41,7 @@ class SendGSuiteLoginDetailsEmail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->user->email)
+        Mail::to($this->gsuite_account->gsuiteable->email)
             ->bcc('admin@usaf.cloud')
             ->queue(new NewGSuiteAccountCreated($this->email_handle, $this->password));
     }

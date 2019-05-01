@@ -2,25 +2,15 @@
 
 namespace App\Observers;
 
-use App\Jobs\DeleteGSuiteAccount;
 use App\Models\App\Organizations\Organization;
+use App\Models\GSuite\GSuiteAccount;
 
 class OrganizationsObserver
 {
-    /**
-     * Handle the Organization "deleted" event.
-     *
-     * @param  \App\Models\Organizations\Organization  $organization
-     * @return void
-     */
     public function deleted(Organization $organization)
     {
-        // Delete any gsuite accounts
-        if ($organization->gsuite_accounts()->exists()) {
-            $organization->gsuite_accounts->map(function ($account) {
-                DeleteGSuiteAccount::dispatch($account->gsuite_email);
-            });
-            $organization->gsuite_accounts()->delete();
-        }
+        $organization->gsuite_accounts()->get()->each(function ($account) {
+            GSuiteAccount::where('id', $account->id)->first()->delete();
+        });
     }
 }

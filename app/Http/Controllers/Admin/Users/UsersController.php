@@ -59,13 +59,12 @@ class UsersController extends Controller
 
         // If the user needs a GSuite account, dispatch the job
         if ($request->has('needs_gsuite')) {
-            $account = GSuiteAccount::create([
+            GSuiteAccount::create([
                 'GSuiteable_id' => $user->id,
                 'GSuiteable_type' => User::class,
                 'gsuite_email' => GSuiteAccount::ensureUniqueEmailAddress("{$user->first_name}.{$user->last_name}@usaf.cloud"),
                 'creating' => true,
             ]);
-            ProvisionGSuiteAccount::dispatch($user, $account->gsuite_email);
         }
 
         return redirect()->route('app.admin.users.index')->with('status', 'User created!');

@@ -11,16 +11,9 @@ class Organization extends Model
 {
     use Uuids;
 
-    public $incrementing = false;
+    protected $guarded = [];
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name'
-    ];
+    public $incrementing = false;
 
     public function members()
     {

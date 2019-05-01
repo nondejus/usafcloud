@@ -32,7 +32,6 @@ class ProductionDatabaseSeeder extends Seeder
      */
     public function run()
     {
-
         // Kill the cache
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 

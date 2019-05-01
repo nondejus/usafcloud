@@ -18,6 +18,7 @@ class CreateOrganizationsTable extends Migration
             $table->primary('id');
 
             $table->string('name')->unique()->index();
+            $table->string('email')->index();
             $table->text('description')->nullable();
             $table->text('avatar')->nullable();
 

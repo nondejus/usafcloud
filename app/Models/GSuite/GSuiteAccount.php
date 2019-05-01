@@ -2,12 +2,12 @@
 
 namespace App\Models\GSuite;
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 
 class GSuiteAccount extends Model
 {
     protected $guarded = [];
+
     protected $table = 'gsuite_accounts';
 
     public function gsuiteable()

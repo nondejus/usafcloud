@@ -10,12 +10,10 @@ use App\Models\GSuite\GSuiteAccount;
 
 class GSuiteAccountsController extends Controller
 {
-    public function __construct()
-    { }
-
     public function index()
     {
-        $accounts = GSuiteAccount::all();
+        $accounts = GSuiteAccount::all()->load('gsuiteable');
+
         $users = (new \App\GSuite\GoogleDirectory)->users();
 
         return view('app.admin.gsuite.index', [

@@ -3,12 +3,11 @@
 namespace App\Jobs;
 
 use App\Models\User\User;
-use Illuminate\Support\Str;
 use Illuminate\Bus\Queueable;
+use App\GSuite\GoogleDirectory;
 use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Jobs\SendGSuiteLoginDetailsEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use App\Models\App\Organizations\Organization;
@@ -17,40 +16,16 @@ class ProvisionGSuiteAccount implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-    public $subject;
-
-    public $defaultPassword;
-
-    /**
-     * Google SDK Client
-     */
-    public $google_client;
-
-    /**
-     * Google Directory Service Client
-     */
-    public $google_directory_service;
-
-    /**
-     * Google Username object
-     */
-    public $google_username;
-
-    /**
-     * The unique, primary email address to assign account
-     */
-    public $gsuite_email;
+    public $gsuite_account;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($subject, $gsuite_email, $defaultPassword = '')
+    public function __construct(GSuiteAccount $gsuite_account)
     {
-        $this->subject = $subject;
-        $this->gsuite_email = $gsuite_email;
-        $this->defaultPassword = $defaultPassword;
+        $this->gsuite_account = $gsuite_account;
     }
 
     /**
@@ -60,124 +35,30 @@ class ProvisionGSuiteAccount implements ShouldQueue
      */
     public function handle()
     {
-        // New up a Directory User
-        $google_user = new \Google_Service_Directory_User;
-
-        // Set the name for the new User
-        $google_user->setName($this->getNameForNewGoogleUser());
-
-        // Set the email handle for the new user
-        $google_user->setPrimaryEmail($this->gsuite_email);
-
-        // Set the default password for the new user
-        if ($this->defaultPassword === '') {
-            $this->defaultPassword = Str::random(10);
-        }
-        $google_user->setPassword($this->defaultPassword);
-
-        // Make the user reset the passwor @ next login
-        $google_user->setChangePasswordAtNextLogin(true);
-
-        $directory_client = $this->getGoogleDirectoryClient($this->getGoogleClient());
-
-        $directory_client->users->insert($google_user);
-
-        //SendGSuiteLoginDetailsEmail::dispatch($this->subject, $this->gsuite_email, $this->defaultPassword);
-
+        $directory = new GoogleDirectory;
+        $directory->provision($this->gsuite_account);
         $this->updateAccountStatus();
-    }
-
-    public function getGoogleClient()
-    {
-        if ($this->google_client == null) {
-            $this->prepareGoogleClient();
-        }
-        return $this->google_client;
-    }
-
-    public function getGoogleDirectoryClient()
-    {
-        if ($this->google_directory_service == null) {
-            $this->prepareGoogleDirectoryClient();
-        }
-        return $this->google_directory_service;
-    }
-
-    public function getNameForNewGoogleUser()
-    {
-        if ($this->google_username == null) {
-            $this->prepareName();
-        }
-        return $this->google_username;
-    }
-
-    public function prepareName()
-    {
-        // New up Google_Service_Directory_UserName
-        $new_user_name = new \Google_Service_Directory_UserName;
-
-        if ($this->subject instanceof User) {
-
-            // Set user given name (AKA: First Name)
-            $given_name = ucfirst($this->subject->first_name);
-            $new_user_name->setGivenName($given_name);
-            // Set user family name (AKA: Last Name)
-            $family_name = ucfirst($this->subject->last_name);
-            $new_user_name->setFamilyName($family_name);
-        } elseif ($this->subject instanceof Organization) {
-
-            $new_user_name->setGivenName($this->subject->name);
-            $new_user_name->setFamilyName('USAF.Cloud');
-        }
-
-        $this->google_username = $new_user_name;
-    }
-
-    public function prepareGoogleDirectoryClient()
-    {
-        if ($this->google_client == null) {
-            $this->prepareGoogleClient();
-        }
-
-        // New up a Directory Service
-        $this->google_directory_service = (new \Google_Service_Directory($this->google_client));
-    }
-
-    public function prepareGoogleClient()
-    {
-        // Set the credentials
-        putenv('GOOGLE_APPLICATION_CREDENTIALS=' . storage_path('credentials.json'));
-
-        $google_client = new \Google_Client();
-
-        // Set the user to impersonate
-        $google_client->setSubject(config('gsuite.subject'));
-
-        // Instruct Google To Use Default Creds
-        $google_client->useApplicationDefaultCredentials();
-
-        // Set the proper scopes
-        $google_client->setScopes('https://www.googleapis.com/auth/admin.directory.user');
-        $this->google_client = $google_client;
     }
 
     public function updateAccountStatus()
     {
-        if ($this->subject instanceof User) {
+        if ($this->gsuite_account->gsuiteable instanceof User) {
             $type = User::class;
-        } elseif ($this->subject instanceof Organization) {
+        } elseif ($this->gsuite_account->gsuiteable instanceof Organization) {
             $type = Organization::class;
         }
 
         $account = GSuiteAccount::where([
-            'gsuiteable_id' => $this->subject->id,
+            'gsuiteable_id' => $this->gsuite_account->id,
             'gsuiteable_type' => $type,
-            'gsuite_email' => $this->gsuite_email
+            'gsuite_email' => $this->gsuite_account->gsuite_email
         ])->first();
 
-        $account->update([
-            'creating' => false,
-            'ready' => true,
-        ]);
+        if ($account) {
+            $account->update([
+                'creating' => false,
+                'ready' => true,
+            ]);
+        }
     }
 }
