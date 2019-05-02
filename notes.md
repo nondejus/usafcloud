@@ -53,3 +53,44 @@ https://developer.okta.com/blog/2017/06/21/what-the-heck-is-oauth
 
 -   Listeners go with Events
 -   Observers can go with any Model
+
+# 3D Party Notifs
+
+```php
+use App\Models\Auth\User;
+
+Route::get('/test', function() {
+	$user = User::first();
+
+	$client = new \GuzzleHttp\Client;
+
+	$response = $client->request('POST', 'http://usaf.test/api/user/notifications', [
+	    'headers' => [
+	        'Accept' => 'application/json',
+	        'Authorization' => 'Bearer '. $user->access_token,
+	    ],
+	    'form_params' => [
+        'title' => 'This is from EPUB',
+        'content' => 'this is the body',
+        'action_text' => 'Click Me',
+        'action_url' => 'http://google.com'
+    ]
+	]);
+
+	dd(json_decode($response->getBody(), true));
+
+});
+```
+
+```php
+Route::post('/user/notifications', function (Request $request) {
+    $notification = $request->user()->notifications()->create([
+        'title' => $request->title,
+        'content' => $request->content,
+        'action_text' => $request->action_text,
+        'action_url' => $request->action_url
+    ]);
+
+    return $notification;
+});
+```

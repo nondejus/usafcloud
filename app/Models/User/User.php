@@ -8,9 +8,9 @@ use App\Models\User\UserMilitary;
 use Laravel\Passport\HasApiTokens;
 use App\Models\User\UserContactInfo;
 use App\Models\GSuite\GSuiteAccount;
-use App\Models\User\UserNotification;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Notifications\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\App\Organizations\Organization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -64,7 +64,7 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     public function notifications()
     {
-        return $this->hasMany(UserNotification::class);
+        return $this->morphMany(Notification::class, 'notifiable');
     }
 
     /**

@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Http\Request;
 
 Route::middleware('auth:api')->group(function () {
     /**
@@ -13,5 +14,12 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user/email', 'Users\UserEmailsController@show');
     Route::post('/user/email', 'Users\UserEmailsController@update');
 
+    /**
+     * User Notifications
+     */
+
+    /**
+     * Organizations
+     */
     Route::get('/organizations', 'Organizations\OrganizationsController@index');
 });

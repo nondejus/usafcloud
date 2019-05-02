@@ -6,6 +6,7 @@ use App\Traits\Uuids;
 use App\Models\User\User;
 use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Notifications\Notification;
 
 class Organization extends Model
 {
@@ -18,6 +19,14 @@ class Organization extends Model
     public function members()
     {
         return $this->belongsToMany(User::class, 'organization_members');
+    }
+
+    /**
+     * Returns a collection of the users notifications
+     */
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
     }
 
     public function addUser(User $user)

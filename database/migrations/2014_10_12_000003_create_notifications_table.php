@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUserNotificationsTable extends Migration
+class CreateNotificationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,20 @@ class CreateUserNotificationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_notifications', function (Blueprint $table) {
+        Schema::create('notifications', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->uuid('user_id')->index();
-            $table->string('url')->nullable();
+            $table->uuid('notifiable_id')->index();
+            $table->string('notifiable_type')->index();
+
+            // Notification Item
             $table->string('title')->nullable();
             $table->text('content')->nullable();
+            $table->string('action_text')->nullable();
+            $table->string('action_url')->nullable();
 
             // View/Read
             $table->boolean('viewed')->default(false);
-            $table->boolean('mark_read')->default(false);
+            $table->boolean('read')->default(false);
 
             // Snoozable
             $table->boolean('snoozed')->default(false);
@@ -31,13 +35,6 @@ class CreateUserNotificationsTable extends Migration
             // Meta
             $table->json('payload')->nullable();
             $table->timestamps();
-
-            // Keys
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onUpdate('cascade')
-                ->onDelete('cascade');
         });
     }
 
@@ -48,6 +45,6 @@ class CreateUserNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_notifications');
+        Schema::dropIfExists('notifications');
     }
 }
