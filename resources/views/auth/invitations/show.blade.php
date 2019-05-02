@@ -1,10 +1,10 @@
 @extends('auth.layouts.app')
 
-@section('title')
+@section('page-title')
 Set Account Password
 @endsection
 
-@section('page-content')
+@section('content')
 
 <div class="row justify-content-center">
 
@@ -16,7 +16,6 @@ Set Account Password
         <div class="card">
 
             <div class="card-body">
-
 
                 <form method="post">
 
