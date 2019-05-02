@@ -19,7 +19,8 @@ Route::get('/account', 'App\Users\UserAccountsController@show')->name('app.users
 Route::get('/account/settings', 'App\Users\UserSettingsController@show')->name('app.users.account.settings.index');
 Route::patch('/account/settings', 'App\Users\UserAccountsController@update')->name('app.users.account.settings.update');
 Route::patch('/account/settings/demographics', 'App\Users\UserDemographicsController@update')->name('app.users.account.settings.demographics.update');
-Route::patch('/account/settings/contact-info', 'App\Users\UserContactInfoController@update')->name('app.users.account.settings.contact-info.update');
+Route::patch('/account/settings/contact', 'App\Users\UserContactInfoController@update')->name('app.users.account.settings.contact-info.update');
+Route::patch('/account/settings/military', 'App\Users\UserMilitaryInfoController@update')->name('app.users.account.settings.military.update');
 Route::patch('/account/settings/password', 'App\Users\UserPasswordController@update')->name('app.users.account.settings.password.update');
 
 /**
@@ -41,5 +42,5 @@ Route::get('/account/teams', 'App\Users\UserOrganizationsController@index')->nam
 /**
  * New User Invitiations
  */
-Route::get('/login/{user}/invitation', 'App\Users\UserInvitationsController@show')->name('login.invitation');
-Route::post('/login/{user}/invitation', 'App\Users\UserInvitationsController@update')->name('login.invitation');
+Route::get('/login/{user}/invitation', 'Auth\UserInvitationsController@show')->name('login.invitation');
+Route::post('/login/{user}/invitation', 'Auth\UserInvitationsController@update')->name('login.invitation');

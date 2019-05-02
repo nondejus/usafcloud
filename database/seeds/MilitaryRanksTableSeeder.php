@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use App\Models\References\MilitaryRank;
+use App\Models\References\MilitaryBranch;
+use App\Models\References\MilitaryRankClassification;
 
 class MilitaryRanksTableSeeder extends Seeder
 {
@@ -91,18 +93,70 @@ class MilitaryRanksTableSeeder extends Seeder
 
     public function run()
     {
-        // collect($this->enlisted_ranks)->map(function ($item, $classification) {
-        //     factory(MilitaryRank::class)->create([
-        //         'name' => $item['name'],
-        //         'abbr' => $item['abbr'],
-        //         'pay_grade' => $item['pay_grade'],
-        //         'display_order' => 0,
-        //         'classification_id' => function () {
-        //             return '';
-        //         },
-        //         'branch_id' => factory(MilitaryBranch::class)->create()->id,
-        //         'active' => true
-        //     ]);
-        // });
+        // Junior Enlisted
+        collect($this->enlisted_ranks)->take(4)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'Airman')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
+
+        // Noncommissioned Officers
+        collect($this->enlisted_ranks)->slice(4)->take(2)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'Noncommissioned Officer')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
+
+        // Senior Noncommissioned Officers
+        collect($this->enlisted_ranks)->slice(6)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'Senior Noncommissioned Officer')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
+
+        // Company Grade Officers
+        collect($this->officer_ranks)->take(3)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'Company Grade Officer')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
+
+        // Field Grade Officers
+        collect($this->officer_ranks)->slice(3)->take(3)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'Field Grade Officer')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
+
+        // General Officers
+        collect($this->officer_ranks)->slice(6)->each(function ($rank) {
+            MilitaryRank::create([
+                'name' => $rank['name'],
+                'abbr' => $rank['abbr'],
+                'pay_grade' => $rank['pay_grade'],
+                'classification_id' => MilitaryRankClassification::where('name', 'General Officer')->first()->id,
+                'branch_id' => MilitaryBranch::where('abbr', 'USAF')->first()->id,
+            ]);
+        });
     }
 }
