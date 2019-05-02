@@ -19,11 +19,9 @@ class CreateOauthClientsTables extends Migration
 
             // General App Info
             $table->string('name')->index();
-            $table->string('short_description')->index()->nullable();
             $table->text('description')->nullable();
             $table->string('homepage_url')->nullable();
             $table->text('avatar')->nullable();
-            $table->boolean('active')->default(false);
             $table->timestamp('approved_until')->nullable();
 
             // OAuth Stuff

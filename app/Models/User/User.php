@@ -38,7 +38,8 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function apps()
     {
-        return $this->hasMany(\Laravel\Passport\Client::class);
+        //return $this->hasMany(\Laravel\Passport\Client::class);
+        return $this->hasMany(\Laravel\Passport\Token::class);
     }
 
     /**
@@ -104,11 +105,4 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->morphMany(GSuiteAccount::class, 'gsuiteable');
     }
-
-    // public function provisionGSuiteAccount()
-    // {
-    //     if (!$this->gsuite_user) {
-    //         ProvisionGSuiteAccount::dispatch($this);
-    //     }
-    // }
 }

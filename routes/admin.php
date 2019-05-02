@@ -47,4 +47,7 @@ Route::delete('/acl/permissions/{permission}', 'ACL\Permissions\PermissionsContr
 /**
  * API Clients
  */
-Route::get('/developers/api', 'Admin\AdminDashboardController@api')->name('app.admin.api.index');
+Route::get('/developer/apps', 'Apps\AppsController@index')->name('app.admin.api.index');
+Route::post('/developer/apps', 'Apps\AppsController@store')->name('app.admin.api.index');
+Route::get('/developer/apps/create', 'Apps\AppsController@create')->name('app.admin.api.create');
+Route::get('/developer/apps/{client}', 'Apps\AppsController@show')->name('app.admin.api.show');

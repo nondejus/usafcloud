@@ -42,7 +42,7 @@ Admin Dashboard
                         Manage GSuite Accounts
                     </a>
                     <a href="{{ route('app.admin.api.index') }}" class="list-group-item">
-                        Manage API Apps
+                        Manage OAuth Apps
                     </a>
                 </ul>
             </div>

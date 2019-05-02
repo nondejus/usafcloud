@@ -15,6 +15,10 @@ class UserAppsController extends Controller
     public function index()
     {
         $user = auth()->user()->load('apps');
+        //dd($user->apps->first()->client->name);
+        // $user->apps->each(function ($token) {
+        //     dd($token);
+        // });
         return view('app.users.apps.index', compact('user'));
     }
 }

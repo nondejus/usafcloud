@@ -4,19 +4,19 @@
 
 <div class="card mb-5">
 
-    <div class="card-header flex justify-content-start align-items-center">
-        <span class="text-xl">Manage Your API Applications</span>
+    <div class="card-header flex justify-content-between align-items-center">
+        <span class="text-xl">Manage OAuth Applications</span>
+        <a href="{{ route('app.admin.api.create') }}" class="btn btn-primary">Create New App</a>
     </div>
 
     <div class="card-body">
 
-        <passport-clients class="my-3"></passport-clients>
-        <passport-authorized-clients class="my-3"></passport-authorized-clients>
+        <div class="bg-white">
 
-        <div class="my-4 bg-white">
+            @if($clients->count() > 0)
 
-            <table class="table align-middle">
-                <thead class="border border-solid border-2">
+            <table class="table align-middle mb-0">
+                <thead class="border border-solid border-2 bg-grey-lighter">
                     <tr>
                         <th scope="col" class="text-center">ID</th>
                         <th scope="col">Name</th>
@@ -27,7 +27,7 @@
                 </thead>
                 <tbody class="border border-solid border-2">
 
-                    @forelse (auth()->user()->apps as $app)
+                    @foreach ($clients as $app)
 
                     <tr class="align-middle">
                         <th scope="row" class="align-middle text-center">
@@ -40,22 +40,24 @@
                             <a href="{{ $app->homepage_url }}" target="_blank">{{ $app->homepage_url }}</a>
                         </td>
                         <td class="align-middle text-center">
-                            <span class="badge badge-pill p-2 border border-solid
-                        {{ ($app->active) ? 'badge-success border-green' : 'badge-warning border-yellow' }}">
-                                {{ ($app->active) ? 'Active' : 'Not Active' }}
+                            <span class="badge badge-pill py-2 px-3
+                        {{ ($app->revoked) ? 'badge-danger' : 'badge-success' }}">
+                                {{ ($app->revoked) ? 'Revoked' : 'Active' }}
                             </span>
                         </td>
                         <td class="align-middle">
-                            <button class="btn btn-sm btn-link">Edit</button>
+                            <a href="{{ route('app.admin.api.show', $app) }}" class="btn btn-sm btn-link">View</a>
                         </td>
                     </tr>
 
-
-                    @empty
-                    @endforelse
+                    @endforeach
 
                 </tbody>
             </table>
+
+            @else
+            <p class="text-muted m-0">There are no registered apps.</p>
+            @endif
 
         </div>
 

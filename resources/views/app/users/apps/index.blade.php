@@ -9,7 +9,15 @@ My Apps
 <div class="container my-5">
 
     @forelse ($user->apps as $app)
-    <p>{{ $app->name }}</p>
+
+    <div class="flex p-4 border border-solid rounded">
+        <img class="w-24 mr-3" src="{{ Storage::url($app->client->avatar) }}" alt="{{ $app->client->name }}">
+        <div>
+            <a href="{{ $app->client->homepage_url }}" target="_blank">{{ $app->client->name }}</a>
+            <p class="mb-0">{{ $app->client->description }}</p>
+        </div>
+    </div>
+
     @empty
 
     <div class="flex items-center flex-column">

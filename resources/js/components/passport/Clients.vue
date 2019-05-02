@@ -24,7 +24,6 @@
             <tr>
               <th>Client ID</th>
               <th>Name</th>
-              <th>Description</th>
               <th>Secret</th>
               <th></th>
               <th></th>
@@ -38,9 +37,6 @@
 
               <!-- Name -->
               <td style="vertical-align: middle;">{{ client.name }}</td>
-
-              <!-- Description -->
-              <td style="vertical-align: middle;">{{ client.description }}</td>
 
               <!-- Secret -->
               <td style="vertical-align: middle;">
@@ -100,25 +96,6 @@
                   >
 
                   <span class="form-text text-muted">Something your users will recognize and trust.</span>
-                </div>
-              </div>
-
-              <!-- Application Description -->
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label">Description</label>
-
-                <div class="col-md-9">
-                  <input
-                    id="create-client-description"
-                    type="text"
-                    class="form-control"
-                    @keyup.enter="update"
-                    v-model="createForm.description"
-                  >
-
-                  <span
-                    class="form-text text-muted"
-                  >Something to give users an idea of what your application is for.</span>
                 </div>
               </div>
 
@@ -192,25 +169,6 @@
                 </div>
               </div>
 
-              <!-- Application Description -->
-              <div class="form-group row">
-                <label class="col-md-3 col-form-label">Description</label>
-
-                <div class="col-md-9">
-                  <input
-                    id="edit-client-description"
-                    type="text"
-                    class="form-control"
-                    @keyup.enter="update"
-                    v-model="editForm.description"
-                  >
-
-                  <span
-                    class="form-text text-muted"
-                  >Something to give users an idea of what your application is for.</span>
-                </div>
-              </div>
-
               <!-- Redirect URL -->
               <div class="form-group row">
                 <label class="col-md-3 col-form-label">Redirect URL</label>
@@ -254,14 +212,12 @@ export default {
       createForm: {
         errors: [],
         name: "",
-        description: "",
         redirect: ""
       },
 
       editForm: {
         errors: [],
         name: "",
-        description: "",
         redirect: ""
       }
     };
@@ -331,7 +287,6 @@ export default {
     edit(client) {
       this.editForm.id = client.id;
       this.editForm.name = client.name;
-      this.editForm.description = client.description;
       this.editForm.redirect = client.redirect;
 
       $("#modal-edit-client").modal("show");
@@ -360,7 +315,6 @@ export default {
           this.getClients();
 
           form.name = "";
-          form.description = "";
           form.redirect = "";
           form.errors = [];
 

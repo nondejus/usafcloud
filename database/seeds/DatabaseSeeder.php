@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(MilitaryBranchesTableSeeder::class);
         $this->call(MilitaryRankClassificationsTableSeeder::class);
         $this->call(UsersTableSeeder::class);
-
-        $this->call(ProductionDatabaseSeeder::class);
+        $this->call(RolesAndPermissionsTablesSeeder::class);
     }
 }
