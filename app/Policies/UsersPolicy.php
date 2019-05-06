@@ -8,6 +8,11 @@ class UsersPolicy
 {
     use HandlesAuthorization;
 
+    public function before()
+    {
+        return (auth()->user()->hasRole('super-admin')) ? true : false;
+    }
+
     public function create()
     {
         return (auth()->user()->can('users:create')) ? true : false;

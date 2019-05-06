@@ -2,12 +2,16 @@
 
 namespace App\Policies;
 
-use Log;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class OrganizationsPolicy
 {
     use HandlesAuthorization;
+
+    public function before()
+    {
+        return (auth()->user()->hasRole('super-admin')) ? true : false;
+    }
 
     public function create()
     {

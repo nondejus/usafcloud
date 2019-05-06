@@ -32,8 +32,12 @@
                     <button class="btn btn-link dropdown-toggle hover:no-underline focus:no-underline" type="button"
                         id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         title="Menu">
-                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
-                            class="w-8 rounded-full">
+                        @if(auth()->user()->avatar)
+                            <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
+                                class="w-8 rounded-full">
+                        @else
+                            {{ auth()->user()->name }}  
+                        @endif
                         <span class="caret"></span>
                     </button>
 
