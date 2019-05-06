@@ -38,7 +38,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function apps()
     {
-        return $this->hasMany(\Laravel\Passport\Token::class);
+        return $this->hasMany(\Laravel\Passport\Token::class)->where('revoked', false);
     }
 
     /**

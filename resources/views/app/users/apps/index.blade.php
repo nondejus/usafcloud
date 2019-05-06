@@ -11,7 +11,9 @@ My Apps
     @forelse ($user->apps as $app)
 
     <div class="flex p-4 border border-solid rounded">
+        @if ($app->client->avatar)
         <img class="w-24 mr-3" src="{{ Storage::url($app->client->avatar) }}" alt="{{ $app->client->name }}">
+        @endif
         <div>
             <a href="{{ $app->client->homepage_url }}" target="_blank">{{ $app->client->name }}</a>
             <p class="mb-0">{{ $app->client->description }}</p>
