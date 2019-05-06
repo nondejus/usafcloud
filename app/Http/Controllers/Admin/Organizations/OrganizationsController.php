@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GSuite\GSuiteAccount;
 use App\Http\Controllers\Controller;
 use App\Jobs\ProvisionGSuiteAccount;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 
 class OrganizationsController extends Controller
 {

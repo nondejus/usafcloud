@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin\Organizations;
 use App\Models\User\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 
 class OrganizationMembersController extends Controller
 {

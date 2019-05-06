@@ -12,7 +12,7 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Notifications\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail

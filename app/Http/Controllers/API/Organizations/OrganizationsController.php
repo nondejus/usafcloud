@@ -4,7 +4,7 @@ namespace App\Http\Controllers\API\Organizations;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 
 class OrganizationsController extends Controller
 {

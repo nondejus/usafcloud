@@ -9,7 +9,7 @@ use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Support\ServiceProvider;
 use App\Observers\GSuiteAccountObserver;
 use App\Observers\OrganizationsObserver;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 
 class AppServiceProvider extends ServiceProvider
 {

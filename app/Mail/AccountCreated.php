@@ -2,12 +2,12 @@
 
 namespace App\Mail;
 
+use App\Models\User\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
-use App\Models\User\User;
 
 class AccountCreated extends Mailable
 {

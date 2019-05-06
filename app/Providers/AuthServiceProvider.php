@@ -6,7 +6,7 @@ use App\Models\User\User;
 use App\Policies\UsersPolicy;
 use Laravel\Passport\Passport;
 use App\Policies\OrganizationsPolicy;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider

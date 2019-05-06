@@ -11,10 +11,11 @@ use App\Mail\NewGSuiteAccountCreated;
 class GoogleDirectory
 {
     private $google_client;
+
     private $directory_client;
 
     /**
-     * List all provisioned GSuite Users
+     * List all provisioned GSuite Accounts
      */
     public function users()
     {
@@ -43,12 +44,14 @@ class GoogleDirectory
         $google_user->setChangePasswordAtNextLogin(true);
 
         // Actually Provision Account
-        $this->getDirectoryClient()->users->insert($google_user);
+        $gsuite_account = $this->getDirectoryClient()->users->insert($google_user);
 
         // Send owner login details
         Mail::to($gsuite_account->gsuiteable->email)
             ->bcc('admin@usaf.cloud')
             ->queue(new NewGSuiteAccountCreated($gsuite_account->gsuite_email, $password));
+
+        return $gsuite_account;
     }
 
     /**
@@ -84,7 +87,7 @@ class GoogleDirectory
         if ($owner instanceof \App\Models\User\User) {
             $new_user_name->setGivenName(ucfirst($owner->first_name));
             $new_user_name->setFamilyName(ucfirst($owner->last_name));
-        } elseif ($owner instanceof \App\Models\App\Organizations\Organization) {
+        } elseif ($owner instanceof \App\Models\Organizations\Organization) {
             $new_user_name->setGivenName(ucfirst($owner->name));
             $new_user_name->setFamilyName('USAF.Cloud');
         }
@@ -94,27 +97,25 @@ class GoogleDirectory
 
     public function __construct()
     {
-        $this->setDirectoryClient();
+        $this->setGoogleClient()
+            ->setDirectoryClient();
+
+        return $this;
+    }
+
+    private function setDirectoryClient()
+    {
+        $this->directory_client = new \Google_Service_Directory($this->getGoogleClient());
 
         return $this;
     }
 
     public function getDirectoryClient()
     {
-        return $this->directory_client;
-    }
-
-    private function setDirectoryClient()
-    {
-        $this->directory_client = new \Google_Service_Directory($this->getGoogleClient());
-    }
-
-    public function getGoogleClient()
-    {
-        if (!$this->google_client) {
-            $this->setGoogleClient();
+        if (!$this->directory_client) {
+            $this->setDirectoryClient();
         }
-        return $this->google_client;
+        return $this->directory_client;
     }
 
     private function setGoogleClient()
@@ -127,5 +128,15 @@ class GoogleDirectory
         $this->google_client->useApplicationDefaultCredentials();
         $this->google_client->setSubject(config('gsuite.subject'));
         $this->google_client->setScopes('https://www.googleapis.com/auth/admin.directory.user');
+
+        return $this;
+    }
+
+    public function getGoogleClient()
+    {
+        if (!$this->google_client) {
+            $this->setGoogleClient();
+        }
+        return $this->google_client;
     }
 }

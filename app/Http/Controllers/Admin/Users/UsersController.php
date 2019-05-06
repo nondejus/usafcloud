@@ -3,12 +3,9 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Models\User\User;
-use App\Mail\AccountCreated;
-use App\Jobs\ProvisionGSuiteAccount;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewUser;
-use App\Models\App\Organizations\Organization;
+use App\Models\Organizations\Organization;
 use App\Models\GSuite\GSuiteAccount;
 
 class UsersController extends Controller

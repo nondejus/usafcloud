@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\App\Organizations;
+namespace App\Models\Organizations;
 
 use App\Traits\Uuids;
 use App\Models\User\User;

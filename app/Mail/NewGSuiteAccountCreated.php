@@ -33,6 +33,7 @@ class NewGSuiteAccountCreated extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.users.services.gsuite.added');
+        return $this->from('admin@usaf.cloud')
+            ->markdown('emails.users.services.gsuite.added');
     }
 }
