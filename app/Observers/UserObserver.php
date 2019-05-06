@@ -5,7 +5,6 @@ namespace App\Observers;
 use App\Models\User\User;
 use App\Mail\AccountCreated;
 use Illuminate\Support\Facades\Mail;
-use App\Models\GSuite\GSuiteAccount;
 
 class UserObserver
 {
@@ -23,7 +22,7 @@ class UserObserver
     public function deleted(User $user)
     {
         $user->gsuite_accounts()->get()->each(function ($account) {
-            GSuiteAccount::where('id', $account->id)->first()->delete();
+            $account->delete();
         });
     }
 }

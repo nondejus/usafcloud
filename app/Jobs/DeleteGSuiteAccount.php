@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use Log;
 use Illuminate\Bus\Queueable;
 use App\GSuite\GoogleDirectory;
 use App\Models\GSuite\GSuiteAccount;
