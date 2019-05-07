@@ -16,12 +16,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * User Account Dashboard
      */
-    Route::get('/account', 'Users\UserAccountsController@show')->name('app.users.account.index');
+    Route::get('/account', 'Users\UserDashboardController@index')->name('app.users.account.index');
 
     /**
      * User Account Settings
      */
-    Route::get('/account/settings', 'Users\UserSettingsController@show')->name('app.users.account.settings.index');
+    Route::get('/account/settings', 'Users\UserAccountsController@index')->name('app.users.account.settings.index');
     Route::patch('/account/settings', 'Users\UserAccountsController@update')->name('app.users.account.settings.update');
     Route::patch('/account/settings/demographics', 'Users\UserDemographicsController@update')->name('app.users.account.settings.demographics.update');
     Route::patch('/account/settings/contact', 'Users\UserContactInfoController@update')->name('app.users.account.settings.contact-info.update');

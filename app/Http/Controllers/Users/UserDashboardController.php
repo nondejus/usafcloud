@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers\Users;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class UserAppsController extends Controller
+class UserDashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware(['auth', 'verified']);
     }
 
     public function index()
     {
         $user = auth()->user()->load('apps');
 
-        return view('app.users.apps.index', compact('user'));
+        return view('app.users.index', ['user' => $user]);
     }
 }

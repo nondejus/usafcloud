@@ -6,8 +6,11 @@ use Image;
 use Illuminate\Http\File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\References\Gender;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Models\References\MilitaryBranch;
+use App\Models\References\MilitaryRank;
 
 class UserAccountsController extends Controller
 {
@@ -16,11 +19,15 @@ class UserAccountsController extends Controller
         $this->middleware('auth');
     }
 
-    public function show()
+    public function index()
     {
-        $user = auth()->user();
-        return view('app.users.index', [
-            'user' => $user
+        $user = auth()->user()->load(['contact', 'military']);
+
+        return view('app.users.settings.index', [
+            'user' => $user,
+            'genders' => Gender::all(),
+            'branches' => MilitaryBranch::all(),
+            'ranks' => MilitaryRank::all(),
         ]);
     }
 
@@ -35,10 +42,13 @@ class UserAccountsController extends Controller
         ]);
 
         $user = auth()->user();
-        $user->first_name = $request->first_name;
-        $user->last_name = $request->last_name;
-        $user->middle_name = $request->middle_name;
-        $user->nickname = $request->nickname;
+
+        $user->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'middle_name' => $request->middle_name,
+            'nickname' => $request->nickname,
+        ]);
 
         if ($request->has('avatar')) {
 
