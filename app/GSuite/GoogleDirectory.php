@@ -1,4 +1,4 @@
-<?php
+new<?php
 
 namespace App\GSuite;
 
@@ -44,7 +44,7 @@ class GoogleDirectory
         $google_user->setChangePasswordAtNextLogin(true);
 
         // Actually Provision Account
-        $gsuite_account = $this->getDirectoryClient()->users->insert($google_user);
+        $new_gsuite_account = $this->getDirectoryClient()->users->insert($google_user);
 
         // Send owner login details
         Mail::to($gsuite_account->gsuiteable->email)
