@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\User\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UsersPolicy
@@ -28,8 +29,12 @@ class UsersPolicy
         return (auth()->user()->can('users:update')) ? true : false;
     }
 
-    public function delete()
+    public function delete(User $user)
     {
-        return (auth()->user()->can('users:destroy')) ? true : false;
+        if (auth()->user()->can('users:destroy') && auth()->user()->id <> $user->id) {
+            return true;
+        }
+
+        return false;
     }
 }

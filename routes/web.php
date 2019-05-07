@@ -8,7 +8,7 @@ Auth::routes(['verify' => true]);
 Route::get('/login/{user}/invitation', 'Auth\UserInvitationsController@show')->name('login.invitation');
 Route::post('/login/{user}/invitation', 'Auth\UserInvitationsController@update')->name('login.invitation');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::view('/', 'app.index')->name('app.index');
     Route::view('/home', 'app.index')->name('app.home');

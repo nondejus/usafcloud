@@ -3,35 +3,48 @@
 namespace App\Http\Controllers\Admin\Users;
 
 use App\Models\User\User;
+use App\Models\GSuite\GSuiteAccount;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateNewUser;
 use App\Models\Organizations\Organization;
-use App\Models\GSuite\GSuiteAccount;
 
 class UsersController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
-        $this->middleware('role:admin|super-admin');
+        $this->middleware([
+            'auth', 'verified', 'role:super-admin'
+        ]);
     }
 
     public function index()
     {
-        $users = User::all()->sortBy('last_name');
-        return view('app.admin.users.index', compact('users'));
+        $this->authorize('view', User::class);
+
+        $users = User::all()->sortBy('first_name')->sortBy('last_name');
+
+        return view('app.admin.users.index', ['users' => $users]);
     }
 
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('app.admin.users.create');
     }
 
     public function show(User $user)
     {
-        $organizations = Organization::all()->whereNotIn('id', $user->organizations->pluck('id'));
-        $user->with(['roles', 'permissions', 'organizations']);
-        return view('app.admin.users.show', compact('user', 'organizations'));
+        $this->authorize('create', User::class);
+
+        $availableOrganizations = Organization::all()->whereNotIn('id', $user->organizations->pluck('id'));
+
+        $user = $user->load(['roles', 'permissions', 'organizations']);
+
+        return view('app.admin.users.show', [
+            'user' => $user,
+            'organizations' => $availableOrganizations
+        ]);
     }
 
     public function store(CreateNewUser $request)
@@ -43,7 +56,7 @@ class UsersController extends Controller
             'middle_name' => ucfirst($request->middle_name),
             'email' => strtolower($request->email),
             'password_reset_required' => true,
-            'last_password_reset' => now()
+            'last_password_reset' => null
         ]);
 
         // Assign the user role
@@ -66,13 +79,8 @@ class UsersController extends Controller
     {
         $this->authorize('delete', $user);
 
-        if (auth()->user()->id <> $user->id && !$user->hasRole('super-admin')) {
+        $user->delete();
 
-            $user->delete();
-
-            return redirect()->route('app.admin.users.index')->with('status', 'User Deleted!');
-        }
-
-        return abort(403);
+        return redirect()->route('app.admin.users.index')->with('status', 'User Deleted!');
     }
 }
