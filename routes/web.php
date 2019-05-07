@@ -16,31 +16,31 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * User Account Dashboard
      */
-    Route::get('/account', 'App\Users\UserAccountsController@show')->name('app.users.account.index');
+    Route::get('/account', 'Users\UserAccountsController@show')->name('app.users.account.index');
 
     /**
      * User Account Settings
      */
-    Route::get('/account/settings', 'App\Users\UserSettingsController@show')->name('app.users.account.settings.index');
-    Route::patch('/account/settings', 'App\Users\UserAccountsController@update')->name('app.users.account.settings.update');
-    Route::patch('/account/settings/demographics', 'App\Users\UserDemographicsController@update')->name('app.users.account.settings.demographics.update');
-    Route::patch('/account/settings/contact', 'App\Users\UserContactInfoController@update')->name('app.users.account.settings.contact-info.update');
-    Route::patch('/account/settings/military', 'App\Users\UserMilitaryInfoController@update')->name('app.users.account.settings.military.update');
-    Route::patch('/account/settings/password', 'App\Users\UserPasswordController@update')->name('app.users.account.settings.password.update');
+    Route::get('/account/settings', 'Users\UserSettingsController@show')->name('app.users.account.settings.index');
+    Route::patch('/account/settings', 'Users\UserAccountsController@update')->name('app.users.account.settings.update');
+    Route::patch('/account/settings/demographics', 'Users\UserDemographicsController@update')->name('app.users.account.settings.demographics.update');
+    Route::patch('/account/settings/contact', 'Users\UserContactInfoController@update')->name('app.users.account.settings.contact-info.update');
+    Route::patch('/account/settings/military', 'Users\UserMilitaryInfoController@update')->name('app.users.account.settings.military.update');
+    Route::patch('/account/settings/password', 'Users\UserPasswordController@update')->name('app.users.account.settings.password.update');
 
     /**
      * User Notifications
      */
-    Route::get('/account/notifications', 'App\Users\UserNotificationsController@index')->name('app.users.account.notifications');
-    Route::post('/account/notifications', 'App\Users\UserNotificationsController@store')->name('app.users.account.notifications');
+    Route::get('/account/notifications', 'Users\UserNotificationsController@index')->name('app.users.account.notifications');
+    Route::post('/account/notifications', 'Users\UserNotificationsController@store')->name('app.users.account.notifications');
 
     /**
      * User Apps
      */
-    Route::get('/account/apps', 'App\Users\UserAppsController@index')->name('app.users.account.apps.index');
+    Route::get('/account/apps', 'Users\UserAppsController@index')->name('app.users.account.apps.index');
 
     /**
      * User Teams
      */
-    Route::get('/account/teams', 'App\Users\UserOrganizationsController@index')->name('app.users.account.teams.index');
+    Route::get('/account/teams', 'Users\UserOrganizationsController@index')->name('app.users.account.teams.index');
 });

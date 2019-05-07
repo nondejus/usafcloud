@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App\Users;
+namespace App\Http\Controllers\Users;
 
 use Illuminate\Http\Request;
 use App\Models\References\Gender;

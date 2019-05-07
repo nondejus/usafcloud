@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\App\Users;
+namespace App\Http\Controllers\Users;
 
 use App\Rules\Phone;
 use Illuminate\Http\Request;
