@@ -5,7 +5,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     /**
      * Dashboard
      */
-    Route::redirect('/', '/dashboard', 301);
+    Route::redirect('/', '/admin/dashboard', 301);
     Route::get('/dashboard', 'Admin\AdminDashboardController@index')->name('app.admin.dashboard.index');
 
     /**
