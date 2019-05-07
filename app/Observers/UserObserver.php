@@ -19,6 +19,11 @@ class UserObserver
             ->queue(new AccountCreated($user));
     }
 
+    public function updated(User $user)
+    {
+        //
+    }
+
     public function deleted(User $user)
     {
         $user->gsuite_accounts()->get()->each(function ($account) {

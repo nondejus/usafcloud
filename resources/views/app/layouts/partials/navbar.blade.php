@@ -23,31 +23,42 @@
                 <!-- Authentication Links -->
                 @auth
 
+                <!-- Notifications -->
                 <li class="nav-item flex justify-center align-items-center">
-                    <a class="nav-link" href="{{ route('app.users.account.notifications') }}" title="">@svg('bell')</a>
+                    <a class="nav-link" href="{{ route('app.users.account.index') }}" title="Dashboard">
+                        @svg('home')
+                    </a>
                 </li>
 
+                <!-- User Menu Dropdown -->
                 <li class="nav-item dropdown">
 
                     <button class="btn btn-link dropdown-toggle hover:no-underline focus:no-underline" type="button"
                         id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                         title="Menu">
                         @if(auth()->user()->avatar)
-                            <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
-                                class="w-8 rounded-full">
+                        <img src="{{ Storage::url(auth()->user()->avatar) }}" alt="{{ auth()->user()->name }}"
+                            class="w-8 rounded-full">
                         @else
-                            {{ auth()->user()->name }}  
+                        {{ auth()->user()->name }}
                         @endif
                         <span class="caret"></span>
                     </button>
 
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <a class="dropdown-item" href="{{ route('app.users.account.index') }}">My Profile</a>
+                        <a class="dropdown-item" href="{{ route('app.users.account.notifications') }}"
+                            title="Notifications">
+                            @svg('bell', 'text-grey leading-none mr-2')
+                            Notifications ({{ auth()->user()->notifications->count() }})
+                        </a>
 
                         @hasanyrole('admin|super-admin')
 
-                        <a class="dropdown-item" href="{{ route('app.admin.dashboard.index') }}">Admin Dashboard</a>
+                        <a class="dropdown-item" href="{{ route('app.admin.dashboard.index') }}">
+                            @svg('settings', 'text-grey leading-none mr-2')
+                            Admin Dashboard
+                        </a>
 
                         @endhasrole
 
