@@ -1,4 +1,4 @@
-new<?php
+<?php
 
 namespace App\GSuite;
 
