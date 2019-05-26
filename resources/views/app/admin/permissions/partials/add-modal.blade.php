@@ -17,41 +17,48 @@
                     @csrf
 
                     <div class="form-group">
-                        <label class="mr-2">Permission Name</label>
+                        <label class="tw-mr-2">Permission Name</label>
                         <input class="form-control" type="text" name="name" placeholder="resource:action" required
                             autocomplete="false">
                         <small class="form-text">This will be the name referenced in the application code</small>
+
+                        @error('name')
+                            @include('components.error')
+                        @enderror
+
                     </div>
 
                     <div class="form-group">
-                        <label class="mr-2">Permission Display Name</label>
+                        <label class="tw-mr-2">Permission Display Name</label>
                         <input class="form-control" type="text" name="display_name" placeholder="Create Resource"
                             required autocomplete="false">
                         <small class="form-text">This will be the name shown when granting users permissions</small>
+
+                        @error('display_name')
+                            @include('components.error')
+                        @enderror
+
                     </div>
 
                     <div class="form-group">
-                        <label class="mr-2">Permission Description</label>
+                        <label class="tw-mr-2">Permission Description</label>
                         <input class="form-control" type="text" name="description"
                             placeholder="Should user be able to...?" required autocomplete="false">
                         <small class="form-text">
                             This will be shown when granting users permissions and should give
                             users a good idea of what they are granting to users
                         </small>
+
+                        @error('description')
+                            @include('components.error')
+                        @enderror
+
                     </div>
-
-                    @if ($errors->has('name'))
-
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-
-                    @endif
 
                     <div class="form-group form-check">
                         <input type="checkbox" class="form-check-input" name="resource_permission">
                         <label class="form-check-label" name="resource_permission">Resourceful Permission</label>
-                        <small class="block mt-1">
+                        <small class="tw-block tw-mt-1">
                             Creates all CRUD actions (create, view, update, destroy) for a resource.
                         </small>
                     </div>

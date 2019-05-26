@@ -20,7 +20,7 @@
                         <label for="">Choose a User</label>
                         <select class="form-control" name="user_id">
                             @forelse ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
                             @empty
                             @endforelse
                         </select>

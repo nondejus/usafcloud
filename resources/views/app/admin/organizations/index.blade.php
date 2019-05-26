@@ -4,16 +4,15 @@
 
 <div class="card">
 
-    <div class="card-header flex justify-content-between align-items-center">
-        <span class="text-xl">Manage Organizations</span>
-        <div>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#createNewOrganizationModal">
-                Create Organzation
-            </button>
-        </div>
+    <div class="card-header tw-flex tw-justify-between tw-items-center">
+        <span class="tw-text-2xl">Manage Organizations</span>
+        
+        <button type="button" class="btn btn-primary tw-block" data-toggle="modal" data-target="#createNewOrganizationModal">
+            Create Organzation
+        </button>
     </div>
 
-    <div class="p-4 border-b border-gray-light border-solid">
+    <div class="tw-p-4 tw-border-b tw-border-gray-300 tw-border-solid">
         <input type="text" id="filterOrganizationsInput" placeholder="Search organizations..." class="form-control">
     </div>
 
@@ -22,34 +21,38 @@
         <ul class="list-group list-group-flush" id="organizationsList">
 
             @forelse ($organizations as $organization)
-            <li class="list-group-item">
-                <div class="flex justify-content-between align-items-center">
-                    <p class="text-xl m-0 text-gray-darker">{{ $organization->name }}</p>
-                    <div>
-                        <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
-                            data-toggle="collapse" data-target="#organization-view-{{ $organization->id }}"
-                            aria-expanded="false">
-                            Quick View
-                        </button>
-                        <a href="{{ route('app.admin.organizations.show', $organization) }}"
-                            class="btn btn-sm btn-outline-primary">
-                            Manage Organization
-                        </a>
-                    </div>
-                </div>
-                <div class="collapse mt-3" id="organization-view-{{ $organization->id }}">
-                    <div class="card card-body">
-                        <p>ID: <span class="underline">{{ $organization->id }}</span></p>
-                        <p class="m-0">Number of Members: <span
-                                class="underline">{{ $organization->members->count() }}</span></p>
-                    </div>
-                </div>
 
-            </li>
+                <li class="list-group-item">
+                    <div class="tw-flex tw-justify-between tw-items-center">
+                        <p class="tw-text-xl tw-m-0 tw-text-gray-800">{{ $organization->name }}</p>
+                        <div>
+                            <button class="btn btn-sm btn-outline-primary btn-rounded tw-mr-1" type="button"
+                                data-toggle="collapse" data-target="#organization-view-{{ $organization->id }}"
+                                aria-expanded="false">
+                                Quick View
+                            </button>
+                            <a href="{{ route('app.admin.organizations.show', $organization) }}"
+                                class="btn btn-sm btn-outline-primary">
+                                Manage Organization
+                            </a>
+                        </div>
+                    </div>
+                    <div class="collapse tw-mt-3" id="organization-view-{{ $organization->id }}">
+                        <div class="card card-body">
+                            <p>ID: <span class="tw-underline">{{ $organization->id }}</span></p>
+                            <p class="tw-m-0">Number of Members: <span
+                                    class="tw-underline">{{ $organization->members->count() }}</span></p>
+                        </div>
+                    </div>
+
+                </li>
+
             @empty
-            <li class="list-group-item">
-                <p class="text-xl m-0 text-gray-darker">Currently no organizations</p>
-            </li>
+
+                <li class="list-group-item">
+                    <p class="tw-text-xl tw-m-0 tw-text-gray-800">Currently no organizations</p>
+                </li>
+
             @endforelse
 
         </ul>
@@ -72,27 +75,28 @@
             <form action="{{ route('app.admin.organizations.store') }}" method="POST">
                 <div class="modal-body">
                     @csrf
+
                     <div class="form-group">
                         <label for="name">Organization Name</label>
                         <input type="text" class="form-control" placeholder="12th Training Squadron" name="name"
                             value="{{ old('name') }}" required autocomplete="false">
-                    </div>
-                    @if ($errors->has('name'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('name') }}</strong>
-                    </span>
-                    @endif
+                        
+                        @error('name')
+                            @include('components.error')
+                        @enderror
+
+                    </div>                    
 
                     <div class="form-group">
                         <label for="email">Organization Name</label>
                         <input type="email" class="form-control" placeholder="12trs@us.af.mil" name="email"
                             value="{{ old('email') }}" required autocomplete="false">
-                    </div>
-                    @if ($errors->has('email'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('email') }}</strong>
-                    </span>
-                    @endif
+                        
+                        @error('email')
+                            @include('components.error')
+                        @enderror
+
+                    </div>                    
 
                     <div class="form-check">
                         <label class="form-check-label" for="needs_gsuite">
@@ -109,6 +113,7 @@
                     </div>
 
                 </div>
+                
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Create</button>

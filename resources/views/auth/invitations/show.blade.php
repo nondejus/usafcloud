@@ -1,17 +1,15 @@
 @extends('auth.layouts.app')
 
-@section('page-title')
-Set Account Password
-@endsection
+@section('page-title', 'Set Account Password')
 
 @section('content')
 
-<div class="row justify-content-center">
+<div class="row tw-justify-center">
 
-    <div class="col-md-8 mt-5">
+    <div class="col-md-8 tw-mt-8">
 
-        <h2 class="text-2xl">Hello, good to see you!</h2>
-        <p class="text-xl text-muted">Please set an account password for future logins</p>
+        <h2 class="tw-text-2xl">Hello, good to see you!</h2>
+        <p class="tw-text-xl text-muted">Please set an account password for future logins</p>
 
         <div class="card">
 
@@ -26,6 +24,10 @@ Set Account Password
                         <input type="password" class="form-control" name="password" id="password" required
                             autocomplete="false">
                         <small class="form-text text-muted">Minimum of 8 characters</small>
+                        
+                        @error('password')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form-group">
@@ -33,8 +35,12 @@ Set Account Password
                         <input type="password" class="form-control" name="password_confirmation"
                             id="password_confirmation" required autocomplete="false">
                         <small class="form-text text-muted">Retype your desired password</small>
-                    </div>
 
+                        @error('password_confirmation')
+                            <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                        @enderror
+
+                    </div>
 
                     <button type="submit" class="btn btn-primary">Set Password And Login</button>
 

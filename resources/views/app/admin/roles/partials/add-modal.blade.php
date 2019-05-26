@@ -17,49 +17,45 @@
                     @csrf
 
                     <div class="form-group">
-                        <label class="mr-2">Role Name</label>
+                        <label class="tw-mr-2">Role Name</label>
                         <input class="form-control" type="text" name="name" required autocomplete="false"
                             placeholder="organization:admin">
-                        @if ($errors->has('name'))
+                        
+                        @error('name')
+                            @include('components.error')
+                        @enderror
 
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('name') }}</strong>
-                        </span>
-
-                        @endif
                     </div>
 
                     <div class="form-group">
-                        <label class="mr-2">Role Display Name</label>
+                        <label class="tw-mr-2">Role Display Name</label>
                         <input class="form-control" type="text" name="display_name" required autocomplete="false"
                             placeholder="Organization Admin">
-                        @if ($errors->has('display_name'))
+                        
+                        @error('display_name')
+                            @include('components.error')
+                        @enderror
 
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('display_name') }}</strong>
-                        </span>
-
-                        @endif
                     </div>
 
                     <div class="form-group">
-                        <label class="mr-2">Role Description</label>
+                        <label class="tw-mr-2">Role Description</label>
                         <input class="form-control" type="text" name="description" required autocomplete="false">
-                        @if ($errors->has('description'))
+                        
+                        @error('description')
+                            @include('components.error')
+                        @enderror
 
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('description') }}</strong>
-                        </span>
-
-                        @endif
                     </div>
 
 
                 </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-primary">Create Role</button>
                 </div>
+                
             </form>
         </div>
     </div>
