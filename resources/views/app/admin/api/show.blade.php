@@ -2,10 +2,10 @@
 
 @section('admin-page-content')
 
-<div class="card mb-5">
+<div class="card tw-mb-8">
 
-    <div class="card-header flex justify-content-start align-items-center">
-        <span class="text-xl">Manage API Application</span>
+    <div class="card-header tw-flex tw-justify-start tw-items-center">
+        <span class="tw-text-2xl">Manage API Application</span>
     </div>
 
     <div class="card-body">
@@ -35,7 +35,7 @@
                     </tr>
                     <tr>
                         <th scope="row">Secret</th>
-                        <td class="{{ ($client->revoked) ? 'text-red-light' : 'text-green-light' }}">
+                        <td class="{{ ($client->revoked) ? 'tw-text-red-500' : 'tw-text-green-500' }}">
                             {{ $client->secret }}
                         </td>
                     </tr>
@@ -43,7 +43,7 @@
                         <th scope="row">Status</th>
                         <td>
                             <span
-                                class="badge badge-pill px-3 py-2 {{ ($client->revoked) ? 'badge-danger' : 'badge-success' }}">
+                                class="badge badge-pill tw-px-3 tw-py-2 {{ ($client->revoked) ? 'badge-danger' : 'badge-success' }}">
                                 {{ ($client->revoked) ? 'Revoked' : 'Active' }}
                             </span>
                         </td>
