@@ -3,7 +3,7 @@
 * * If using `postcss-import`,
 use this import instead: * * @import "tailwindcss/preflight";
 */
-@tailwind preflight;
+@tailwind base;
 
 /**
  * This injects any component classes registered by plugins.
@@ -20,13 +20,27 @@ use this import instead: * * @import "tailwindcss/preflight";
  * override them.
  */
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url("https://fonts.googleapis.com/css?family=Nunito");
 
 // Variables
-@import 'variables';
+@import "variables";
 
 // Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
+
+html {
+    line-height: 1.15;
+}
+
+ul {
+    list-style-type: disc;
+    padding-left: theme("padding.4");
+}
+
+ol {
+    list-style-type: decimal;
+    padding-left: theme("padding.4");
+}
 
 .navbar-laravel {
     background-color: #fff;

@@ -8,7 +8,7 @@
 
     @empty
 
-    <p class="text-xl text-grey-darker">User not assigned to any organizations</p>
+    <p class="text-xl text-gray-darker">User not assigned to any organizations</p>
 
     @endforelse
 

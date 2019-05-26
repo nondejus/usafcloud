@@ -8,7 +8,7 @@ Register
 
 <div class="w-3/4 sm:w-3/5 md:w-1/3 lg:w-2/5 xl:w-1/4">
 
-    <h1 class="text-center text-grey my-4 px-1">
+    <h1 class="text-center text-gray my-4 px-1">
         USAF.Cloud
     </h1>
 
@@ -84,7 +84,7 @@ Register
         </form>
     </div>
 
-    <p class="text-center text-grey mt-3 px-1">
+    <p class="text-center text-gray mt-3 px-1">
         One Account. One Login. <br>
         All Your Trusted Applications
     </p>

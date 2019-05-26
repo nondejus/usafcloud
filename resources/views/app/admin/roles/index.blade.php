@@ -21,7 +21,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $role->display_name }}</p>
+                        <p class="text-xl m-0 text-gray-darker">{{ $role->display_name }}</p>
                         <small class="text-muted">{{ $role->description }} ({{$role->name }})</small>
                     </div>
                     <div>

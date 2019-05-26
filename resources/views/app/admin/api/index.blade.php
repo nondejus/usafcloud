@@ -16,7 +16,7 @@
             @if($clients->count() > 0)
 
             <table class="table align-middle mb-0">
-                <thead class="border border-solid border-2 bg-grey-lighter">
+                <thead class="border border-solid border-2 bg-gray-lighter">
                     <tr>
                         <th scope="col" class="text-center">ID</th>
                         <th scope="col">Name</th>

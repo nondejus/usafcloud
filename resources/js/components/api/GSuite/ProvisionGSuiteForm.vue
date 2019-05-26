@@ -13,13 +13,13 @@
         <div class="flex justify-center align-middle m-4">
           <div
             class="w-1/2 p-3 rounded mr-1 text-center text-base hover:shadow border border-solid"
-            :class="[ provisionFor == 'user' ? 'bg-blue-lightest' : 'bg-grey-ligter' ]"
+            :class="[ provisionFor == 'user' ? 'bg-blue-lightest' : 'bg-gray-ligter' ]"
             style="cursor:pointer"
             @click="provisionFor = 'user'"
           >A User</div>
           <div
             class="w-1/2 p-3 rounded ml-1 text-center text-base hover:shadow border border-solid"
-            :class="[ provisionFor == 'organization' ? 'bg-blue-lightest' : 'bg-grey-ligter' ]"
+            :class="[ provisionFor == 'organization' ? 'bg-blue-lightest' : 'bg-gray-ligter' ]"
             style="cursor:pointer"
             @click="provisionFor = 'organization'"
           >An Organization</div>

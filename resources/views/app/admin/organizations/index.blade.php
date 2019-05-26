@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    <div class="p-4 border-b border-grey-light border-solid">
+    <div class="p-4 border-b border-gray-light border-solid">
         <input type="text" id="filterOrganizationsInput" placeholder="Search organizations..." class="form-control">
     </div>
 
@@ -24,7 +24,7 @@
             @forelse ($organizations as $organization)
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
-                    <p class="text-xl m-0 text-grey-darker">{{ $organization->name }}</p>
+                    <p class="text-xl m-0 text-gray-darker">{{ $organization->name }}</p>
                     <div>
                         <button class="btn btn-sm btn-outline-primary btn-rounded mr-1" type="button"
                             data-toggle="collapse" data-target="#organization-view-{{ $organization->id }}"
@@ -48,7 +48,7 @@
             </li>
             @empty
             <li class="list-group-item">
-                <p class="text-xl m-0 text-grey-darker">Currently no organizations</p>
+                <p class="text-xl m-0 text-gray-darker">Currently no organizations</p>
             </li>
             @endforelse
 

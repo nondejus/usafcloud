@@ -14,13 +14,13 @@ Account Settings
             <!-- General Info -->
             <form method="POST" enctype="multipart/form-data" class="mb-5 border border-solid p-4 rounded bg-white">
 
-                <h3 class="text-lg mb-4 text-grey-darker">General Info</h3>
+                <h3 class="text-lg mb-4 text-gray-darker">General Info</h3>
 
                 @csrf
                 @method('PATCH')
 
                 <div class="form-group row mb-4">
-                    <label for="first_name" class="col-sm-3 col-form-label text-grey-dark">First Name</label>
+                    <label for="first_name" class="col-sm-3 col-form-label text-gray-dark">First Name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="first_name" name="first_name"
                             value="{{ auth()->user()->first_name }}" required>
@@ -32,7 +32,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row my-4">
-                    <label for="last_name" class="col-sm-3 col-form-label text-grey-dark">Last Name</label>
+                    <label for="last_name" class="col-sm-3 col-form-label text-gray-dark">Last Name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="last_name" name="last_name"
                             value="{{ auth()->user()->last_name }}" required>
@@ -44,7 +44,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row my-4">
-                    <label for="middle_name" class="col-sm-3 col-form-label text-grey-dark">Middle Name</label>
+                    <label for="middle_name" class="col-sm-3 col-form-label text-gray-dark">Middle Name</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="middle_name" name="middle_name"
                             value="{{ auth()->user()->middle_name }}">
@@ -56,7 +56,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row my-4">
-                    <label for="nickname" class="col-sm-3 col-form-label text-grey-dark">Nickname</label>
+                    <label for="nickname" class="col-sm-3 col-form-label text-gray-dark">Nickname</label>
                     <div class="col-sm-9">
                         <input type="text" class="form-control" id="nickname" name="nickname"
                             value="{{ auth()->user()->nickname }}">
@@ -68,7 +68,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row my-4">
-                    <label for="avatar" class="col-sm-3 col-form-label text-grey-dark">
+                    <label for="avatar" class="col-sm-3 col-form-label text-gray-dark">
                         @if($user->avatar)
                         Change Avatar
                         @else
@@ -99,13 +99,13 @@ Account Settings
             <form method="POST" action="{{ route('app.users.account.settings.contact-info.update') }}"
                 class="mb-5 border border-solid p-4 rounded bg-white">
 
-                <h3 class="text-lg mb-4 text-grey-darker">Contact Info</h3>
+                <h3 class="text-lg mb-4 text-gray-darker">Contact Info</h3>
 
                 @csrf
                 @method('PATCH')
 
                 <div class="form-group row mb-4">
-                    <label for="cell_phone" class="col-sm-3 col-form-label text-grey-dark">Cell Phone</label>
+                    <label for="cell_phone" class="col-sm-3 col-form-label text-gray-dark">Cell Phone</label>
                     <div class="col-sm-9">
                         <input type="tel" class="form-control" id="cell_phone" name="cell_phone"
                             value="{{ ($user->contact->cell_phone) ? $user->contact->cell_phone : old('cell_phone') }}">
@@ -117,7 +117,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row my-4">
-                    <label for="personal_email" class="col-sm-3 col-form-label text-grey-dark">Personal Email</label>
+                    <label for="personal_email" class="col-sm-3 col-form-label text-gray-dark">Personal Email</label>
                     <div class="col-sm-9">
                         <input type="email" class="form-control" id="personal_email" name="personal_email"
                             value="{{ $user->contact->personal_email }}">
@@ -140,13 +140,13 @@ Account Settings
             <form method="POST" action="{{ route('app.users.account.settings.demographics.update') }}"
                 class="mb-5 border border-solid p-4 rounded bg-white">
 
-                <h3 class="text-lg mb-4 text-grey-darker">Demographics Info</h3>
+                <h3 class="text-lg mb-4 text-gray-darker">Demographics Info</h3>
 
                 @csrf
                 @method('PATCH')
 
                 <div class="form-group row mb-4">
-                    <label for="gender_id" class="col-sm-3 col-form-label text-grey-dark">Gender</label>
+                    <label for="gender_id" class="col-sm-3 col-form-label text-gray-dark">Gender</label>
                     <div class="col-sm-9">
                         <select name="gender_id" id="gender_id" class="form-control">
                             @if(!$user->gender)
@@ -184,13 +184,13 @@ Account Settings
             <form method="POST" action="{{ route('app.users.account.settings.military.update') }}"
                 class=" mb-5 border border-solid p-4 rounded bg-white">
 
-                <h3 class="text-lg mb-4 text-grey-darker">Military Info</h3>
+                <h3 class="text-lg mb-4 text-gray-darker">Military Info</h3>
 
                 @csrf
                 @method('PATCH')
 
                 <div class="form-group row mb-4">
-                    <label for="branch_id" class="col-sm-3 col-form-label text-grey-dark">Branch</label>
+                    <label for="branch_id" class="col-sm-3 col-form-label text-gray-dark">Branch</label>
                     <div class="col-sm-9">
                         <select name="branch_id" id="branch_id" class="form-control">
 
@@ -215,7 +215,7 @@ Account Settings
                 @enderror
 
                 <div class="form-group row mb-4">
-                    <label for="rank_id" class="col-sm-3 col-form-label text-grey-dark">Rank</label>
+                    <label for="rank_id" class="col-sm-3 col-form-label text-gray-dark">Rank</label>
                     <div class="col-sm-9">
                         <select name="rank_id" id="rank_id" class="form-control">
 
@@ -253,27 +253,27 @@ Account Settings
             <form method="POST" action="{{ route('app.users.account.settings.password.update') }}"
                 class="mb-5 border border-solid p-4 rounded bg-white">
 
-                <h3 class="text-lg mb-4 text-grey-darker">Change Password</h3>
+                <h3 class="text-lg mb-4 text-gray-darker">Change Password</h3>
 
                 @csrf
                 @method('PATCH')
 
                 <div class="form-group row mb-4">
-                    <label for="password" class="col-sm-3 col-form-label text-grey-dark">Current Password</label>
+                    <label for="password" class="col-sm-3 col-form-label text-gray-dark">Current Password</label>
                     <div class="col-sm-9">
                         <input type="password" name="password" id="password" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group row mb-4">
-                    <label for="new_password" class="col-sm-3 col-form-label text-grey-dark">New Password</label>
+                    <label for="new_password" class="col-sm-3 col-form-label text-gray-dark">New Password</label>
                     <div class="col-sm-9">
                         <input type="password" name="new_password" id="new_password" class="form-control">
                     </div>
                 </div>
 
                 <div class="form-group row mb-4">
-                    <label for="new_password_confirmation" class="col-sm-3 col-form-label text-grey-dark">
+                    <label for="new_password_confirmation" class="col-sm-3 col-form-label text-gray-dark">
                         Retype New Password
                     </label>
                     <div class="col-sm-9">

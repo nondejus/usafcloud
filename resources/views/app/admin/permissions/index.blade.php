@@ -13,7 +13,7 @@
         </div>
     </div>
 
-    {{-- <div class="p-4 border-b border-grey-light border-solid">
+    {{-- <div class="p-4 border-b border-gray-light border-solid">
         <input type="text" placeholder="Search permissions..." class="form-control">
     </div> --}}
 
@@ -25,7 +25,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $permission->display_name }}</p>
+                        <p class="text-xl m-0 text-gray-darker">{{ $permission->display_name }}</p>
                         <small class="text-muted">{{ $permission->description }} ({{ $permission->name }})</small>
                     </div>
                     <div>

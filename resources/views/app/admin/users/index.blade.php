@@ -12,7 +12,7 @@
         </div>
     </div>
 
-    <div class="p-4 border-b border-grey-light border-solid">
+    <div class="p-4 border-b border-gray-light border-solid">
         <input type="text" id="filterUsersInput" placeholder="Search users..." class="form-control">
     </div>
 
@@ -24,7 +24,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">
+                        <p class="text-xl m-0 text-gray-darker">
                             {{ $user->last_name }}, {{ $user->first_name }} {{ Str::limit($user->middle_name, 1, '') }}
                         </p>
                     </div>

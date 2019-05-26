@@ -5,12 +5,12 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>USAF Cloud - @yield('title')</title>
+    <title>@yield('title', 'Home') - USAF Cloud</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 
-<body class="mb-5">
+<body class="tw-mb-5">
     @yield('content')
 </body>
 

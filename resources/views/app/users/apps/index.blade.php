@@ -4,17 +4,17 @@
 
 @section('user-page-content')
 
-<div class="container my-5">
+<div class="container tw-my-5">
 
     @if($user->apps)
 
-        <div class="px-2">
+        <div class="tw-px-2">
 
-            <div class="flex flex-wrap -mx-2">
+            <div class="tw-flex tw-flex-wrap tw--mx-2">
 
                 @foreach($user->apps as $app)
 
-                    <div class="w-1/3 px-2 border border-solid rounded mx-1 mb-2 hover:bg-grey-lighter flex-1">
+                    <div class="w-1/3 px-2 border border-solid rounded mx-1 mb-2 hover:bg-gray-lighter flex-1">
 
                         <div class="flex flex-wrap p-4">
 

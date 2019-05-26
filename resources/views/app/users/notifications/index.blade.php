@@ -15,12 +15,12 @@ Notifications
 
             <nav class="nav flex-column border border-solid rounded py-3">
 
-                <h3 class="text-base text-grey-darker px-3 uppercase">My Notifications</h3>
+                <h3 class="text-base text-gray-darker px-3 uppercase">My Notifications</h3>
 
-                <a class="nav-link text-grey-dark hover:bg-grey-lighter hover:text-grey-darker" href="#">
+                <a class="nav-link text-gray-dark hover:bg-gray-lighter hover:text-gray-darker" href="#">
                     Unread
                 </a>
-                <a class="nav-link text-grey-dark hover:bg-grey-lighter hover:text-grey-darker" href="#">
+                <a class="nav-link text-gray-dark hover:bg-gray-lighter hover:text-gray-darker" href="#">
                     Snoozed
                 </a>
             </nav>
@@ -35,7 +35,7 @@ Notifications
             <div class="border border-solid rounded alert alert-dismissible fade show p-0" role="alert">
 
                 <!-- Notification Body -->
-                <div class="p-4 bg-grey-lighter">
+                <div class="p-4 bg-gray-lighter">
                     <h4 class="text-lg">
                         {{ $notification->title}}
                     </h4>
@@ -58,7 +58,7 @@ Notifications
                 </div>
 
                 <!-- Notification Footer -->
-                <div class=" bg-grey-lighter flex px-4 py-3 justify-end border-top border-solid">
+                <div class=" bg-gray-lighter flex px-4 py-3 justify-end border-top border-solid">
 
                     <a href="#" class="btn btn-sm btn-outline-secondary mr-2">Snooze</a>
                     <a href="#" class="btn btn-sm btn-outline-secondary">Mark As Read</a>

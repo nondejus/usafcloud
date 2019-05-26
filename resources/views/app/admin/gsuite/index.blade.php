@@ -22,7 +22,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $account->gsuite_email }}</p>
+                        <p class="text-xl m-0 text-gray-darker">{{ $account->gsuite_email }}</p>
                         <small class="text-muted">Owner: {{ $account->gsuiteable->name }}</small>
                     </div>
                     <div>
@@ -83,7 +83,7 @@
             <li class="list-group-item">
                 <div class="flex justify-content-between align-items-center">
                     <div>
-                        <p class="text-xl m-0 text-grey-darker">{{ $user->primaryEmail }}</p>
+                        <p class="text-xl m-0 text-gray-darker">{{ $user->primaryEmail }}</p>
                         <small class="text-muted">
                             Created: {{ \Carbon\Carbon::parse($user->creationTime)->diffForHumans() }}
                         </small>
