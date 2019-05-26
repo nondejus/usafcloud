@@ -4,8 +4,8 @@
 
 <div class="card">
 
-    <div class="card-header flex justify-content-start align-items-center">
-        <span class="text-xl">Admin Dashboard</span>
+    <div class="card-header tw-flex tw-justify-start tw-items-center">
+        <span class="tw-text-xl">Admin Dashboard</span>
     </div>
 
     <div class="card-body">
