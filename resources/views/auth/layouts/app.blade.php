@@ -12,7 +12,7 @@
 
 <body>
     <div id="app">
-        <main class="h-screen flex justify-content-center align-items-center">
+        <main class="tw-h-screen tw-flex tw-justify-center tw-items-center">
             @yield('content')
         </main>
     </div>

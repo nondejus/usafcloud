@@ -6,7 +6,7 @@
 
 <div class="container tw-my-8">
 
-    @if($user->apps)
+    @if($user->apps()->count() > 0)
 
         <div class="tw-px-2">
 
@@ -43,13 +43,13 @@
 
     @else
 
-        <div class="tw-flex tw-items-center tw-flex-column">
+        <div class="tw-flex tw-items-center tw-flex-col">
 
-            <p class="tw-text-grey-300 tw-text-2xl tw-mb-5 tw-leading-none">
+            <p class="tw-text-grey-300 tw-text-2xl tw-my-10 tw-leading-none">
                 You have not authorized any third party apps.
             </p>
 
-            @svg('connect', 'tw-w-1/3 tw-h-auto tw-inline-block')
+            @svg('connect', 'tw-w-1/3 tw-h-auto')
 
         </div>
 

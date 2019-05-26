@@ -1,46 +1,46 @@
 @extends('auth.layouts.app')
 
-@section('page-title')
-Login
-@endsection
+@section('page-title', 'Login')
 
 @section('content')
 
-<div class="w-3/4 sm:w-3/5 md:w-1/3 lg:w-2/5 xl:w-1/5">
+<div class="tw-w-3/4 sm:tw-w-3/5 md:tw-w-1/3 lg:tw-w-2/5 xl:tw-w-1/5">
 
-    <h1 class="text-center text-gray my-4 px-1">
+    <h1 class="tw-text-center tw-text-gray-600 tw-my-6 tw-px-1">
         USAF.Cloud
     </h1>
 
-    <div class="card card-body p-5">
+    <div class="card card-body tw-p-10">
 
-        <h2 class="text-center mb-4 text-3xl">Sign In</h2>
+        <h2 class="tw-text-center tw-mb-6 tw-text-3xl">Sign In</h2>
 
         <form action="{{ route('login') }}" method="POST">
 
             @csrf
 
             <div class="form-group">
+
                 <label for="">Email Address</label>
                 <input type="email" name="email" id="email"
-                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}"
+                    class="form-control {{ $errors->has('email') ? ' is-invalid' : '' }}" value="{{ old('email') }}"
                     required>
-                @if ($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-                @endif
+
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                    @enderror
+
             </div>
 
-            <div class=" form-group">
+            <div class="form-group">
+
                 <label for="password">Password</label>
                 <input type="password" name="password" id="password"
                     class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" required>
-                @if ($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-                @endif
+
+                @error('password')
+                    <span class="invalid-feedback" role="alert">{{ $message }}</span>
+                @enderror
+
             </div>
 
             <div class="form-group">
@@ -54,13 +54,13 @@ Login
                 </div>
             </div>
 
-            <div class="flex flex-column align-items-center justify-content-center mt-4">
+            <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-mt-6">
 
                 <button type="submit" class="btn btn-outline-primary btn-block">Sign In</button>
 
                 @if(config('app.open_registation'))
 
-                <a class="d-block mt-3" href="{{ route('register') }}">Create Account</a>
+                    <a class="tw-block tw-mt-6" href="{{ route('register') }}">Create Account</a>
 
                 @endif
 
@@ -69,7 +69,7 @@ Login
         </form>
     </div>
 
-    <p class="text-center text-gray mt-3 px-1">
+    <p class="tw-text-center tw-text-gray-500 tw-mt-5 tw-px-1">
         One Account. One Login. <br>
         All Your Trusted Applications
     </p>

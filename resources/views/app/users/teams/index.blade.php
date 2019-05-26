@@ -1,27 +1,24 @@
 @extends('app.users.layouts.layout')
 
-@section('title')
-My Teams
-@endsection
+@section('title', 'My Teams')
 
 @section('user-page-content')
 
-<div class="container my-5">
+<div class="container tw-my-10">
 
-    <h3 class="text-2xl text-gray-darkest mb-4">My Teams</h3>
+    <h3 class="tw-text-2xl tw-text-gray-900 tw-mb-6">My Teams</h3>
 
     @forelse ($user->organizations as $organization)
 
-    <div>
+        <div>
 
-        <h3>{{ $organization->name }}</h3>
+            <h3>{{ $organization->name }}</h3>
 
-    </div>
-
+        </div>
 
     @empty
 
-    <p class="text-muted">You are not currently in any teams/organizations.</p>
+        <p class="tw-text-gray-500">You are not currently in any teams/organizations.</p>
 
     @endforelse
 
