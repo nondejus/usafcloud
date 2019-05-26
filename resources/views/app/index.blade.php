@@ -8,7 +8,7 @@
 
     <div class="tw-flex tw-justify-center tw-mt-5">
 
-            <div class="card">
+            <div class="card tw-w-100 tw-flex-1">
 
                 <div class="card-header">USAF.Cloud Dashboard</div>
 
