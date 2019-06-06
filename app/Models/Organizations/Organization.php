@@ -7,10 +7,11 @@ use App\Models\User\User;
 use App\Models\GSuite\GSuiteAccount;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Notifications\Notification;
+use App\Traits\HasGSuiteAccounts;
 
 class Organization extends Model
 {
-    use Uuids;
+    use Uuids, HasGSuiteAccounts;
 
     protected $guarded = [];
 
@@ -22,7 +23,7 @@ class Organization extends Model
     }
 
     /**
-     * Returns a collection of the users notifications
+     * Returns a collection of notifications
      */
     public function notifications()
     {
@@ -34,10 +35,5 @@ class Organization extends Model
         $this->members()->attach($user->id);
 
         return $this->members();
-    }
-
-    public function gsuite_accounts()
-    {
-        return $this->morphMany(GSuiteAccount::class, 'gsuiteable');
     }
 }

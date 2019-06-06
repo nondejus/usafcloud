@@ -13,11 +13,12 @@ use Illuminate\Notifications\Notifiable;
 use App\Models\Notifications\Notification;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Organizations\Organization;
+use App\Traits\HasGSuiteAccounts;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Uuids, HasRoles, Notifiable, HasApiTokens;
+    use Uuids, HasRoles, Notifiable, HasApiTokens, HasGSuiteAccounts;
 
     public $incrementing = false;
 
@@ -98,10 +99,5 @@ class User extends Authenticatable implements MustVerifyEmail
     public function leaveOrganization(Organization $organization)
     {
         $this->organizations()->detach($organization->id);
-    }
-
-    public function gsuite_accounts()
-    {
-        return $this->morphMany(GSuiteAccount::class, 'gsuiteable');
     }
 }
