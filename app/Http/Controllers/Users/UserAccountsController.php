@@ -62,7 +62,7 @@ class UserAccountsController extends Controller
 
             Image::make($request->file('avatar'))->resize(300, 300)->save($temp_file_path);
 
-            $path = Storage::putFile('avatars', new File($temp_file_path), 'public');
+            $path = Storage::putFile('public/avatars', new File($temp_file_path), 'public');
 
             Storage::disk('local')->delete('public/avatars/' . $temp_file_name);
 
@@ -71,6 +71,8 @@ class UserAccountsController extends Controller
 
         $user->save();
 
-        return redirect()->back()->with('status', 'Profile updated!');
+        alert()->success('Profile Updated!','Your profile has been updated!');
+
+        return redirect()->back();
     }
 }

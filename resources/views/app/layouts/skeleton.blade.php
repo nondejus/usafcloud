@@ -11,11 +11,15 @@
 </head>
 
 <body class="tw-mb-5">
-    @yield('content')
-</body>
 
-<form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-    @csrf
-</form>
+    @include('sweetalert::alert')
+
+    @yield('content')
+
+    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+    </form>
+
+</body>
 
 </html>
