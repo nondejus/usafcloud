@@ -27,24 +27,13 @@ class GoogleDirectory
      */
     public function provision(GSuiteAccount $gsuite_account)
     {
-        // New up a Directory User
-        $google_user = new \Google_Service_Directory_User;
+        $user = (new \App\GSuite\GoogleUser)
+                ->useAccount($gsuite_account)
+                ->useRandomPassword()
+                ->changePasswordNextLogin()
+                ->get();
 
-        // Set the name for the new User
-        $google_user->setName($this->prepareName($gsuite_account->gsuiteable));
-
-        // Set the email handle for the new user
-        $google_user->setPrimaryEmail($gsuite_account->gsuite_email);
-
-        // Set the default password for the new user
-        $password = Str::random(10);
-        $google_user->setPassword($password);
-
-        // Make the user reset the password @ next login
-        $google_user->setChangePasswordAtNextLogin(true);
-
-        // Actually Provision Account
-        $new_gsuite_account = $this->getDirectoryClient()->users->insert($google_user);
+        $new_gsuite_account = $this->getDirectoryClient()->users->insert($user);
 
         // Send owner login details
         Mail::to($gsuite_account->gsuiteable->email)
