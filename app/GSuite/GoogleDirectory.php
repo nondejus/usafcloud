@@ -38,7 +38,7 @@ class GoogleDirectory
         // Send owner login details
         Mail::to($gsuite_account->gsuiteable->email)
             ->bcc('admin@usaf.cloud')
-            ->queue(new NewGSuiteAccountCreated($gsuite_account->gsuite_email, $password));
+            ->queue(new NewGSuiteAccountCreated($gsuite_account->gsuite_email, $gsuite_account->password));
 
         return $gsuite_account;
     }

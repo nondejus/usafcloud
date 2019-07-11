@@ -3,6 +3,7 @@
 namespace App\GSuite;
 
 use Illuminate\Support\Str;
+use Google_Service_Directory_User as GoogleServiceUser;
 
 class GoogleUser
 {
@@ -10,9 +11,11 @@ class GoogleUser
 
     protected $account;
 
+    protected $owner;
+
     public function __construct()
     {
-        $this->googleUser = new \Google_Service_Directory_User;
+        $this->googleUser = new GoogleServiceUser;
         
         return $this;
     }
@@ -21,7 +24,9 @@ class GoogleUser
     {
         $this->account = $gsuiteAccount;
 
-        $this->setName($this->account->gsuiteable);
+        $this->owner = $this->account->gsuiteable;
+
+        $this->setName($this->owner);
 
         $this->setEmailHandle($this->account->gsuite_email);
 

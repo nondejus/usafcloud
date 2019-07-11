@@ -5,7 +5,7 @@
 <div class="card tw-mb-8">
 
     <div class="card-header tw-flex tw-justify-start tw-items-center">
-        <span class="tw-text-2xl">Manage API Application</span>
+        <span class="tw-text-2xl">Manage OAuth Application</span>
     </div>
 
     <div class="card-body">
